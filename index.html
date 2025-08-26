@@ -1,426 +1,689 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The City Consultant | Services</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Reformation Group — Courier & Logistics</title>
+    <meta name="description" content="Reformation Group — Seamless, secure, on-time delivery solutions for businesses and individuals." />
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom font for a professional look */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Sticky header to keep navigation visible */
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-        /* New Hero Section with a modern gradient background */
-        .hero-section {
-            background: linear-gradient(135deg, #1E7D34 0%, #37B44E 100%);
-            min-height: 80vh; /* Make the hero section tall enough */
-        }
-        .hero-title {
-            animation: fadeInDown 1s ease-out;
-        }
-        .hero-text {
-            animation: fadeInUp 1s ease-out 0.5s forwards;
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-900: #0a4b7a;
+            --blue-700: #1370b8;
+            --blue-600: #1e90ff;
+            --blue-100: #e6f4ff;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #0f1724;
+            line-height: 1.45;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px;
+        }
+        /* Moving belt */
+        .moving-belt {
+            background-color: var(--blue-700);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .moving-belt-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+            padding-left: 100%; /* Start off-screen */
+        }
+        @keyframes marquee {
+            0%  { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-container {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        .modal-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--blue-900);
+        }
+        .modal-body {
+            color: #333;
+        }
+        .stars {
+            color: #ffc107; /* Gold color for stars */
+            font-size: 1.5rem;
+        }
+        /* WhatsApp floating button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-icon {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        /* New dropdown menu styles */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 250px; /* Adjust as needed */
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 500;
+            padding: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .dropdown-menu.open {
+            display: flex;
+        }
+        .dropdown-menu a {
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: var(--blue-900);
+            transition: background-color 0.2s;
+        }
+        .dropdown-menu a:hover {
+            background-color: var(--blue-100);
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-
-    <!-- Header & Navigation -->
-    <header class="sticky-header bg-[#1E7D34] text-white shadow-lg">
-        <div class="container mx-auto flex items-center justify-between p-4">
-            <a href="#" class="text-2xl font-bold tracking-wide">The City Consultant</a>
-            <nav class="hidden md:flex items-center space-x-6 font-semibold">
-                <a href="#" class="hover:text-gray-200 transition-colors">Home</a>
-                <a href="#about" class="hover:text-gray-200 transition-colors">About</a>
-                <a href="#services" class="hover:text-gray-200 transition-colors">Services</a>
-                <a href="#reviews" class="hover:text-gray-200 transition-colors">Reviews</a>
-                <a href="#contact" class="hover:text-gray-200 transition-colors">Contact</a>
-            </nav>
-            <!-- Mobile Menu Button -->
-            <button id="menu-button" class="md:hidden text-white text-2xl focus:outline-none">
-                <i class="fas fa-bars"></i>
-            </button>
+<body>
+    <header class="container mx-auto px-4 py-4 flex flex-row items-center justify-between relative">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-[var(--blue-900)] text-white grid place-items-center font-extrabold text-2xl">R</div>
+            <div>
+                <div class="font-extrabold text-[var(--blue-900)]">Reformation Group</div>
+                <div class="text-xs text-gray-500">Courier • Logistics • Fulfilment</div>
+            </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#37B44E] w-full py-2">
-            <nav class="flex flex-col items-center space-y-2 text-sm font-medium">
-                <a href="#" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">Home</a>
-                <a href="#about" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">About</a>
-                <a href="#services" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">Services</a>
-                <a href="#reviews" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">Reviews</a>
-                <a href="#contact" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">Contact</a>
-            </nav>
+        
+        <!-- Desktop Navigation -->
+        <nav id="desktop-nav" class="hidden md:flex flex-wrap justify-center sm:gap-4 lg:gap-6">
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#schedule-pickup">Schedule Pickup</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#services">Services</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#industries">Industries</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#reviews">Reviews</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#why">Why Us</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#contact">Contact</a>
+        </nav>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-200 transition duration-200 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="dropdown-menu">
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#schedule-pickup">Schedule Pickup</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#services">Services</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#industries">Industries</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#reviews">Reviews</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#why">Why Us</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#contact">Contact</a>
         </div>
     </header>
 
-    <main class="container mx-auto p-4 sm:p-6 lg:p-8 mt-16">
+    <section class="moving-belt">
+        <div class="moving-belt-content">
+            Same-Day Delivery • International Express • E-commerce Fulfilment • Freight Forwarding • Customs Clearance • Warehousing & Distribution •
+        </div>
+    </section>
 
-        <!-- Services Section (Consolidated) -->
-        <section id="services">
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-[#1E7D34] mb-4 text-center">
-            </h2>
+    <main class="container mx-auto px-4">
+        <section class="text-center py-9">
+            <h1 class="text-3xl lg:text-5xl font-extrabold text-[var(--blue-900)]">Reformation Group For Your Courier & Logistics Needs built for speed, scale, and reliability</h1>
+            <p class="text-gray-500 mt-3">Reformation Group is a premier courier and logistics company. We provide seamless, secure delivery solutions for businesses and individuals—ensuring your parcels arrive on time, every time.</p>
+            <div class="mt-4 flex flex-wrap justify-center gap-3">
+                <a class="bg-[var(--blue-600)] text-white font-semibold py-3 px-6 rounded-full no-underline hover:bg-[var(--blue-700)] transition duration-200" href="#schedule-pickup">Schedule a Pickup</a>
+                <a class="bg-transparent border-2 border-[var(--blue-600)] text-[var(--blue-600)] font-semibold py-3 px-6 rounded-full no-underline hover:bg-[var(--blue-600)] hover:text-white transition duration-200" href="#contact">Talk to Sales</a>
+            </div>
+        </section>
 
-            <!-- Company Registration Packages Section -->
-            <section id="registration-packages" class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h3 class="text-3xl font-bold text-[#1E7D34] mb-6 text-center">Company Registration Packages</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section id="schedule-pickup" class="py-9">
+            <h2 class="text-3xl font-bold text-[var(--blue-900)]">Schedule a Pickup</h2>
+            <p class="text-gray-500">Book a one-off pickup or schedule a recurring weekly or monthly pickup at a time that works for you.</p>
+            <div class="bg-white rounded-xl shadow-md p-6 mt-4">
+                <form id="pickup-form" onsubmit="handleSchedulePickup(event)">
+                    <div class="mb-3">
+                        <label class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Pickup Type</label>
+                        <div class="flex flex-wrap gap-2">
+                            <div class="flex-1 bg-[var(--blue-100)] py-2 px-3 rounded-xl border-2 border-[var(--blue-100)] cursor-pointer text-center font-medium transition-all duration-200" data-type="one-off">One-Off</div>
+                            <div class="flex-1 bg-[var(--blue-100)] py-2 px-3 rounded-xl border-2 border-[var(--blue-100)] cursor-pointer text-center font-medium transition-all duration-200" data-type="daily">Daily</div>
+                            <div class="flex-1 bg-[var(--blue-100)] py-2 px-3 rounded-xl border-2 border-[var(--blue-100)] cursor-pointer text-center font-medium transition-all duration-200" data-type="weekly">Weekly</div>
+                            <div class="flex-1 bg-[var(--blue-100)] py-2 px-3 rounded-xl border-2 border-[var(--blue-100)] cursor-pointer text-center font-medium transition-all duration-200" data-type="monthly">Monthly</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="pickupType" name="pickupType" value="one-off" />
                     
-                    <!-- Entry Level Package Card -->
-                    <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-2 text-left">Entry Level Package</h4>
-                        <div class="flex-1 space-y-2 text-gray-700 mb-4">
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Company Registration & Certificates</li>
-                                <!-- Beneficial Ownership Filing moved to its own section -->
-                                <li>Tax Clearance Certificate</li>
-                                <li>B-BBEE Certificate</li>
-                                <li>CSD Registration</li>
-                                 <li>Beneficial ownership Filing</li>
-                            </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                        <div class="form-group">
+                            <label for="pickupDate" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Preferred Date</label>
+                            <input class="w-full px-3 py-2 rounded-xl border border-blue-200" type="date" id="pickupDate" name="pickupDate" required />
                         </div>
-                        <div class="flex flex-col items-center mt-auto">
-                            <p class="text-3xl font-bold text-[#1E7D34] mb-4">R829.00</p>
-                            <a href="https://www.payfast.co.za/eng/process" class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
-                                Purchase Now
-                            </a>
+                        <div class="form-group">
+                            <label for="pickupTime" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Preferred Time</label>
+                            <input class="w-full px-3 py-2 rounded-xl border border-blue-200" type="time" id="pickupTime" name="pickupTime" required />
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="pickupAddress" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Pickup Address</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-blue-200" type="text" id="pickupAddress" name="pickupAddress" placeholder="Street, City, Postal Code" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dropoffAddress" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Drop-off Address</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-blue-200" type="text" id="dropoffAddress" name="dropoffAddress" placeholder="Street, City, Postal Code" required />
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                        <div class="form-group">
+                            <label for="pickupEmail" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Contact Email</label>
+                            <input class="w-full px-3 py-2 rounded-xl border border-blue-200" type="email" id="pickupEmail" name="pickupEmail" placeholder="e.g. yourname@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNumber" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Contact Number</label>
+                            <input class="w-full px-3 py-2 rounded-xl border border-blue-200" type="tel" id="contactNumber" name="contactNumber" placeholder="e.g. +27 12 345 6789" required />
                         </div>
                     </div>
 
-                    <!-- Basic Package Card -->
-                    <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-2 text-left">Basic Package</h4>
-                        <div class="flex-1 space-y-2 text-gray-700 mb-4">
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Company Registration & Certificates</li>
-                                <li>SARS (PR) Public Representative</li>
-                                <!-- Beneficial Ownership Filing moved to its own section -->
-                                <li>Tax Clearance Certificate</li>
-                                <li>B-BBEE Certificate</li>
-                                <li>CSD Registration</li>
-                                 <li>Beneficial ownership</li>
-                                <li>Business Profile</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-col items-center mt-auto">
-                            <p class="text-3xl font-bold text-[#1E7D34] mb-4">R1 500.00</p>
-                            <a href="https://www.payfast.co.za/eng/process" class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
-                                Purchase Now
-                            </a>
-                        </div>
+                    <div class="mb-4">
+                        <label for="packageWeight" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Package Weight (kg)</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-blue-200" type="number" id="packageWeight" name="packageWeight" placeholder="Approximate weight in kg" required />
                     </div>
 
-                </div>
-                <p class="text-center mt-8 text-lg text-gray-700">
-                    Don't see a package that fits your needs? We also offer services on a separate, customized basis. 
-                    <a href="mailto:info@thecc.co.za?subject=Quotation%20Request" class="text-[#1E7D34] hover:underline font-semibold">Contact us today to get a quotation.</a>
-                </p>
-            </section>
-
-            <!-- CIPC Services Section -->
-            <section id="cipc-services" class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h3 class="text-3xl font-bold text-[#1E7D34] mb-6 text-center">CIPC Services</h3>
-                <div class="max-w-xl mx-auto space-y-6">
-                    <!-- Beneficial Ownership Filing Service -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-4 text-center">Beneficial Ownership Filing Service</h4>
-                        <p class="text-center text-lg text-gray-700 mb-4">
-                            Ensure your company is compliant with all regulatory requirements with our specialized Beneficial Ownership Filing Service.
-                        </p>
-                        <div class="flex flex-col items-center">
-                            <p class="text-4xl font-bold text-[#1E7D34] mb-6">R350.00</p>
-                            <a href="https://www.payfast.co.za/eng/process" class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105">
-                                Pay Now
-                            </a>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <h5 class="text-xl font-bold text-gray-800 mb-4">Required Details</h5>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2">
-                                <li>Your Email Address</li>
-                                <li>Your Cellphone Number</li>
-                                <li>Company Registration Number</li>
-                                <li>Certified ID copies of all Directors</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Form for details -->
-                        <form action="mailto:info@thecc.co.za?subject=Beneficial%20Ownership%20Filing%20Request" method="post" enctype="text/plain" class="space-y-4 mt-8">
-                            <div>
-                                <label for="bo-email" class="block text-gray-700 font-medium">Email</label>
-                                <input type="email" id="bo-email" name="bo-email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                            </div>
-                            <div>
-                                <label for="bo-phone" class="block text-gray-700 font-medium">Cellphone Number</label>
-                                <input type="tel" id="bo-phone" name="bo-phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                            </div>
-                            <div>
-                                <label for="bo-reg-number" class="block text-gray-700 font-medium">Company Registration Number</label>
-                                <input type="text" id="bo-reg-number" name="bo-reg-number" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                            </div>
-                             <!-- Note: File uploads are not supported by the mailto protocol. 
-                                 The user will be instructed to email the documents directly. -->
-                            <div>
-                                <label for="bo-files" class="block text-gray-700 font-medium">Upload Certified ID Copies</label>
-                                <p class="text-sm text-gray-500 mb-2">Note: For security and size reasons, please email these documents directly to info@thecc.co.za after submitting this form.</p>
-                                <input type="file" id="bo-files" name="bo-files" multiple class="mt-1 block w-full text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#1E7D34] file:text-white hover:file:bg-[#37B44E]">
-                            </div>
-                            <button type="submit" class="w-full bg-gray-400 text-white font-bold py-3 px-4 rounded-md cursor-not-allowed" disabled>
-                                Submit Request
-                            </button>
-                        </form>
+                    <div class="mb-4">
+                        <label for="parcelPicture" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Picture of Your Parcel to be Delivered</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-blue-200" type="file" id="parcelPicture" name="parcelPicture" accept="image/*" />
                     </div>
-                </div>
-            </section>
-        </section>
 
-
-        <!-- NHBRC Service Section -->
-        <section id="nhbrc" class="bg-white rounded-lg shadow-xl p-8 mb-8 text-center flex flex-col items-center justify-center">
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-[#1E7D34] mb-4">
-                NHBRC Questions & Answers Document
-            </h2>
-            <p class="max-w-3xl text-lg text-gray-600 mb-6">
-                Get fully prepared for your NHBRC compliance assessments with our professionally compiled Questions & Answers document. This resource is developed to help you pass the first time, saving you valuable time and ensuring compliance with the latest NHBRC standards.
-            </p>
-            <div class="flex flex-wrap justify-center gap-6 mb-8">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-inner border border-gray-200 flex-1 min-w-[250px] max-w-sm">
-                    <ul class="list-disc list-inside text-left space-y-2 text-gray-700">
-                        <li>Covers the most recent NHBRC compliance requirements</li>
-                        <li>Includes real and tested Q&As</li>
-                        <li>Easy-to-read format</li>
-                        <li>Instant download after secure payment</li>
-                    </ul>
-                </div>
-            </div>
-            <p class="text-3xl font-bold text-[#1E7D34] mb-6">Price: R480</p>
-            <a href="https://www.payfast.co.za/eng/process" class="bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105">
-                Buy Now
-            </a>
-        </section>
-
-        <!-- New NHBRC Education Section -->
-        <section id="nhbrc-education" class="bg-white rounded-lg shadow-xl p-8 mb-8">
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-[#1E7D34] mb-4 text-center">
-                NHBRC Education & Application
-            </h2>
-            <p class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed mb-8 text-center">
-                The NHBRC (National Home Builders Registration Council) offers education to help home builders understand and comply with building standards. This training is essential for ensuring quality construction and meeting legal requirements.
-            </p>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- How to Apply Section -->
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">How to Apply</h3>
-                    <p class="text-gray-700 mb-4">
-                        To apply for NHBRC education, you must first contact an accredited training provider, which we can assist with.
-                    </p>
-                    <p class="text-gray-700 mb-4">
-                        You'll then submit your application and pay the fee to enroll in the required training modules, which cover building standards, regulations, and quality control.
-                    </p>
-                    <p class="text-gray-700">
-                        Upon successful completion of the training, you will receive a certificate of competence from the NHBRC.
-                    </p>
-                </div>
+                    <button class="w-full bg-[var(--blue-600)] text-white font-semibold py-3 px-6 rounded-full hover:bg-[var(--blue-700)] transition duration-200" type="submit">Schedule Pickup</button>
+                </form>
                 
-                <!-- Benefits Section -->
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Benefits of NHBRC Education</h3>
-                    <p class="text-gray-700 mb-4">
-                        Enrolling in NHBRC education is essential for ensuring compliance with legal standards and for building high-quality homes.
-                    </p>
-                    <p class="text-gray-700 mb-4">
-                        The training provides you with industry recognition, which can lead to increased competitiveness and more business opportunities.
-                    </p>
-                    <p class="text-gray-700">
-                        It also helps to mitigate the risk of legal disputes and financial penalties due to non-compliance or poor workmanship.
-                    </p>
+                <div class="flex flex-wrap gap-2 mt-3">
+                    <a class="flex-1 text-center bg-transparent border-2 border-[var(--blue-600)] text-[var(--blue-600)] font-semibold py-3 px-6 rounded-full no-underline hover:bg-[var(--blue-600)] hover:text-white transition duration-200" href="mailto:nkanyezzi@gmail.com">Email us directly</a>
+                    <a class="flex-1 text-center bg-transparent border-2 border-[var(--blue-600)] text-[var(--blue-600)] font-semibold py-3 px-6 rounded-full no-underline hover:bg-[var(--blue-600)] hover:text-white transition duration-200" href="https://wa.me/27659213018" target="_blank">Chat on WhatsApp</a>
                 </div>
-            </div>
-            <div class="text-center mt-8">
-                <a href="#contact" class="bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105">
-                    Contact Us for Assistance
-                </a>
             </div>
         </section>
 
-        <!-- About Section (moved) -->
-        <section id="about" class="bg-white rounded-lg shadow-xl p-8 mb-8">
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-[#1E7D34] mb-4 text-center">
-                About The City Consultant
-            </h2>
-            <p class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed text-center">
-                The City Consultant (The CC) is a company that provides a comprehensive suite of professional services to help businesses grow. They specialize in business registration and compliance, financial services, branding and marketing, and corporate administration. By offering these diverse services in one place, The City Consultant helps businesses of all sizes streamline their operations and strengthen their market presence.
-            </p>
+        <section class="py-9">
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="font-bold text-[var(--blue-900)] mb-2">Quick Quote</div>
+                <form id="quote-form" onsubmit="handleQuote(event)" class="grid grid-cols-1 md:grid-cols-4 gap-3 items-center">
+                    <input class="w-full px-3 py-2 rounded-xl border border-blue-200" placeholder="From (City/Country)" id="qFrom" required />
+                    <input class="w-full px-3 py-2 rounded-xl border border-blue-200" placeholder="To (City/Country)" id="qTo" required />
+                    <input class="w-full px-3 py-2 rounded-xl border border-blue-200" placeholder="Weight (kg)" id="qWeight" required />
+                    <div class="flex gap-2">
+                        <input class="w-full px-3 py-2 rounded-xl border border-blue-200" type="email" placeholder="Email" id="qEmail" required />
+                        <button class="bg-[var(--blue-600)] text-white font-semibold py-2 px-4 rounded-full hover:bg-[var(--blue-700)] transition duration-200" type="submit">Get Rate</button>
+                    </div>
+                </form>
+                <div class="text-xs text-gray-500 mt-2">Need advanced pricing? <a href="#contact" class="text-[var(--blue-700)] no-underline hover:underline transition duration-200">Contact sales</a>.</div>
+            </div>
+        </section>
+
+        <section id="services" class="py-9">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end">
+                <h2 class="text-3xl font-bold text-[var(--blue-900)]">Services</h2>
+                <a class="text-[var(--blue-700)] no-underline font-semibold mt-2 sm:mt-0 hover:text-[var(--blue-900)] transition duration-200" href="#">View all services →</a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)] mb-1">Same‑Day & Next‑Day</h3>
+                    <p class="text-gray-500 text-sm">Time‑definite delivery for documents, parcels, and pallets across major metros.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)] mb-1">International Express</h3>
+                    <p class="text-gray-500 text-sm">Door‑to‑door cross‑border shipping with customs clearance and real‑time tracking.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)] mb-1">E‑commerce Fulfilment</h3>
+                    <p class="text-gray-500 text-sm">Warehousing, pick‑pack‑ship, and returns management integrated with your store.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)] mb-1">Contract Logistics</h3>
+                    <p class="text-gray-500 text-sm">Inventory optimization, bonded storage, and distribution to your network.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)] mb-1">Freight (Air / Sea / Road)</h3>
+                    <p class="text-gray-500 text-sm">Multimodal freight forwarding with end‑to‑end visibility and insurance options.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)] mb-1">Last‑Mile & PUDO</h3>
+                    <p class="text-gray-500 text-sm">Doorbell to doorstep, or pickup‑dropoff points across urban and rural networks.</p>
+                </div>
+            </div>
         </section>
         
-        <!-- Reviews Section -->
-        <section id="reviews" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-[#1E7D34] mb-8 text-center">What Our Clients Say</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Review Card 1 (Simbo Driving School) -->
-                <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <div class="flex text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-4 flex-grow">"The City Consultants transformed our business with their exceptional graphic design services and compliance assistance. They created a modern and professional brand identity for our driving school while ensuring that all our compliance needs were met effortlessly. Their dedication to quality and efficiency is unmatched. We highly recommend their services to any business seeking professional support!"</p>
-                    <div class="flex items-center">
-                         <img src="https://placehold.co/40x40/E5E7EB/1F2937?text=SD" alt="Simbo Driving School" class="w-10 h-10 rounded-full mr-3">
-                         <div>
-                            <h3 class="text-md font-bold text-gray-800">Simbo Driving School</h3>
-                            <p class="text-sm text-gray-500">@Simbo Driving School</p>
-                        </div>
-                    </div>
+        <section id="industries" class="py-9">
+            <h2 class="text-3xl font-bold text-[var(--blue-900)]">Industry Expertise</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)]">SMEs & Startups</h3><p class="text-gray-500 text-sm mt-1">Flexible plans for growing businesses.</p>
                 </div>
-
-                <!-- Review Card 2 (Dr Bonginkosi Shoba Inc) -->
-                <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <div class="flex text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-4 flex-grow">"The City Consultants provided exceptional service in helping us develop a comprehensive and professional business plan for our diamond trading company. Their attention to detail, strategic insights, and personalized approach have given our business a solid foundation to secure funding and grow. We are truly grateful for their expertise and commitment to excellence."</p>
-                     <div class="flex items-center">
-                        <img src="https://placehold.co/40x40/E5E7EB/1F2937?text=BS" alt="Dr Bonginkosi Shoba Inc" class="w-10 h-10 rounded-full mr-3">
-                         <div>
-                            <h3 class="text-md font-bold text-gray-800">Dr Bonginkosi Shoba Inc</h3>
-                            <p class="text-sm text-gray-500">@Dr Bonginkosi Shoba, Director</p>
-                        </div>
-                    </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)]">Healthcare & Cold Chain</h3><p class="text-gray-500 text-sm mt-1">Temperature‑controlled logistics and compliance.</p>
                 </div>
-
-                <!-- Review Card 3 (Lenaka Beverages) -->
-                <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <div class="flex text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-4 flex-grow">"Thanks to The City Consultants, our beverage products now have professional and fully compliant barcodes, allowing us to seamlessly enter the retail market. Their team made the process easy and efficient, ensuring everything met industry standards. Their professionalism and expertise have been invaluable to our business."</p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/40x40/E5E7EB/1F2937?text=LB" alt="Lenaka Beverages" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h3 class="text-md font-bold text-gray-800">Lenaka Beverages</h3>
-                            <p class="text-sm text-gray-500">@Lenaka Beverages</p>
-                        </div>
-                    </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)]">Retail & E‑commerce</h3><p class="text-gray-500 text-sm mt-1">Scalable fulfilment with returns management.</p>
                 </div>
-            </div>
-            <div class="text-center mt-8">
-                <a href="https://www.google.com/search?q=The+City+Consultant&oq=The+City+Consultant&tbs=lrf:!1m4!1u3!2m2!3m1!1e1!2m1!1e3!3sIA!1e2,lf:1,ls:-1,sl:-1,sp:-1,qdr:h,rlt:1,rlt_t:3,rlta:0,rlta_t:1,rlta_a:0,rlta_d:20,rlta_e:2,rlta_v:1,rlta_z:1,rlta_o:1,rlta_l:1" target="_blank" class="bg-[#1E7D34] text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105">
-                    Leave a Review on Google
-                </a>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm">
+                    <h3 class="font-semibold text-[var(--blue-900)]">Industrial & Mining</h3><p class="text-gray-500 text-sm mt-1">Heavy freight and specialized handling.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-[#1E7D34] mb-4">Get in Touch</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Contact Form -->
+        <section id="reviews" class="py-9">
+            <h2 class="text-3xl font-bold text-[var(--blue-900)]">Client Reviews</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="stars text-2xl">★★★★★</div>
+                    <p class="text-sm text-gray-500 mt-2">"They helped us scale our same-day deliveries across Gauteng seamlessly. A truly reliable partner."</p>
+                    <div class="text-sm font-semibold mt-2">- L. van der Merwe</div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="stars text-2xl">★★★★★</div>
+                    <p class="text-sm text-gray-500 mt-2">"The customs clearance process was flawless—the international team is fantastic. Highly recommended for any cross-border needs."</p>
+                    <div class="text-sm font-semibold mt-2">- S. Mkhize</div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="stars text-2xl">★★★★★</div>
+                    <p class="text-sm text-gray-500 mt-2">"Reformation Group had the best tracking and communication we've ever experienced from a courier company. We always knew where our shipments were."</p>
+                    <div class="text-sm font-semibold mt-2">- R. Adams</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why" class="py-9">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
-                    <form action="mailto:info@thecc.co.za" method="post" enctype="text/plain" class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-gray-700 font-medium">Your Name</label>
-                            <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                    <h2 class="text-3xl font-bold text-[var(--blue-900)]">Why Reformation Group?</h2>
+                    <ul class="mt-3 text-gray-500 list-disc list-inside space-y-1">
+                        <li>On‑time delivery backed by data‑driven routing and live ETAs.</li>
+                        <li>Proactive notifications: SMS, email, and webhook events.</li>
+                        <li>End‑to‑end security: tamper‑evident packaging and chain‑of‑custody.</li>
+                        <li>Sustainability options: consolidate, offset, and recyclable materials.</li>
+                    </ul>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <a class="bg-[var(--blue-600)] text-white font-semibold py-3 px-6 rounded-full no-underline hover:bg-[var(--blue-700)] transition duration-200" href="#contact">Get a Quote</a>
+                        <a class="bg-transparent border-2 border-[var(--blue-600)] text-[var(--blue-600)] font-semibold py-3 px-6 rounded-full no-underline hover:bg-[var(--blue-600)] hover:text-white transition duration-200" href="#contact">Talk to Sales</a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-white rounded-xl shadow-sm p-4 border border-[var(--blue-100)]">
+                        <strong class="text-[var(--blue-900)]">Real‑Time Tracking</strong><div class="text-sm text-gray-500">Live map views, status scans, and POD capture.</div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-4 border border-[var(--blue-100)]">
+                        <strong class="text-[var(--blue-900)]">Global Network</strong><div class="text-sm text-gray-500">220+ countries with priority lanes.</div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-4 border border-[var(--blue-100)]">
+                        <strong class="text-[var(--blue-900)]">Insurance</strong><div class="text-sm text-gray-500">Coverage for high‑value and sensitive goods.</div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-4 border border-[var(--blue-100)]">
+                        <strong class="text-[var(--blue-900)]">Speed</strong><div class="text-sm text-gray-500">Express options from 2–72 hours.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-9">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h2 class="text-3xl font-bold text-[var(--blue-900)]">Contact us</h2>
+                    <p class="text-gray-500">Tell us about your shipping needs and we'll reach out.</p>
+                    <form id="contact-form" class="mt-3" onsubmit="handleContact(event)">
+                        <input class="w-full px-3 py-2 rounded-xl border border-blue-200 mt-2" placeholder="Full Name" id="cName" required />
+                        <input class="w-full px-3 py-2 rounded-xl border border-blue-200 mt-2" type="email" placeholder="Email" id="cEmail" required />
+                        <input class="w-full px-3 py-2 rounded-xl border border-blue-200 mt-2" placeholder="Company (optional)" id="cCompany" />
+                        <textarea class="w-full px-3 py-2 rounded-xl border border-blue-200 mt-2 min-h-[120px]" placeholder="How can we help?" id="cMessage"></textarea>
+                        <div class="mt-3 flex gap-2">
+                            <button class="bg-[var(--blue-600)] text-white font-semibold py-3 px-6 rounded-full hover:bg-[var(--blue-700)] transition duration-200" type="submit">Submit</button>
+                            <button class="bg-transparent border-2 border-[var(--blue-600)] text-[var(--blue-600)] font-semibold py-3 px-6 rounded-full hover:bg-[var(--blue-600)] hover:text-white transition duration-200" type="button" onclick="handleBookCall()">Book a Call</button>
                         </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 font-medium">Your Email</label>
-                            <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-gray-700 font-medium">Your Message</label>
-                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
-                            Send Message
-                        </button>
                     </form>
                 </div>
-                <!-- Contact Info & Map -->
-                <div class="space-y-6">
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
-                        <h3 class="font-semibold text-xl mb-2 text-gray-800">Contact Information</h3>
-                        <p class="flex items-center space-x-2 text-gray-700">
-                            <i class="fas fa-envelope text-[#37B44E]"></i>
-                            <span>info@thecc.co.za</span>
-                        </p>
-                        <p class="flex items-center space-x-2 text-gray-700">
-                            <i class="fas fa-phone-alt text-[#37B44E]"></i>
-                            <span>0826905832</span>
-                        </p>
-                        <p class="flex items-center space-x-2 text-gray-700">
-                            <i class="fas fa-map-marker-alt text-[#37B44E]"></i>
-                            <span>Mbombela, Nelspruit, Mpumalanga 1200, South Africa</span>
-                        </p>
+                <aside class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="font-semibold text-[var(--blue-900)]">Head Office</h3>
+                    <div class="text-sm text-gray-500 mt-1">
+                        JOHANNESBURG<br/>
+                        GAUTENG<br/>
+                        2190
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
-                        <h3 class="font-semibold text-xl mb-2 text-gray-800">Our Location</h3>
-                        <!-- The iframe source is already set to the provided address. -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.5768310065256!2d30.9859586!3d-25.4746688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9bb15598910405%3A0xc6c710d0f418d184!2sMbombela%2C%20Nelspruit%2C%201200%2C%20South+Africa!5e0!3m2!1sen!2sus!4v1628174567890!5m2!1sen&hl=en&z=14&output=embed" class="w-full h-64 rounded-md shadow-inner" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="mt-3 flex flex-col gap-2 text-sm">
+                        <div>📞 +27 65 921 3018</div>
+                        <div>✉️ <a class="text-[var(--blue-700)] no-underline hover:underline transition duration-200" href="mailto:nkanyezzi@gmail.com">nkanyezzi@gmail.com</a></div>
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
 
+        <section class="my-6">
+            <div class="bg-[var(--blue-900)] text-white p-6 rounded-xl flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div>
+                    <div class="font-bold text-lg">Ready to move your world?</div>
+                    <div class="text-sm text-gray-400">Schedule a pickup or talk to our logistics experts.</div>
+                </div>
+                <div class="flex gap-2">
+                    <a class="bg-white text-[var(--blue-900)] font-bold py-3 px-6 rounded-full no-underline hover:bg-gray-200 transition duration-200" href="#schedule-pickup">Schedule Pickup</a>
+                    <a class="bg-transparent border-2 border-white/20 text-white font-semibold py-3 px-6 rounded-full no-underline hover:bg-white/20 transition duration-200" href="#contact">Talk to Sales</a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-[#1E7D34] text-white text-center p-4">
-        <p class="text-sm">&copy; 2024 The City Consultant. All Rights Reserved.</p>
+    <footer class="container mx-auto px-4 text-gray-500 py-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+                <div class="flex gap-2 items-center">
+                    <div class="w-9 h-9 rounded-xl bg-[var(--blue-900)] text-white grid place-items-center font-extrabold text-lg">R</div>
+                    <div class="font-bold text-black">Reformation Group</div>
+                </div>
+                <div class="text-sm mt-2">Seamless, secure, on‑time delivery solutions for businesses and individuals.</div>
+            </div>
+            <div>
+                <div class="font-bold mb-2 text-black">Company</div>
+                <div class="text-sm">About<br/>Careers<br/>Sustainability<br/>Newsroom</div>
+            </div>
+            <div>
+                <div class="font-bold mb-2 text-black">Solutions</div>
+                <div class="text-sm">Developers<br/>Integrations<br/>EDI & Webhooks<br/>Partner Network</div>
+            </div>
+            <div>
+                <div class="font-bold mb-2 text-black">Legal</div>
+                <div class="text-sm"><a href="#terms-and-conditions" class="text-gray-500 no-underline hover:text-black">Terms</a><br/>Privacy<br/>Service Level Agreement<br/>Cookies</div>
+            </div>
+        </div>
+        <div class="mt-4 border-t border-gray-200 pt-3 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+            <div>© <span id="year"></span> Reformation Group. All rights reserved.</div>
+            <div class="mt-2 md:mt-0">Made with for speed, reliability, and great customer care.</div>
+        </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/27826905832" class="whatsapp-float fixed bottom-6 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg hover:bg-[#128c7e] transition-colors">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <script>
-        // JavaScript for mobile menu toggle
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <!-- New Terms & Conditions Section -->
+    <section id="terms-and-conditions" class="bg-gray-100 px-4 sm:px-6 lg:px-8 py-16 mt-auto">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-2xl font-bold text-center mb-8 text-gray-900">Terms & Conditions</h2>
+            <div class="space-y-8 text-gray-700">
+                <div class="p-6 bg-white rounded-xl shadow-md">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Liability & Risk</h3>
+                    <p class="mb-2">All goods and parcels are carried at the owner’s, sender’s, or receiver’s risk.</p>
+                    <p class="mb-2">Reformation Group is not liable for any loss, damage, or costs (direct, indirect, or consequential).</p>
+                    <p>Clients indemnify Reformation Group for any claims arising from shipment.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-md">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Limited Liability Option</h3>
+                    <p class="mb-2">Clients may declare a value for parcels and pay a small fee for limited liability.</p>
+                    <p class="mb-2">Maximum liability is R50,000 per waybill.</p>
+                    <p class="mb-2">Many items are excluded, including cash, jewellery, electronics, alcohol, perishables, vehicles, livestock, hazardous goods, and more.</p>
+                    <p>If parcels are not properly packaged, claims may be rejected.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-md">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Insurance</h3>
+                    <p>Clients must arrange their own insurance; Reformation Group does not provide insurance cover.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-md">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Delivery Times & Payment</h3>
+                    <p class="mb-2">Delivery times are estimates only.</p>
+                    <p class="mb-2">Charges are based on weight or volume, not value.</p>
+                    <p>Payment must be made in full. Recovery costs for unpaid amounts are payable by the client.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-md">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Claims</h3>
+                    <p class="mb-2">Claims must be submitted in writing within 30 days of shipment.</p>
+                    <p>Late claims will not be accepted.</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-md">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Entire Agreement</h3>
+                    <p class="mb-2">These Terms & Conditions constitute the entire agreement.</p>
+                    <p>Any changes must be in writing and signed by both parties.</p>
+                </div>
+            </div>
+            <p class="mt-12 text-center text-sm text-gray-500">
+                © <span id="year-bottom"></span> Reformation Group. All rights reserved.
+            </p>
+        </div>
+    </section>
 
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    <a href="https://wa.me/27659213018" class="whatsapp-btn" target="_blank" title="Chat with us on WhatsApp">
+        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339.6 55.8 283.4 32 224 32S108.4 55.8 67.1 97.1c-41.3 41.3-64 97.6-64 156.9c0 41.3 10 80.5 29.3 115.1l-29.3 106.8 109.9-29.3c34.7 19.4 73.9 29.4 115.1 29.4s80.5-10 115.1-29.3l109.9 29.3-29.3-106.8c19.3-34.6 29.3-73.8 29.3-115.1c0-59.3-22.7-115.6-64-156.9zM224 416c-30.8 0-60.6-8.7-86.4-25.2l-6.8-4.1-66.5 17.7 17.9-65.7-4.2-6.8C75.2 291.6 64 258.4 64 224c0-44.1 17.1-85.7 48.1-116.9C143.9 77.1 183.6 64 224 64s80.1 13.1 111.9 43.1C376.9 138.3 394 179.9 394 224c0 34.4-11.2 67.6-32.6 94.7l-4.1 6.8 17.7 66.5-65.7-17.9-6.8 4.2c-25.8 16.5-55.6 25.2-86.4 25.2zM336.1 298.5c-2.4-1.2-14.7-7.2-17-8.1s-4.1-1.3-5.8 1.3c-1.7 2.6-6.7 8.1-8.2 9.8s-3.1 2-5.7.7c-2.6-1.3-11.1-4.1-21.1-13c-7.8-7.1-12.7-15.8-14.2-18.4s-1.8-4.1-.2-5.4c1.6-1.3 3.4-3.5 5.1-5.6s2.2-4.1 3.3-6.9c1.1-2.8.5-5.2-.2-7.2c-.7-2-5.8-14.1-8-19.3c-2.2-5.2-4.5-4.4-6.2-4.4c-1.7 0-3.6-.2-5.5-.2s-5.2.7-7.9 3.6c-2.7 2.9-10.4 10.1-10.4 24.6s10.7 28.5 12.2 30.6c1.5 2.1 21.2 32.2 51.5 45.3c7.2 3.1 12.8 4.9 17.1 6.3c8.5 2.7 16.2 2.3 22.3 1.4c6.9-1 14.1-5.7 16.2-11.5c2.1-5.8 2.1-10.8 1.5-11.9c-.6-1-2.2-1.6-4.7-2.9z"/>
+        </svg>
+    </a>
+
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-container">
+            <button class="modal-close" onclick="hideModal()">&#x2715;</button>
+            <h3 id="modal-title" class="modal-title"></h3>
+            <p id="modal-body" class="modal-body"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('year-bottom').textContent = new Date().getFullYear();
+
+        /**
+         * @function showModal
+         * @description Displays a custom modal with a title and message.
+         * @param {string} title The title for the modal.
+         * @param {string} message The body text for the modal.
+         */
+        function showModal(title, message) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').textContent = message;
+            document.getElementById('modal-overlay').classList.remove('hidden');
+        }
+
+        /**
+         * @function hideModal
+         * @description Hides the custom modal.
+         */
+        function hideModal() {
+            document.getElementById('modal-overlay').classList.add('hidden');
+        }
+
+        /**
+         * @function handleQuote
+         * @description Handles the Quick Quote form submission. It prevents the default form action,
+         * gathers form data, constructs a mailto link, and displays a modal.
+         * @param {Event} e The form submission event.
+         */
+        function handleQuote(e){
+            e.preventDefault();
+            var from = document.getElementById('qFrom').value;
+            var to = document.getElementById('qTo').value;
+            var weight = document.getElementById('qWeight').value;
+            var email = document.getElementById('qEmail').value;
+
+            var subject = 'Quote Request from Reformation Group Website';
+            var body = 'Hello,\n\nI would like to request a quote based on the following details:\n\n' +
+                        'From: ' + from + '\n' +
+                        'To: ' + to + '\n' +
+                        'Weight: ' + weight + ' kg\n' +
+                        'Contact Email: ' + email + '\n\n' +
+                        'Please provide a quote at your earliest convenience. Thank you.';
+            
+            var mailtoLink = 'mailto:nkanyezzi@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            
+            window.location.href = mailtoLink;
+        }
+
+        /**
+         * @function handleSchedulePickup
+         * @description Handles the Schedule a Pickup form submission. It constructs a mailto link
+         * with all form data and displays a modal to confirm.
+         * @param {Event} e The form submission event.
+         */
+        function handleSchedulePickup(e) {
+            e.preventDefault();
+            var pickupType = document.getElementById('pickupType').value;
+            var pickupDate = document.getElementById('pickupDate').value;
+            var pickupTime = document.getElementById('pickupTime').value;
+            var pickupAddress = document.getElementById('pickupAddress').value;
+            var dropoffAddress = document.getElementById('dropoffAddress').value;
+            var contactNumber = document.getElementById('contactNumber').value;
+            var pickupEmail = document.getElementById('pickupEmail').value;
+            var packageWeight = document.getElementById('packageWeight').value;
+            var parcelPicture = document.getElementById('parcelPicture').files[0];
+            
+            var subject = 'Pickup Schedule Request from Reformation Group Website';
+            var body = 'Hello,\n\nI would like to schedule a pickup with the following details:\n\n' +
+                        'Pickup Type: ' + pickupType + '\n' +
+                        'Preferred Date: ' + pickupDate + '\n' +
+                        'Preferred Time: ' + pickupTime + '\n' +
+                        'Pickup Address: ' + pickupAddress + '\n' +
+                        'Drop-off Address: ' + dropoffAddress + '\n' +
+                        'Contact Email: ' + pickupEmail + '\n' +
+                        'Contact Number: ' + contactNumber + '\n' +
+                        'Package Weight: ' + packageWeight + ' kg\n\n' +
+                        'We will contact you shortly to confirm the details. Thank you!';
+
+            if (parcelPicture) {
+                // For a file upload, a direct mailto link is not possible with the file attached.
+                // A server-side solution is required for file handling.
+                // We'll proceed with the email and a placeholder message.
+                body += '\n\nNote: The parcel picture must be sent separately as an email attachment.';
+            }
+
+            var mailtoLink = 'mailto:nkanyezzi@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            
+            window.location.href = mailtoLink;
+        }
         
-        // Hide mobile menu on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        /**
+         * @function handleContact
+         * @description Handles the Contact Us form submission.
+         * @param {Event} e The form submission event.
+         */
+        function handleContact(e) {
+            e.preventDefault();
+            var name = document.getElementById('cName').value;
+            var email = document.getElementById('cEmail').value;
+            var company = document.getElementById('cCompany').value;
+            var message = document.getElementById('cMessage').value;
+
+            var subject = 'New Inquiry from Reformation Group Website';
+            var body = 'Hello,\n\nI have a new inquiry from the website contact form:\n\n' +
+                        'Name: ' + name + '\n' +
+                        'Email: ' + email + '\n' +
+                        'Company: ' + (company || 'N/A') + '\n' +
+                        'Message: ' + message + '\n\n' +
+                        'Please respond at your earliest convenience. Thank you.';
+
+            var mailtoLink = 'mailto:nkanyezzi@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            
+            window.location.href = mailtoLink;
+        }
+
+        /**
+         * @function handleBookCall
+         * @description A placeholder function for a "Book a Call" button.
+         */
+        function handleBookCall() {
+            showModal('Booking a Call', 'A sales representative will contact you shortly to arrange a time. Please check your email for a confirmation link.');
+        }
+
+        // Add event listeners to the pickup type buttons to handle selection state.
+        document.querySelectorAll('#schedule-pickup [data-type]').forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Remove selected class from all buttons
+                document.querySelectorAll('#schedule-pickup [data-type]').forEach(btn => {
+                    btn.classList.remove('bg-[var(--blue-600)]', 'text-white');
+                    btn.classList.add('bg-[var(--blue-100)]');
+                });
+                
+                // Add selected class to the clicked button
+                const clickedButton = e.currentTarget;
+                clickedButton.classList.add('bg-[var(--blue-600)]', 'text-white');
+                clickedButton.classList.remove('bg-[var(--blue-100)]');
+
+                // Update the hidden input field with the selected pickup type
+                document.getElementById('pickupType').value = clickedButton.getAttribute('data-type');
             });
         });
+
+        // Set the initial state of the pickup type buttons.
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('#schedule-pickup [data-type="one-off"]').click();
+        });
+
+        // --- NEW DROPDOWN MENU JAVASCRIPT ---
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close the menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+        // --- END OF NEW DROPDOWN MENU JAVASCRIPT ---
     </script>
 </body>
 </html>
-
