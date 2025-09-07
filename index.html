@@ -51,6 +51,43 @@
             width: max-content;
             animation: scroll-left 40s linear infinite;
         }
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 2rem;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -64,10 +101,9 @@
     <!-- Header & Navigation -->
     <header class="sticky-header bg-[#1E7D34] text-white shadow-lg">
         <div class="container mx-auto flex items-center justify-between p-4">
-            <!-- Logo added here -->
-            <a href="#" class="h-10">
-                <img src="The City Consultant official logo.jpg-1fc1a16f-3179-4267-8945-d2c6d5779b50" alt="The City Consultant official logo" class="h-full w-auto">
-            </a>
+            <!-- Brand name -->
+            <a href="#" class="text-xl md:text-2xl font-bold tracking-tight">The City Consultant</a>
+            <!-- Navigation links -->
             <nav class="hidden md:flex items-center space-x-6 font-semibold">
                 <a href="#" class="hover:text-gray-200 transition-colors">Home</a>
                 <a href="#about" class="hover:text-gray-200 transition-colors">About</a>
@@ -111,25 +147,17 @@
                         <div class="flex-1 space-y-2 text-gray-700 mb-4">
                             <ul class="list-disc list-inside space-y-1">
                                 <li>Company Registration & Certificates</li>
-                                <!-- Beneficial Ownership Filing moved to its own section -->
                                 <li>Tax Clearance Certificate</li>
                                 <li>B-BBEE Certificate</li>
                                 <li>CSD Registration</li>
-                                 <li>Beneficial ownership Filing</li>
+                                <li>Beneficial ownership Filing</li>
                             </ul>
                         </div>
                         <div class="flex flex-col items-center mt-auto">
                             <p class="text-3xl font-bold text-[#1E7D34] mb-4">R829.00</p>
-                            <!-- Payfast Form for Entry Level Package -->
-                            <form action="https://www.payfast.co.za/eng/process" method="POST" class="w-full">
-                                <input type="hidden" name="merchant_id" value="20755326">
-                                <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
-                                <input type="hidden" name="item_name" value="Entry Level Package">
-                                <input type="hidden" name="amount" value="829.00">
-                                <button type="submit" class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
-                                    Purchase Now
-                                </button>
-                            </form>
+                            <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors" onclick="openModal('Entry Level Package', '829.00', 'entryLevel')">
+                                Purchase Now
+                            </button>
                         </div>
                     </div>
 
@@ -140,29 +168,20 @@
                             <ul class="list-disc list-inside space-y-1">
                                 <li>Company Registration & Certificates</li>
                                 <li>SARS (PR) Public Representative</li>
-                                <!-- Beneficial Ownership Filing moved to its own section -->
                                 <li>Tax Clearance Certificate</li>
                                 <li>B-BBEE Certificate</li>
                                 <li>CSD Registration</li>
-                                 <li>Beneficial ownership</li>
+                                <li>Beneficial ownership</li>
                                 <li>Business Profile</li>
                             </ul>
                         </div>
                         <div class="flex flex-col items-center mt-auto">
                             <p class="text-3xl font-bold text-[#1E7D34] mb-4">R1 500.00</p>
-                            <!-- Payfast Form for Basic Package -->
-                            <form action="https://www.payfast.co.za/eng/process" method="POST" class="w-full">
-                                <input type="hidden" name="merchant_id" value="20755326">
-                                <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
-                                <input type="hidden" name="item_name" value="Basic Package">
-                                <input type="hidden" name="amount" value="1500.00">
-                                <button type="submit" class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
-                                    Purchase Now
-                                </button>
-                            </form>
-                        </div>
+                            <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors" onclick="openModal('Basic Package', '1500.00', 'basic')">
+                                Purchase Now
+                            </button>
+                        </div
                     </div>
-
                 </div>
                 <p class="text-center mt-8 text-lg text-gray-700">
                     Don't see a package that fits your needs? We also offer services on a separate, customized basis. 
@@ -182,53 +201,10 @@
                         </p>
                         <div class="flex flex-col items-center">
                             <p class="text-4xl font-bold text-[#1E7D34] mb-6">R350.00</p>
-                            <!-- Payfast Form for Beneficial Ownership Filing Service -->
-                            <form action="https://www.payfast.co.za/eng/process" method="POST" class="w-full">
-                                <input type="hidden" name="merchant_id" value="20755326">
-                                <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
-                                <input type="hidden" name="item_name" value="Beneficial Ownership Filing Service">
-                                <input type="hidden" name="amount" value="350.00">
-                                <button type="submit" class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105">
-                                    Pay Now
-                                </button>
-                            </form>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <h5 class="text-xl font-bold text-gray-800 mb-4">Required Details</h5>
-                            <ul class="list-disc list-inside text-gray-700 space-y-2">
-                                <li>Your Email Address</li>
-                                <li>Your Cellphone Number</li>
-                                <li>Company Registration Number</li>
-                                <li>Certified ID copies of all Directors</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Form for details -->
-                        <form action="mailto:info@thecc.co.za?subject=Beneficial%20Ownership%20Filing%20Request" method="post" enctype="text/plain" class="space-y-4 mt-8">
-                            <div>
-                                <label for="bo-email" class="block text-gray-700 font-medium">Email</label>
-                                <input type="email" id="bo-email" name="bo-email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                            </div>
-                            <div>
-                                <label for="bo-phone" class="block text-gray-700 font-medium">Cellphone Number</label>
-                                <input type="tel" id="bo-phone" name="bo-phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                            </div>
-                            <div>
-                                <label for="bo-reg-number" class="block text-gray-700 font-medium">Company Registration Number</label>
-                                <input type="text" id="bo-reg-number" name="bo-reg-number" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                            </div>
-                             <!-- Note: File uploads are not supported by the mailto protocol. 
-                                 The user will be instructed to email the documents directly. -->
-                            <div>
-                                <label for="bo-files" class="block text-gray-700 font-medium">Upload Certified ID Copies</label>
-                                <p class="text-sm text-gray-500 mb-2">Note: For security and size reasons, please email these documents directly to info@thecc.co.za after submitting this form.</p>
-                                <input type="file" id="bo-files" name="bo-files" multiple class="mt-1 block w-full text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#1E7D34] file:text-white hover:file:bg-[#37B44E]">
-                            </div>
-                            <button type="submit" class="w-full bg-gray-400 text-white font-bold py-3 px-4 rounded-md cursor-not-allowed" disabled>
-                                Submit Request
+                            <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105" onclick="openModal('Beneficial Ownership Filing Service', '350.00', 'beneficialOwnership')">
+                                Pay Now
                             </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -254,16 +230,9 @@
                 </div>
             </div>
             <p class="text-3xl font-bold text-[#1E7D34] mb-6">Price: R480</p>
-            <!-- Payfast Form for NHBRC Questions & Answers Document -->
-            <form action="https://www.payfast.co.za/eng/process" method="POST">
-                <input type="hidden" name="merchant_id" value="20755326">
-                <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
-                <input type="hidden" name="item_name" value="NHBRC Q&A Document">
-                <input type="hidden" name="amount" value="480.00">
-                <button type="submit" class="bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105">
-                    Buy Now
-                </button>
-            </form>
+            <button class="bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105" onclick="openModal('NHBRC Q&A Document', '480.00', 'nhbrcDoc')">
+                Buy Now
+            </button>
         </section>
 
         <!-- New NHBRC Education Section -->
@@ -520,6 +489,41 @@
     <a href="https://wa.me/27826905832" class="whatsapp-float fixed bottom-6 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg hover:bg-[#128c7e] transition-colors">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- The Payment Details Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title" class="text-2xl font-bold text-[#1E7D34] mb-4 text-center"></h2>
+            
+            <p class="text-sm text-gray-600 text-center mb-6">
+                Please provide the required information below to proceed with your purchase.
+            </p>
+
+            <form id="paymentDetailsForm" class="space-y-4">
+                <input type="hidden" id="serviceName" name="item_name">
+                <input type="hidden" id="serviceAmount" name="amount">
+                <div id="formFieldsContainer" class="space-y-4">
+                    <!-- Dynamic form fields will be added here by JavaScript -->
+                </div>
+                
+                <p id="document-note" class="hidden text-sm text-red-500 mt-4 text-center">
+                    **Note:** After making your payment, please remember to email the required documents and details to info@thecc.co.za. This is necessary to complete your order.
+                </p>
+
+                <button type="submit" class="w-full bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
+                    Proceed to Payment
+                </button>
+            </form>
+            
+            <form id="payfastForm" action="https://www.payfast.co.za/eng/process" method="POST" style="display: none;">
+                <input type="hidden" name="merchant_id" value="20755326">
+                <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
+                <input type="hidden" id="payfastItemName" name="item_name">
+                <input type="hidden" id="payfastAmount" name="amount">
+            </form>
+        </div>
+    </div>
     
     <script>
         // JavaScript for mobile menu toggle
@@ -536,6 +540,108 @@
                 mobileMenu.classList.add('hidden');
             });
         });
+
+        const modal = document.getElementById('paymentModal');
+        const modalTitle = document.getElementById('modal-title');
+        const formFieldsContainer = document.getElementById('formFieldsContainer');
+        const payfastForm = document.getElementById('payfastForm');
+        const payfastItemName = document.getElementById('payfastItemName');
+        const payfastAmount = document.getElementById('payfastAmount');
+        const documentNote = document.getElementById('document-note');
+
+        const serviceFields = {
+            'entryLevel': `
+                <div>
+                    <label for="company-name" class="block text-gray-700 font-medium">Company Name</label>
+                    <input type="text" id="company-name" name="company_name" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+                <div>
+                    <label for="contact-email" class="block text-gray-700 font-medium">Your Email</label>
+                    <input type="email" id="contact-email" name="contact_email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+                <div>
+                    <label for="contact-phone" class="block text-gray-700 font-medium">Your Cellphone Number</label>
+                    <input type="tel" id="contact-phone" name="contact_phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+            `,
+            'basic': `
+                <div>
+                    <label for="company-name" class="block text-gray-700 font-medium">Company Name</label>
+                    <input type="text" id="company-name" name="company_name" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+                <div>
+                    <label for="contact-email" class="block text-gray-700 font-medium">Your Email</label>
+                    <input type="email" id="contact-email" name="contact_email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+                <div>
+                    <label for="contact-phone" class="block text-gray-700 font-medium">Your Cellphone Number</label>
+                    <input type="tel" id="contact-phone" name="contact_phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+            `,
+            'beneficialOwnership': `
+                <div>
+                    <label for="bo-email" class="block text-gray-700 font-medium">Your Email</label>
+                    <input type="email" id="bo-email" name="bo_email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+                <div>
+                    <label for="bo-phone" class="block text-gray-700 font-medium">Your Cellphone Number</label>
+                    <input type="tel" id="bo-phone" name="bo_phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+                <div>
+                    <label for="bo-reg-number" class="block text-gray-700 font-medium">Company Registration Number</label>
+                    <input type="text" id="bo-reg-number" name="bo_reg_number" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+            `,
+            'nhbrcDoc': `
+                <div>
+                    <label for="doc-email" class="block text-gray-700 font-medium">Your Email</label>
+                    <input type="email" id="doc-email" name="doc_email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+                <div>
+                    <label for="doc-phone" class="block text-gray-700 font-medium">Your Cellphone Number</label>
+                    <input type="tel" id="doc-phone" name="doc_phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                </div>
+            `
+        };
+
+        function openModal(serviceName, amount, serviceKey) {
+            modalTitle.textContent = serviceName;
+            document.getElementById('serviceName').value = serviceName;
+            document.getElementById('serviceAmount').value = amount;
+            formFieldsContainer.innerHTML = serviceFields[serviceKey];
+            
+            // Show the special note for services that require document uploads
+            if (serviceKey === 'beneficialOwnership' || serviceKey === 'entryLevel' || serviceKey === 'basic') {
+                documentNote.classList.remove('hidden');
+            } else {
+                documentNote.classList.add('hidden');
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        document.getElementById('paymentDetailsForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Populate the hidden Payfast form and submit it
+            payfastItemName.value = document.getElementById('serviceName').value;
+            payfastAmount.value = document.getElementById('serviceAmount').value;
+
+            // Submit the form to Payfast
+            payfastForm.submit();
+        });
     </script>
 </body>
 </html>
+
