@@ -130,6 +130,74 @@
 
     <main class="container mx-auto p-4 sm:p-6 lg:p-8 mt-16">
 
+        <!-- New: Services Marquee Section -->
+        <section id="more-services" class="my-16 py-8 bg-[#37B44E] overflow-hidden">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">More of Our Services</h2>
+            <div class="flex items-center space-x-8 scrolling-wrapper">
+                
+                <!-- Service Item 1 -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-file-invoice text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">Business Plans</h4>
+                </div>
+                
+                <!-- Service Item 2 -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-barcode text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">Barcodes</h4>
+                </div>
+                
+                <!-- Service Item 3 -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-chart-line text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">Financial Statements</h4>
+                </div>
+                
+                <!-- Service Item 4 -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-landmark text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">CIPC Filings</h4>
+                </div>
+                
+                <!-- Service Item 5 -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-stamp text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">Letter of Good Standing</h4>
+                </div>
+
+                <!-- Repeat items to make the scroll loop seamlessly -->
+                <!-- Service Item 1 Copy -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-file-invoice text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">Business Plans</h4>
+                </div>
+                
+                <!-- Service Item 2 Copy -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-barcode text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">Barcodes</h4>
+                </div>
+                
+                <!-- Service Item 3 Copy -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-chart-line text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">Financial Statements</h4>
+                </div>
+                
+                <!-- Service Item 4 Copy -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-landmark text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">CIPC Filings</h4>
+                </div>
+                
+                <!-- Service Item 5 Copy -->
+                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
+                    <i class="fas fa-stamp text-4xl mb-4"></i>
+                    <h4 class="text-xl font-semibold">Letter of Good Standing</h4>
+                </div>
+            </div>
+        </section>
+
         <!-- Services Section (Consolidated) -->
         <section id="services">
             <h2 class="text-4xl lg:text-5xl font-extrabold text-[#1E7D34] mb-4 text-center">
@@ -180,7 +248,7 @@
                             <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors" onclick="openModal('Basic Package', '1500.00', 'basic')">
                                 Purchase Now
                             </button>
-                        </div
+                        </div>
                     </div>
                 </div>
                 <p class="text-center mt-8 text-lg text-gray-700">
@@ -191,8 +259,8 @@
 
             <!-- CIPC Services Section -->
             <section id="cipc-services" class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h3 class="text-3xl font-bold text-[#1E7D34] mb-6 text-center">CIPC Services</h3>
-                <div class="max-w-xl mx-auto space-y-6">
+                <h3 class="text-3xl font-bold text-[#1E7D34] mb-6 text-center">CIPC & SARS Services</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Beneficial Ownership Filing Service -->
                     <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
                         <h4 class="text-2xl font-bold text-gray-800 mb-4 text-center">Beneficial Ownership Filing Service</h4>
@@ -206,10 +274,21 @@
                             </button>
                         </div>
                     </div>
+                    <!-- Tax Clearance Certificate Service -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-4 text-center">Tax Clearance Certificate</h4>
+                        <p class="text-center text-lg text-gray-700 mb-4">
+                           Get your SARS Tax Clearance Certificate efficiently and hassle-free.
+                        </p>
+                        <div class="flex flex-col items-center">
+                            <p class="text-4xl font-bold text-[#1E7D34] mb-6">R250.00</p>
+                            <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105" onclick="openModal('Tax Clearance Certificate', '250.00', 'taxClearance')">
+                                Pay Now
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
-        </section>
-
 
         <!-- NHBRC Service Section -->
         <section id="nhbrc" class="bg-white rounded-lg shadow-xl p-8 mb-8 text-center flex flex-col items-center justify-center">
@@ -277,75 +356,6 @@
                 <a href="#contact" class="bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105">
                     Contact Us for Assistance
                 </a>
-            </div>
-        </section>
-
-        <!-- New: Services Marquee Section -->
-        <section id="more-services" class="my-16 py-8 bg-[#37B44E] overflow-hidden">
-            <h2 class="text-3xl font-bold text-white mb-8 text-center">More of Our Services</h2>
-            <div class="flex items-center space-x-8 scrolling-wrapper">
-                
-                <!-- Service Item 1 -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-file-invoice text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">Business Plans</h4>
-                </div>
-                
-                <!-- Service Item 2 -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-barcode text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">Barcodes</h4>
-                </div>
-                
-                <!-- Service Item 3 -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-chart-line text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">Financial Statements</h4>
-                </div>
-                
-                <!-- Service Item 4 -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-landmark text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">CIPC Filings</h4>
-                </div>
-                
-                <!-- Service Item 5 -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-stamp text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">Letter of Good Standing</h4>
-                </div>
-
-                <!-- Repeat items to make the scroll loop seamlessly -->
-                <!-- Service Item 1 Copy -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-file-invoice text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">Business Plans</h4>
-                </div>
-                
-                <!-- Service Item 2 Copy -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-barcode text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">Barcodes</h4>
-                </div>
-                
-                <!-- Service Item 3 Copy -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-chart-line text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">Financial Statements</h4>
-                </div>
-                
-                <!-- Service Item 4 Copy -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-landmark text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">CIPC Filings</h4>
-                </div>
-                
-                <!-- Service Item 5 Copy -->
-                <div class="bg-white/20 p-6 rounded-lg text-white text-center flex-shrink-0 w-64 backdrop-blur-sm">
-                    <i class="fas fa-stamp text-4xl mb-4"></i>
-                    <h4 class="text-xl font-semibold">Letter of Good Standing</h4>
-                </div>
-
             </div>
         </section>
 
@@ -496,31 +506,48 @@
             <span class="close-button" onclick="closeModal()">&times;</span>
             <h2 id="modal-title" class="text-2xl font-bold text-[#1E7D34] mb-4 text-center"></h2>
             
-            <p class="text-sm text-gray-600 text-center mb-6">
-                Please provide the required information below to proceed with your purchase.
-            </p>
+            <!-- Message container -->
+            <div id="messageContainer" class="hidden text-center">
+                <p id="thankYouMessage" class="text-xl font-semibold text-[#1E7D34] mb-4"></p>
+            </div>
 
-            <form id="paymentDetailsForm" class="space-y-4">
-                <input type="hidden" id="serviceName" name="item_name">
-                <input type="hidden" id="serviceAmount" name="amount">
-                <div id="formFieldsContainer" class="space-y-4">
-                    <!-- Dynamic form fields will be added here by JavaScript -->
-                </div>
-                
-                <p id="document-note" class="hidden text-sm text-red-500 mt-4 text-center">
-                    **Note:** After making your payment, please remember to email the required documents and details to info@thecc.co.za. This is necessary to complete your order.
+            <!-- Form container, shown by default -->
+            <div id="formContainer">
+                <p class="text-sm text-gray-600 text-center mb-6">
+                    Please provide the required information below to proceed with your purchase.
                 </p>
 
-                <button type="submit" class="w-full bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
-                    Proceed to Payment
-                </button>
-            </form>
+                <form id="paymentDetailsForm" class="space-y-4">
+                    <input type="hidden" id="serviceName" name="item_name">
+                    <input type="hidden" id="serviceAmount" name="amount">
+                    <input type="hidden" id="serviceType" name="service_type">
+
+                    <div id="formFieldsContainer" class="space-y-4">
+                        <!-- Dynamic form fields will be added here by JavaScript -->
+                    </div>
+                    
+                    <p id="document-note" class="hidden text-sm text-red-500 mt-4 text-center">
+                        **Note:** After making your payment, please remember to email the required documents and details to info@thecc.co.za. This is necessary to complete your order.
+                    </p>
+                     <p id="sars-note" class="hidden text-sm text-red-500 mt-4 text-center">
+                        **Note:** Make sure the email address registered on your SARS matches the one provided and you have access to the email address or else the tax pin will go to the registered email. If all is in order click proceed.
+                    </p>
+
+                    <button type="submit" class="w-full bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
+                        Proceed to Payment
+                    </button>
+                </form>
+            </div>
             
             <form id="payfastForm" action="https://www.payfast.co.za/eng/process" method="POST" style="display: none;">
                 <input type="hidden" name="merchant_id" value="20755326">
                 <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
                 <input type="hidden" id="payfastItemName" name="item_name">
                 <input type="hidden" id="payfastAmount" name="amount">
+                <input type="hidden" id="payfastNameFirst" name="name_first">
+                <input type="hidden" id="payfastNameLast" name="name_last">
+                <input type="hidden" id="payfastEmail" name="email_address">
+                <input type="hidden" id="payfastM_payment_id" name="m_payment_id">
             </form>
         </div>
     </div>
@@ -544,104 +571,257 @@
         const modal = document.getElementById('paymentModal');
         const modalTitle = document.getElementById('modal-title');
         const formFieldsContainer = document.getElementById('formFieldsContainer');
+        const paymentDetailsForm = document.getElementById('paymentDetailsForm');
+        const formContainer = document.getElementById('formContainer');
+        const messageContainer = document.getElementById('messageContainer');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+
         const payfastForm = document.getElementById('payfastForm');
         const payfastItemName = document.getElementById('payfastItemName');
         const payfastAmount = document.getElementById('payfastAmount');
+        const payfastNameFirst = document.getElementById('payfastNameFirst');
+        const payfastNameLast = document.getElementById('payfastNameLast');
+        const payfastEmail = document.getElementById('payfastEmail');
+        const payfastM_payment_id = document.getElementById('payfastM_payment_id');
         const documentNote = document.getElementById('document-note');
+        const sarsNote = document.getElementById('sars-note');
 
-        const serviceFields = {
-            'entryLevel': `
-                <div>
-                    <label for="company-name" class="block text-gray-700 font-medium">Company Name</label>
-                    <input type="text" id="company-name" name="company_name" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-                <div>
-                    <label for="contact-email" class="block text-gray-700 font-medium">Your Email</label>
-                    <input type="email" id="contact-email" name="contact_email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-                <div>
-                    <label for="contact-phone" class="block text-gray-700 font-medium">Your Cellphone Number</label>
-                    <input type="tel" id="contact-phone" name="contact_phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-            `,
-            'basic': `
-                <div>
-                    <label for="company-name" class="block text-gray-700 font-medium">Company Name</label>
-                    <input type="text" id="company-name" name="company_name" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-                <div>
-                    <label for="contact-email" class="block text-gray-700 font-medium">Your Email</label>
-                    <input type="email" id="contact-email" name="contact_email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-                <div>
-                    <label for="contact-phone" class="block text-gray-700 font-medium">Your Cellphone Number</label>
-                    <input type="tel" id="contact-phone" name="contact_phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-            `,
-            'beneficialOwnership': `
-                <div>
-                    <label for="bo-email" class="block text-gray-700 font-medium">Your Email</label>
-                    <input type="email" id="bo-email" name="bo_email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-                <div>
-                    <label for="bo-phone" class="block text-gray-700 font-medium">Your Cellphone Number</label>
-                    <input type="tel" id="bo-phone" name="bo_phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-                <div>
-                    <label for="bo-reg-number" class="block text-gray-700 font-medium">Company Registration Number</label>
-                    <input type="text" id="bo-reg-number" name="bo_reg_number" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-            `,
-            'nhbrcDoc': `
-                <div>
-                    <label for="doc-email" class="block text-gray-700 font-medium">Your Email</label>
-                    <input type="email" id="doc-email" name="doc_email" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-                <div>
-                    <label for="doc-phone" class="block text-gray-700 font-medium">Your Cellphone Number</label>
-                    <input type="tel" id="doc-phone" name="doc_phone" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                </div>
-            `
-        };
-
-        function openModal(serviceName, amount, serviceKey) {
-            modalTitle.textContent = serviceName;
-            document.getElementById('serviceName').value = serviceName;
-            document.getElementById('serviceAmount').value = amount;
-            formFieldsContainer.innerHTML = serviceFields[serviceKey];
-            
-            // Show the special note for services that require document uploads
-            if (serviceKey === 'beneficialOwnership' || serviceKey === 'entryLevel' || serviceKey === 'basic') {
-                documentNote.classList.remove('hidden');
-            } else {
-                documentNote.classList.add('hidden');
-            }
-
+        function openModal(service, amount, serviceType) {
+            // Reset modal state
+            formContainer.classList.remove('hidden');
+            messageContainer.classList.add('hidden');
             modal.style.display = 'flex';
+            modalTitle.textContent = service;
+            document.getElementById('serviceName').value = service;
+            document.getElementById('serviceAmount').value = amount;
+            document.getElementById('serviceType').value = serviceType;
+
+            // Clear previous fields
+            formFieldsContainer.innerHTML = '';
+            documentNote.classList.add('hidden');
+            sarsNote.classList.add('hidden');
+
+            // Generate fields based on service type
+            switch (serviceType) {
+                case 'entryLevel':
+                case 'basic':
+                    // Company Registration Form
+                    documentNote.classList.remove('hidden');
+                    formFieldsContainer.innerHTML = `
+                        <div>
+                            <label for="reg_name1" class="block text-gray-700 font-medium">Proposed Company Name 1 (Priority)</label>
+                            <input type="text" id="reg_name1" name="reg_name1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="reg_name2" class="block text-gray-700 font-medium">Proposed Company Name 2</label>
+                            <input type="text" id="reg_name2" name="reg_name2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                        </div>
+                        <div>
+                            <label for="reg_name3" class="block text-gray-700 font-medium">Proposed Company Name 3</label>
+                            <input type="text" id="reg_name3" name="reg_name3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                        </div>
+                        <div>
+                            <label for="primary_email" class="block text-gray-700 font-medium">Primary Email</label>
+                            <input type="email" id="primary_email" name="primary_email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="primary_number" class="block text-gray-700 font-medium">Primary Number</label>
+                            <input type="tel" id="primary_number" name="primary_number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="address" class="block text-gray-700 font-medium">Physical Address (Unit, Suburb, Town, Province, Postal Code)</label>
+                            <textarea id="address" name="address" rows="3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required></textarea>
+                        </div>
+                        <div>
+                            <label for="directors" class="block text-gray-700 font-medium">Number of Directors</label>
+                            <select id="directors" name="directors" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message_part" class="block text-gray-700 font-medium">Your Message (Optional)</label>
+                            <textarea id="message_part" name="message_part" rows="3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]"></textarea>
+                        </div>
+                        <div>
+                            <label for="id_copy" class="block text-gray-700 font-medium">Upload ID Copy</label>
+                            <input type="file" id="id_copy" name="id_copy" class="mt-1 block w-full text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#37B44E] file:text-white hover:file:bg-[#1E7D34]" required>
+                        </div>
+                        <div>
+                            <label for="proof_of_residence" class="block text-gray-700 font-medium">Upload Proof of Residence</label>
+                            <input type="file" id="proof_of_residence" name="proof_of_residence" class="mt-1 block w-full text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#37B44E] file:text-white hover:file:bg-[#1E7D34]" required>
+                        </div>
+                    `;
+                    break;
+                case 'nhbrcDoc':
+                    // NHBRC Q&A Document Form
+                    documentNote.classList.remove('hidden');
+                    formFieldsContainer.innerHTML = `
+                        <div>
+                            <label for="nhbrc_email" class="block text-gray-700 font-medium">Email Address</label>
+                            <input type="email" id="nhbrc_email" name="nhbrc_email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                    `;
+                    break;
+                case 'beneficialOwnership':
+                    // Beneficial Ownership Form
+                    documentNote.classList.remove('hidden');
+                    formFieldsContainer.innerHTML = `
+                        <div>
+                            <label for="bo_directors" class="block text-gray-700 font-medium">Number of Directors</label>
+                            <input type="number" id="bo_directors" name="bo_directors" min="1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="bo_shares" class="block text-gray-700 font-medium">Shares Percentage (out of 100)</label>
+                            <input type="number" id="bo_shares" name="bo_shares" min="1" max="100" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="bo_reg_num" class="block text-gray-700 font-medium">Company Registration Number</label>
+                            <input type="text" id="bo_reg_num" name="bo_reg_num" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="bo_reg_name" class="block text-gray-700 font-medium">Company Registered Name</label>
+                            <input type="text" id="bo_reg_name" name="bo_reg_name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="bo_email" class="block text-gray-700 font-medium">Email Address</label>
+                            <input type="email" id="bo_email" name="bo_email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="bo_contact" class="block text-gray-700 font-medium">Contact Number</label>
+                            <input type="tel" id="bo_contact" name="bo_contact" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                    `;
+                    break;
+                case 'taxClearance':
+                    // Tax Clearance Form
+                    sarsNote.classList.remove('hidden');
+                    formFieldsContainer.innerHTML = `
+                        <div>
+                            <label for="tax_email" class="block text-gray-700 font-medium">Email Address</label>
+                            <input type="email" id="tax_email" name="tax_email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="tax_number" class="block text-gray-700 font-medium">Contact Number</label>
+                            <input type="tel" id="tax_number" name="tax_number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="tax_reg_num" class="block text-gray-700 font-medium">Company Registered Number</label>
+                            <input type="text" id="tax_reg_num" name="tax_reg_num" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="tax_comp_name" class="block text-gray-700 font-medium">Company Name</label>
+                            <input type="text" id="tax_comp_name" name="tax_comp_name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
+                        </div>
+                        <div>
+                            <label for="tax_tax_num" class="block text-gray-700 font-medium">Tax Number (Optional)</label>
+                            <input type="text" id="tax_tax_num" name="tax_tax_num" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                        </div>
+                    `;
+                    break;
+                default:
+                    formFieldsContainer.innerHTML = `<p class="text-red-500">Error: Service not found.</p>`;
+                    break;
+            }
         }
 
         function closeModal() {
             modal.style.display = 'none';
         }
 
-        // Close the modal if the user clicks outside of it
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeModal();
             }
         }
 
-        document.getElementById('paymentDetailsForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
+        paymentDetailsForm.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-            // Populate the hidden Payfast form and submit it
-            payfastItemName.value = document.getElementById('serviceName').value;
-            payfastAmount.value = document.getElementById('serviceAmount').value;
+            const serviceType = document.getElementById('serviceType').value;
+            const serviceName = document.getElementById('serviceName').value;
+            const amount = document.getElementById('serviceAmount').value;
 
-            // Submit the form to Payfast
+            // This is a simplified, client-side email submission.
+            // Note: File attachments cannot be sent via a mailto: link. A real-world solution would require a server-side script to handle file uploads and email sending.
+            let emailBody = `Service: ${serviceName}\nAmount: R${amount}\n\n`;
+
+            // Collect data based on service type
+            switch (serviceType) {
+                case 'entryLevel':
+                case 'basic':
+                    emailBody += `Proposed Names:\n1. ${document.getElementById('reg_name1').value}\n2. ${document.getElementById('reg_name2').value}\n3. ${document.getElementById('reg_name3').value}\n\n`;
+                    emailBody += `Primary Email: ${document.getElementById('primary_email').value}\n`;
+                    emailBody += `Primary Number: ${document.getElementById('primary_number').value}\n`;
+                    emailBody += `Physical Address: ${document.getElementById('address').value}\n`;
+                    emailBody += `Number of Directors: ${document.getElementById('directors').value}\n`;
+                    if (document.getElementById('message_part').value) {
+                         emailBody += `Message: ${document.getElementById('message_part').value}\n`;
+                    }
+                    // For file uploads, a server-side solution is required.
+                    // The following is a placeholder for a real implementation.
+                    emailBody += `\n**ID Copy and Proof of Residence must be emailed separately.**`;
+                    break;
+                case 'nhbrcDoc':
+                    emailBody += `Customer Email: ${document.getElementById('nhbrc_email').value}\n`;
+                    break;
+                case 'beneficialOwnership':
+                    emailBody += `Number of Directors: ${document.getElementById('bo_directors').value}\n`;
+                    emailBody += `Shares Percentage: ${document.getElementById('bo_shares').value}%\n`;
+                    emailBody += `Company Reg No: ${document.getElementById('bo_reg_num').value}\n`;
+                    emailBody += `Company Reg Name: ${document.getElementById('bo_reg_name').value}\n`;
+                    emailBody += `Email Address: ${document.getElementById('bo_email').value}\n`;
+                    emailBody += `Contact Number: ${document.getElementById('bo_contact').value}\n`;
+                    break;
+                case 'taxClearance':
+                    emailBody += `Email Address: ${document.getElementById('tax_email').value}\n`;
+                    emailBody += `Contact Number: ${document.getElementById('tax_number').value}\n`;
+                    emailBody += `Company Reg No: ${document.getElementById('tax_reg_num').value}\n`;
+                    emailBody += `Company Name: ${document.getElementById('tax_comp_name').value}\n`;
+                    emailBody += `Tax Number (Optional): ${document.getElementById('tax_tax_num').value}\n`;
+                    break;
+            }
+
+            // Populate the hidden Payfast form fields
+            payfastItemName.value = serviceName;
+            payfastAmount.value = amount;
+            
+            // For now, let's assume we have a name and email for Payfast from the form
+            // This is a simplification; a real app would need a consistent user info form
+            let customerEmail = '';
+            let customerName = '';
+
+            if (serviceType === 'nhbrcDoc') {
+                customerEmail = document.getElementById('nhbrc_email').value;
+                customerName = 'NHBRC Customer'; // Placeholder name
+            } else if (serviceType === 'beneficialOwnership') {
+                customerEmail = document.getElementById('bo_email').value;
+                customerName = 'Beneficial Owner'; // Placeholder name
+            } else if (serviceType === 'taxClearance') {
+                customerEmail = document.getElementById('tax_email').value;
+                customerName = 'Tax Clearance Customer'; // Placeholder name
+            } else {
+                customerEmail = document.getElementById('primary_email').value;
+                customerName = 'Company Registration Customer'; // Placeholder name
+            }
+            
+            payfastNameFirst.value = customerName;
+            payfastEmail.value = customerEmail;
+            payfastM_payment_id.value = 'TCC_' + Date.now(); // Generate a unique payment ID
+
+            // Show thank you message and call expectation
+            formContainer.classList.add('hidden');
+            messageContainer.classList.remove('hidden');
+            thankYouMessage.innerHTML = 'Thank you for building with The City Consultant! You can expect a call from us within the next <b>1 to 3 hours</b> to ensure the service you require is delivered properly.';
+
+            // Submit the Payfast form to redirect to the payment gateway
             payfastForm.submit();
         });
+
     </script>
+
 </body>
 </html>
-
