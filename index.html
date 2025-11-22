@@ -1,732 +1,755 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The City Consultant | Services</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Reformation Group — Courier & Logistics</title>
+    <meta name="description" content="Reformation Group — Seamless, secure, on-time delivery solutions for businesses and individuals." />
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom font for a professional look */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Sticky header to keep navigation visible */
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-        /* New Hero Section with a modern gradient background */
-        .hero-section {
-            background: linear-gradient(135deg, #1E7D34 0%, #37B44E 100%);
-            min-height: 40vh; /* Make the hero section tall enough */
-        }
-        .hero-title {
-            animation: fadeInDown 1s ease-out;
-        }
-        .hero-text {
-            animation: fadeInUp 1s ease-out 0.5s forwards;
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Moving belt animation */
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-        .scrolling-wrapper {
-            display: flex;
-            width: max-content;
-            animation: scroll-left 40s linear infinite;
-        }
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 2rem;
-            border: 1px solid #888;
-            width: 90%;
-            max-width: 600px;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons for consistent iconography -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --blue-900: #0a4b7a;
+            --blue-700: #1370b8;
+            --blue-600: #1e90ff;
+            --blue-100: #e6f4ff;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #0f1724;
+            line-height: 1.45;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px; 
+        }
+        @media (min-width: 640px) {
+            .container {
+                padding: 28px;
+            }
+        }
+        /* Moving belt */
+        .moving-belt {
+            background-color: var(--blue-700);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .moving-belt-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+            padding-left: 100%;
+        }
+        .moving-belt-content span {
+            padding-right: 2rem;
+        }
+        @keyframes marquee {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s;
+            visibility: hidden;
+            opacity: 0;
+        }
+        .modal-overlay.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-container {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease-out;
+            text-align: center;
+        }
+        .modal-overlay.visible .modal-container {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #6b7280;
+            line-height: 1;
+        }
+        .modal-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--blue-900);
+        }
+        .modal-body {
+            color: #333;
+        }
+        .stars {
+            color: #ffc107; 
+            font-size: 1.2rem;
+        }
+        
+        /* WhatsApp floating button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.2s ease-out;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+        
+        /* Dropdown menu styles */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 250px; 
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 500;
+            padding: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            transform-origin: top right;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        }
+
+        .dropdown-menu.open {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .dropdown-menu a {
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: var(--blue-900);
+            transition: background-color 0.2s;
+        }
+        .dropdown-menu a:hover {
+            background-color: var(--blue-100);
+        }
+
+        /* Radio Styles */
+        input[type="radio"]:checked + label,
+        input[type="radio"]:checked + label:hover {
+             border-color: var(--blue-900);
+             background-color: var(--blue-100);
+             color: var(--blue-900);
+             font-weight: 700;
+        }
+        input[type="radio"] + label {
+            border-color: #e5e7eb;
+        }
+        input[type="radio"] + label:hover {
+            border-color: var(--blue-600);
+        }
+
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <!-- Header & Navigation -->
-    <header class="sticky-header bg-[#1E7D34] text-white shadow-lg">
-        <div class="container mx-auto flex items-center justify-between p-4">
-            <!-- Brand name -->
-            <a href="#" class="text-xl md:text-2xl font-bold tracking-tight">The City Consultant</a>
-            <!-- Navigation links -->
-            <nav class="hidden md:flex items-center space-x-6 font-semibold">
-                <a href="#" class="hover:text-gray-200 transition-colors">Home</a>
-                <a href="#about" class="hover:text-gray-200 transition-colors">About</a>
-                <a href="#services" class="hover:text-gray-200 transition-colors">Services</a>
-                <a href="#why-us-and-reviews" class="hover:text-gray-200 transition-colors">Reviews</a>
-                <a href="#contact" class="hover:text-gray-200 transition-colors">Contact</a>
-            </nav>
-            <!-- Mobile Menu Button -->
-            <button id="menu-button" class="md:hidden text-white text-2xl focus:outline-none">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#37B44E] w-full py-2">
-            <nav class="flex flex-col items-center space-y-2 text-sm font-medium">
-                <a href="#" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">Home</a>
-                <a href="#about" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">About</a>
-                <a href="#services" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">Services</a>
-                <a href="#why-us-and-reviews" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">Reviews</a>
-                <a href="#contact" class="block w-full text-center py-2 hover:bg-gray-700 transition-colors">Contact</a>
-            </nav>
+<body class="antialiased">
+    <header class="container mx-auto px-4 py-4 flex flex-row items-center justify-between relative">
+        <a href="#" class="flex items-center gap-3 no-underline">
+            <div class="w-12 h-12 rounded-xl bg-[var(--blue-900)] text-white grid place-items-center font-extrabold text-2xl">R</div>
+            <div>
+                <div class="font-extrabold text-[var(--blue-900)]">Reformation Group</div>
+                <div class="text-xs text-gray-500">Courier • Logistics • Fulfilment</div>
+            </div>
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <nav id="desktop-nav" class="hidden md:flex flex-wrap justify-center sm:gap-4 lg:gap-6">
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#schedule-pickup">Schedule Pickup</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#services">Services</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#industries">Industries</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#reviews">Reviews</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#why">Why Us</a>
+            <a class="text-[var(--blue-900)] no-underline font-semibold hover:text-[var(--blue-600)] transition duration-200" href="#contact">Contact</a>
+        </nav>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-200 transition duration-200 focus:outline-none" aria-label="Toggle mobile menu">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="dropdown-menu">
+            <a class="text-[var(--blue-900)]" href="#schedule-pickup">Schedule Pickup</a>
+            <a class="text-[var(--blue-900)]" href="#services">Services</a>
+            <a class="text-[var(--blue-900)]" href="#industries">Industries</a>
+            <a class="text-[var(--blue-900)]" href="#reviews">Reviews</a>
+            <a class="text-[var(--blue-900)]" href="#why">Why Us</a>
+            <a class="text-[var(--blue-900)]" href="#contact">Contact</a>
         </div>
     </header>
-    <!-- Hero Section -->
-    <section class="hero-section flex flex-col items-center justify-center text-center p-6">
-        <div class="container mx-auto">
-            <h1 class="hero-title text-5xl md:text-6xl font-extrabold text-white mb-4 leading-tight">Your Partner in Business</h1>
-            <p class="hero-text text-lg md:text-xl font-medium text-white max-w-2xl mx-auto opacity-0 transform translate-y-8">
-                Navigate the world of business registration, compliance, and growth with our expert guidance.
-            </p>
+
+    <section class="moving-belt">
+        <!-- Duplicated content for seamless loop -->
+        <div class="moving-belt-content">
+            <span>Same-Day Delivery</span>
+            <span>International Express</span>
+            <span>E-commerce Fulfilment</span>
+            <span>Freight Forwarding</span>
+            <span>Customs Clearance</span>
+            <span>Warehousing & Distribution</span>
+            <span>Same-Day Delivery</span>
+            <span>International Express</span>
+            <span>E-commerce Fulfilment</span>
+            <span>Freight Forwarding</span>
+            <span>Customs Clearance</span>
+            <span>Warehousing & Distribution</span>
         </div>
     </section>
-    <!-- New: Services Marquee Section -->
-    <section id="marquee" class="py-4 bg-[#135a20] overflow-hidden">
-        <div class="scrolling-wrapper text-white font-medium text-lg md:text-xl px-4">
-            <span class="whitespace-nowrap flex items-center space-x-8">
-                <span class="flex-shrink-0">Business Plan and Profiles</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Financial Statements</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">COIDA</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">CIPC Filing</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">SARS Income Tax and VAT Filing</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Barcodes</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Graphic Design</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Printing and Branding</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Website Development</span>
-                <span class="text-white text-xl">&bull;</span>
-                <!-- Repeat services for a seamless loop -->
-                <span class="flex-shrink-0">Business Plan and Profiles</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Financial Statements</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">COIDA</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">CIPC Filing</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">SARS Income Tax and VAT Filing</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Barcodes</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Graphic Design</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Printing and Branding</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Website Development</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Business Plan and Profiles</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Financial Statements</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">COIDA</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">CIPC Filing</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">SARS Income Tax and VAT Filing</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Barcodes</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Graphic Design</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Printing and Branding</span>
-                <span class="text-white text-xl">&bull;</span>
-                <span class="flex-shrink-0">Website Development</span>
-                <span class="text-white text-xl">&bull;</span>
-            </span>
-        </div>
-    </section>
-    <!-- About Section -->
-    <section id="about" class="bg-white rounded-lg shadow-xl p-8 my-8 mx-4 md:mx-auto max-w-6xl">
-        <h2 class="text-4xl lg:text-5xl font-extrabold text-[#1E7D34] mb-4 text-center">
-            About The City Consultant
-        </h2>
-        <p class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed text-center">
-            The City Consultant (The CC) is a company that provides a comprehensive suite of professional services to help businesses grow. They specialize in business registration and compliance, financial services, branding and marketing, and corporate administration. By offering these diverse services in one place, The City Consultant helps businesses of all sizes streamline their operations and strengthen their market presence.
-        </p>
-    </section>
-    <main class="container mx-auto p-4 sm:p-6 lg:p-8 mt-16">
-        <!-- Services Section (Consolidated) -->
-        <section id="services">
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-[#1E7D34] mb-4 text-center">
-                Our Services
-            </h2>
-            <!-- Company Registration Packages Section -->
-            <section id="registration-packages" class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h3 class="text-3xl font-bold text-[#1E7D34] mb-6 text-center">Company Registration Packages</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <main class="container mx-auto px-4">
+        <section class="text-center py-9">
+            <h1 class="text-3xl lg:text-5xl font-extrabold text-[var(--blue-900)]">Reformation Group For Your Courier & Logistics Needs</h1>
+            <p class="text-lg text-gray-600 mt-3 max-w-3xl mx-auto">Reformation Group is a premier courier and logistics company. We provide seamless, secure delivery solutions for businesses and individuals—ensuring your parcels arrive on time, every time.</p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a class="bg-[var(--blue-600)] text-white font-semibold py-3 px-6 rounded-full no-underline hover:bg-[var(--blue-700)] transition duration-200" href="#schedule-pickup">Schedule a Pickup</a>
+                <a class="bg-transparent border-2 border-[var(--blue-600)] text-[var(--blue-600)] font-semibold py-3 px-6 rounded-full no-underline hover:bg-[var(--blue-600)] hover:text-white transition duration-200" href="#contact">Talk to Sales</a>
+            </div>
+        </section>
+
+        <!-- Use a scroll-margin-top to offset anchor link scrolling due to fixed headers (if you had one) -->
+        <section id="schedule-pickup" class="py-9" style="scroll-margin-top: 20px;">
+            <h2 class="text-3xl font-bold text-[var(--blue-900)]">Schedule a Pickup</h2>
+            <p class="text-gray-500">Book a one-off pickup or schedule a recurring weekly or monthly pickup at a time that works for you.</p>
+            <div class="bg-white rounded-xl shadow-lg p-6 mt-4 border border-gray-100">
+                <form id="pickup-form" data-form-id="pickup-form" class="pickup-form">
+                    <div class="mb-3">
+                        <label class="block mb-2 text-[var(--blue-900)] font-semibold text-sm">Pickup Type</label>
+                        <div class="flex flex-wrap gap-2">
+                            <!-- Note: The 'checked' radio button's label gets the border-blue-900 style via CSS -->
+                            <input type="radio" name="pickupType" value="One-Off" class="hidden" id="pickupOneOff" checked />
+                            <label for="pickupOneOff" class="flex-1 min-w-[100px] bg-white py-2 px-3 rounded-xl border-2 cursor-pointer text-center font-medium transition-all duration-200">
+                                One-Off
+                            </label>
+                            
+                            <input type="radio" name="pickupType" value="Daily" class="hidden" id="pickupDaily" />
+                            <label for="pickupDaily" class="flex-1 min-w-[100px] bg-white py-2 px-3 rounded-xl border-2 cursor-pointer text-center font-medium transition-all duration-200">
+                                Daily
+                            </label>
+                            
+                            <input type="radio" name="pickupType" value="Weekly" class="hidden" id="pickupWeekly" />
+                            <label for="pickupWeekly" class="flex-1 min-w-[100px] bg-white py-2 px-3 rounded-xl border-2 cursor-pointer text-center font-medium transition-all duration-200">
+                                Weekly
+                            </label>
+
+                            <input type="radio" name="pickupType" value="Monthly" class="hidden" id="pickupMonthly" />
+                            <label for="pickupMonthly" class="flex-1 min-w-[100px] bg-white py-2 px-3 rounded-xl border-2 cursor-pointer text-center font-medium transition-all duration-200">
+                                Monthly
+                            </label>
+                        </div>
+                    </div>
                     
-                    <!-- Entry Level Package Card -->
-                    <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-2 text-left">Entry Level Package</h4>
-                        <div class="flex-1 space-y-2 text-gray-700 mb-4">
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Company Registration & Certificates</li>
-                                <li>Tax Clearance Certificate</li>
-                                <li>B-BBEE Certificate</li>
-                                <li>CSD Registration</li>
-                                <li>Beneficial ownership Filing</li>
-                            </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                        <div class="form-group">
+                            <label for="pickupDate" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Date</label>
+                            <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)] focus:border-transparent" type="date" id="pickupDate" name="pickupDate" required />
                         </div>
-                        <div class="flex flex-col items-center mt-auto">
-                            <p class="text-3xl font-bold text-[#1E7D34] mb-4">R829.00</p>
-                            <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors" onclick="openModal('Entry Level Package', '829.00', 'entryLevel')">
-                                Get Started
-                            </button>
+                        <div class="form-group">
+                            <label for="pickupTime" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Time</label>
+                            <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)] focus:border-transparent" type="time" id="pickupTime" name="pickupTime" required />
                         </div>
                     </div>
-                    <!-- Basic Package Card -->
-                    <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-2 text-left">Basic Package</h4>
-                        <div class="flex-1 space-y-2 text-gray-700 mb-4">
-                            <ul class="list-disc list-inside space-y-1">
-                                <li>Company Registration & Certificates</li>
-                                <li>SARS (PR) Public Representative</li>
-                                <li>Tax Clearance Certificate</li>
-                                <li>B-BBEE Certificate</li>
-                                <li>CSD Registration</li>
-                                <li>Beneficial ownership</li>
-                                <li>Business Profile</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-col items-center mt-auto">
-                            <p class="text-3xl font-bold text-[#1E7D34] mb-4">R1 500.00</p>
-                            <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors" onclick="openModal('Basic Package', '1500.00', 'basic')">
-                                Get Started
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center mt-8 text-lg text-gray-700">
-                    Don't see a package that fits your needs? We also offer services on a separate, customized basis. 
-                    <a href="mailto:info@thecc.co.za?subject=Quotation%20Request" class="text-[#1E7D34] hover:underline font-semibold">Contact us today to get a quotation.</a>
-                </p>
-            </section>
-            <!-- CIPC Services Section -->
-            <section id="cipc-services" class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h3 class="text-3xl font-bold text-[#1E7D34] mb-6 text-center">CIPC Services</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Beneficial Ownership Filing Service -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-4 text-center">Beneficial Ownership Filing Service</h4>
-                        <p class="text-center text-lg text-gray-700 mb-4">
-                            Ensure your company is compliant with all regulatory requirements with our specialized Beneficial Ownership Filing Service.
-                        </p>
-                        <div class="flex flex-col items-center">
-                            <p class="text-4xl font-bold text-[#1E7D34] mb-6">R350.00</p>
-                            <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105" onclick="openModal('Beneficial Ownership Filing Service', '350.00', 'beneficialOwnership')">
-                                Secure Your Service
-                            </button>
+                    
+                    <div class="mb-3">
+                        <label class="block mb-2 text-[var(--blue-900)] font-semibold text-sm">Pickup Address</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="unitNumber" class="sr-only">Unit Number</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="unitNumber" name="pickupUnitNumber" placeholder="Unit Number" />
+                            </div>
+                            <div>
+                                <label for="streetAddress" class="sr-only">Street Address</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="streetAddress" name="pickupStreetAddress" placeholder="Street Address" required />
+                            </div>
+                            <div>
+                                <label for="suburb" class="sr-only">Suburb</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="suburb" name="pickupSuburb" placeholder="Suburb" required />
+                            </div>
+                            <div>
+                                <label for="city" class="sr-only">City</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="city" name="pickupCity" placeholder="City" required />
+                            </div>
+                            <div>
+                                <label for="province" class="sr-only">Province</label>
+                                <select class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" id="province" name="pickupProvince" required>
+                                    <option value="" disabled selected>Select Province</option>
+                                    <option value="Eastern Cape">Eastern Cape</option>
+                                    <option value="Free State">Free State</option>
+                                    <option value="Gauteng">Gauteng</option>
+                                    <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                                    <option value="Limpopo">Limpopo</option>
+                                    <option value="Mpumalanga">Mpumalanga</option>
+                                    <option value="Northern Cape">Northern Cape</option>
+                                    <option value="North West">North West</option>
+                                    <option value="Western Cape">Western Cape</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="postalCode" class="sr-only">Postal Code</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="postalCode" name="pickupPostalCode" placeholder="Postal Code" required />
+                            </div>
                         </div>
                     </div>
-                    <!-- Tax Clearance Certificate Service -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                        <h4 class="text-2xl font-bold text-gray-800 mb-4 text-center">Tax Clearance Certificate</h4>
-                        <p class="text-center text-lg text-gray-700 mb-4">
-                            Obtain your Tax Clearance Certificate with ease and ensure your business is tax compliant.
-                        </p>
-                        <div class="flex flex-col items-center">
-                            <p class="text-4xl font-bold text-[#1E7D34] mb-6">R250.00</p>
-                            <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105" onclick="openModal('Tax Clearance Certificate', '250.00', 'taxClearance')">
-                                Secure Your Service
-                            </button>
+
+                    <div class="mb-3">
+                        <label for="deliveryCompany" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Deliver to (Company Name)</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="deliveryCompany" name="deliveryCompany" placeholder="e.g. Ingredion" required />
+                    </div>
+
+                    <!-- New Delivery Address Block -->
+                    <div class="mb-3">
+                        <label class="block mb-2 text-[var(--blue-900)] font-semibold text-sm">Delivery Address</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="deliveryUnitNumber" class="sr-only">Unit Number</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="deliveryUnitNumber" name="deliveryUnitNumber" placeholder="Unit Number" />
+                            </div>
+                            <div>
+                                <label for="deliveryStreetAddress" class="sr-only">Street Address</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="deliveryStreetAddress" name="deliveryStreetAddress" placeholder="Street Address" required />
+                            </div>
+                            <div>
+                                <label for="deliverySuburb" class="sr-only">Suburb</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="deliverySuburb" name="deliverySuburb" placeholder="Suburb" required />
+                            </div>
+                            <div>
+                                <label for="deliveryCity" class="sr-only">City</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="deliveryCity" name="deliveryCity" placeholder="City" required />
+                            </div>
+                            <div>
+                                <label for="deliveryProvince" class="sr-only">Province</label>
+                                <select class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" id="deliveryProvince" name="deliveryProvince" required>
+                                    <option value="" disabled selected>Select Province</option>
+                                    <option value="Eastern Cape">Eastern Cape</option>
+                                    <option value="Free State">Free State</option>
+                                    <option value="Gauteng">Gauteng</option>
+                                    <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                                    <option value="Limpopo">Limpopo</option>
+                                    <option value="Mpumalanga">Mpumalanga</option>
+                                    <option value="Northern Cape">Northern Cape</option>
+                                    <option value="North West">North West</option>
+                                    <option value="Western Cape">Western Cape</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="deliveryPostalCode" class="sr-only">Postal Code</label>
+                                <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="deliveryPostalCode" name="deliveryPostalCode" placeholder="Postal Code" required />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                    <!-- End of New Delivery Address Block -->
+
+                    <!-- Moved Contact Info -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                        <div class="form-group">
+                            <label for="contactPerson" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Contact Person</label>
+                            <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="text" id="contactPerson" name="contactPerson" placeholder="e.g. John Doe" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryContactNumber" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Contact Number</label>
+                            <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="tel" id="deliveryContactNumber" name="deliveryContactNumber" placeholder="e.g. 011 867 9260" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="altContactNumber" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Alternative Number (Optional)</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="tel" id="altContactNumber" name="altContactNumber" placeholder="e.g. 011 867 9261" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="altContactEmail" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Alternative Email (Optional)</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="email" id="altContactEmail" name="altContactEmail" placeholder="e.g. alternate@example.com" />
+                    </div>
+                    <!-- End of Moved Contact Info -->
+
+                    <div class="mb-4">
+                        <label for="packageQuantity" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Quantity of Packages</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="number" id="packageQuantity" name="packageQuantity" placeholder="e.g. 1" min="1" required />
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="packageWeight" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Package Weight (kg)</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="number" id="packageWeight" name="packageWeight" placeholder="Approximate weight in kg" min="0.1" step="0.1" required />
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="parcelPicture" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Picture of Your Parcel</label>
+                        <input class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[var(--blue-100)] file:text-[var(--blue-700)] hover:file:bg-blue-200" type="file" id="parcelPicture" name="parcelPicture" accept="image/*" />
+                        <p class="text-xs text-red-500 font-semibold mt-1">IMPORTANT: Your picture will NOT attach automatically. Please manually attach the image in the email that opens.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="specialInstructions" class="block mb-1 text-[var(--blue-900)] font-semibold text-sm">Special Instructions / Note</label>
+                        <textarea class="w-full px-3 py-2 rounded-xl border border-gray-300 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" id="specialInstructions" name="specialInstructions" placeholder="Any special delivery instructions or notes..."></textarea>
+                    </div>
+
+                    <button class="w-full bg-[var(--blue-600)] text-white font-semibold py-3 px-6 rounded-full hover:bg-[var(--blue-700)] transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--blue-700)]" type="submit">Schedule Pickup & Send Email</button>
+                </form>
+            </div>
         </section>
-        <!-- Combined NHBRC Section -->
-        <section id="nhbrc-solutions" class="bg-white rounded-lg shadow-xl p-8 mb-8 text-center">
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-[#1E7D34] mb-4">
-                Comprehensive NHBRC Services
-            </h2>
-            <p class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed mb-8 text-center">
-                We provide a full suite of services to ensure you are fully prepared for NHBRC compliance and ready for a successful career as a home builder.
-            </p>
-            
-            <div class="grid md:grid-cols-2 gap-8 text-left">
-                <!-- NHBRC Questions & Answers Document -->
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">NHBRC Questions & Answers Document</h3>
-                    <p class="text-gray-700 mb-4 text-center">
-                        Get fully prepared for your NHBRC compliance assessments with our professionally compiled Q&A document.
-                    </p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-2 mb-4">
-                        <li>Covers the most recent NHBRC compliance requirements</li>
-                        <li>Includes real and tested Q&As</li>
-                        <li>Easy-to-read format</li>
-                        <li>Instant download after secure payment</li>
-                    </ul>
-                    <div class="flex flex-col items-center">
-                        <p class="text-2xl font-bold text-[#1E7D34] mb-4">Price: R480</p>
-                        <button class="w-full text-center bg-[#1E7D34] text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105" onclick="openModal('NHBRC Q&A Document', '480.00', 'nhbrcDoc')">
-                            Request Your Copy
-                        </button>
+
+        <section class="py-9">
+            <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                <div class="font-bold text-lg text-[var(--blue-900)] mb-3">Quick Quote</div>
+                <form id="quote-form" data-form-id="quote-form" class="quote-form" >
+                    <label for="qFrom" class="sr-only">From</label>
+                    <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" placeholder="From (City/Country)" id="qFrom" name="from" required />
+                    
+                    <label for="qTo" class="sr-only">To</label>
+                    <input class="w-full px-3 py-2 rounded-xl border border-gray-300 mt-2 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" placeholder="To (City/Country)" id="qTo" name="to" required />
+                    
+                    <label for="qWeight" class="sr-only">Weight (kg)</label>
+                    <input class="w-full px-3 py-2 rounded-xl border border-gray-300 mt-2 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" placeholder="Weight (kg)" id="qWeight" name="weight" type="number" min="0.1" step="0.1" required />
+                    
+                    <div class="mt-3 flex flex-col sm:flex-row gap-2">
+                        <label for="qEmail" class="sr-only">Email</label>
+                        <input class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--blue-600)]" type="email" placeholder="Email" id="qEmail" name="_replyto" required />
+                        
+                        <button class="bg-[var(--blue-600)] text-white font-semibold py-2 px-5 rounded-full hover:bg-[var(--blue-700)] transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--blue-700)]" type="submit">Get Rate via Email</button>
                     </div>
+                </form>
+                <div class="text-xs text-gray-500 mt-2">Need advanced pricing? <a href="#contact" class="text-[var(--blue-700)] no-underline hover:underline transition duration-200">Contact sales</a>.</div>
+            </div>
+        </section>
+
+        <section id="services" class="py-9" style="scroll-margin-top: 20px;">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end">
+                <h2 class="text-3xl font-bold text-[var(--blue-900)]">Services</h2>
+                <a class="text-[var(--blue-700)] no-underline font-semibold mt-2 sm:mt-0 hover:text-[var(--blue-900)] transition duration-200" href="#">View all services →</a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm hover:shadow-md transition duration-200">
+                    <div class="bg-[var(--blue-100)] w-10 h-10 rounded-lg flex items-center justify-center mb-3">
+                        <i data-lucide="clock" class="text-[var(--blue-700)] w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-[var(--blue-900)] mb-1">Same‑Day & Next‑Day</h3>
+                    <p class="text-gray-500 text-sm">Time‑definite delivery for documents, parcels, and pallets across major metros.</p>
                 </div>
-                
-                <!-- NHBRC Education & Application -->
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">NHBRC Education & Application</h3>
-                    <p class="text-gray-700 mb-4 text-center">
-                        Enroll in NHBRC education to ensure you meet legal standards and build high-quality homes.
-                    </p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-2 mb-4">
-                        <li>We assist with connecting you to an accredited training provider</li>
-                        <li>Training covers building standards and quality control</li>
-                        <li>Receive a certificate of competence upon completion</li>
-                        <li>Increases business competitiveness and mitigates legal risks</li>
-                    </ul>
-                    <div class="flex flex-col items-center mt-auto">
-                        <a href="#contact" class="w-full text-center bg-[#1E7D34] text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105">
-                            Contact Us for Assistance
-                        </a>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm hover:shadow-md transition duration-200">
+                    <div class="bg-[var(--blue-100)] w-10 h-10 rounded-lg flex items-center justify-center mb-3">
+                        <i data-lucide="globe" class="text-[var(--blue-700)] w-6 h-6"></i>
                     </div>
+                    <h3 class="font-semibold text-lg text-[var(--blue-900)] mb-1">International Express</h3>
+                    <p class="text-gray-500 text-sm">Door‑to‑door cross‑border shipping with customs clearance and real‑time tracking.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm hover:shadow-md transition duration-200">
+                    <div class="bg-[var(--blue-100)] w-10 h-10 rounded-lg flex items-center justify-center mb-3">
+                        <i data-lucide="shopping-bag" class="text-[var(--blue-700)] w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-[var(--blue-900)] mb-1">E‑commerce Fulfilment</h3>
+                    <p class="text-gray-500 text-sm">Warehousing, pick‑pack‑ship, and returns management integrated with your store.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm hover:shadow-md transition duration-200">
+                     <div class="bg-[var(--blue-100)] w-10 h-10 rounded-lg flex items-center justify-center mb-3">
+                        <i data-lucide="file-text" class="text-[var(--blue-700)] w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-[var(--blue-900)] mb-1">Contract Logistics</h3>
+                    <p class="text-gray-500 text-sm">Inventory optimization, bonded storage, and distribution to your network.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm hover:shadow-md transition duration-200">
+                     <div class="bg-[var(--blue-100)] w-10 h-10 rounded-lg flex items-center justify-center mb-3">
+                        <i data-lucide="truck" class="text-[var(--blue-700)] w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-[var(--blue-900)] mb-1">Freight (Air / Sea / Road)</h3>
+                    <p class="text-gray-500 text-sm">Multimodal freight forwarding with end‑to‑end visibility and insurance options.</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-[var(--blue-100)] shadow-sm hover:shadow-md transition duration-200">
+                     <div class="bg-[var(--blue-100)] w-10 h-10 rounded-lg flex items-center justify-center mb-3">
+                        <i data-lucide="box" class="text-[var(--blue-700)] w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-[var(--blue-900)] mb-1">White Glove Service</h3>
+                    <p class="text-gray-500 text-sm">Specialized handling, assembly, and installation for sensitive or high-value items.</p>
                 </div>
             </div>
         </section>
-        <!-- What Our Clients Say Section -->
-        <section id="why-us-and-reviews" class="bg-white rounded-lg shadow-xl p-8 mb-8">
-            <h2 class="text-4xl lg:text-5xl font-extrabold text-[#1E7D34] mt-16 mb-8 text-center">
-                What Our Clients Say
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Review Card 1 (Simbo Driving School) -->
-                <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <div class="flex text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-4 flex-grow">"The City Consultants transformed our business with their exceptional graphic design services and compliance assistance. They created a modern and professional brand identity for our driving school while ensuring that all our compliance needs were met effortlessly. Their dedication to quality and efficiency is unmatched. We highly recommend their services to any business seeking professional support!"</p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/40x40/E5E7EB/1F2937?text=SD" alt="Simbo Driving School" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h3 class="text-md font-bold text-gray-800">Simbo Driving School</h3>
-                            <p class="text-sm text-gray-500">@Simbo Driving School</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Review Card 2 (Dr Bonginkosi Shoba Inc) -->
-                <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <div class="flex text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-4 flex-grow">"The City Consultants provided exceptional service in helping us develop a comprehensive and professional business plan for our diamond trading company. Their attention to detail, strategic insights, and personalized approach have given our business a solid foundation to secure funding and grow. We are truly grateful for their expertise and commitment to excellence."</p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/40x40/E5E7EB/1F2937?text=BS" alt="Dr Bonginkosi Shoba Inc" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h3 class="text-md font-bold text-gray-800">Dr Bonginkosi Shoba Inc</h3>
-                            <p class="text-sm text-gray-500">@Dr Bonginkosi Shoba, Director</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Review Card 3 (Lenaka Beverages) -->
-                <div class="flex flex-col bg-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-                    <div class="flex text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-4 flex-grow">"Thanks to The City Consultants, our beverage products now have professional and fully compliant barcodes, allowing us to seamlessly enter the retail market. Their team made the process easy and efficient, ensuring everything met industry standards. Their professionalism and expertise have been invaluable to our business."</p>
-                    <div class="flex items-center">
-                        <img src="https://placehold.co/40x40/E5E7EB/1F2937?text=LB" alt="Lenaka Beverages" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h3 class="text-md font-bold text-gray-800">Lenaka Beverages</h3>
-                            <p class="text-sm text-gray-500">@Lenaka Beverages</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-8">
-                <a href="https://www.google.com/search?q=The+City+Consultant&oq=The+City+Consultant&tbs=lrf:!1m4!1u3!2m2!3m1!1e1!2m1!1e3!3sIA!1e2,lf:1,ls:-1,sl:-1,sp:-1,qdr:h,rlt:1,rlt_t:3,rlta:0,rlta_t:1,rlta_a:0,rlta_d:20,rlta_e:2,rlta_v:1,rlta_z:1,rlta_o:1,rlta_l:1" target="_blank" class="bg-[#1E7D34] text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-[#37B44E] transition-all transform hover:scale-105">
-                    Leave a Review on Google
-                </a>
+
+        <section id="industries" class="py-9" style="scroll-margin-top: 20px;">
+            <h2 class="text-3xl font-bold text-[var(--blue-900)] text-center mb-6">Industries We Serve</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="px-5 py-2 bg-white rounded-full border border-gray-200 text-gray-700 font-medium shadow-sm">Retail & Fashion</span>
+                <span class="px-5 py-2 bg-white rounded-full border border-gray-200 text-gray-700 font-medium shadow-sm">Automotive</span>
+                <span class="px-5 py-2 bg-white rounded-full border border-gray-200 text-gray-700 font-medium shadow-sm">Healthcare & Pharma</span>
+                <span class="px-5 py-2 bg-white rounded-full border border-gray-200 text-gray-700 font-medium shadow-sm">Technology</span>
+                <span class="px-5 py-2 bg-white rounded-full border border-gray-200 text-gray-700 font-medium shadow-sm">Industrial Manufacturing</span>
             </div>
         </section>
-        <!-- Contact Section -->
-        <section id="contact" class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-3xl font-bold text-[#1E7D34] mb-4">Get in Touch</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Contact Form -->
-                <div>
-                    <form action="mailto:info@thecc.co.za" method="post" enctype="text/plain" class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-gray-700 font-medium">Your Name</label>
-                            <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+
+        <section id="why" class="py-9 bg-[var(--blue-100)] rounded-3xl p-8 my-8">
+            <h2 class="text-3xl font-bold text-[var(--blue-900)] text-center mb-8">Why Choose Reformation?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                        <i data-lucide="shield-check" class="text-[var(--blue-600)] w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--blue-900)] mb-2">Secure & Reliable</h3>
+                    <p class="text-gray-600">Our vetted drivers and secure network ensure your parcels are safe from pickup to drop-off.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                        <i data-lucide="zap" class="text-[var(--blue-600)] w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--blue-900)] mb-2">Speed Optimized</h3>
+                    <p class="text-gray-600">Smart routing technology to find the fastest path, ensuring on-time delivery every time.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                        <i data-lucide="headphones" class="text-[var(--blue-600)] w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[var(--blue-900)] mb-2">24/7 Support</h3>
+                    <p class="text-gray-600">Real humans ready to help you with tracking, scheduling, and custom solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="py-9" style="scroll-margin-top: 20px;">
+            <h2 class="text-3xl font-bold text-[var(--blue-900)] mb-6">Client Reviews</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-[var(--blue-600)]">
+                    <div class="stars mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Reformation Group has transformed our supply chain. Their same-day delivery option is a game changer for our local customers."</p>
+                    <div class="font-bold text-[var(--blue-900)]">— Sarah Jenkins, Retail Manager</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-[var(--blue-600)]">
+                    <div class="stars mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Reliable, professional, and always on time. The tracking updates give us complete peace of mind."</p>
+                    <div class="font-bold text-[var(--blue-900)]">— Michael D., Logistics Coordinator</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-9 mb-12" style="scroll-margin-top: 20px;">
+            <div class="bg-[var(--blue-900)] rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-4">Ready to ship?</h2>
+                    <p class="text-blue-100 text-lg mb-6">Contact us today to discuss your logistics needs or schedule a pickup immediately.</p>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-[var(--blue-600)]"></i>
+                            <span>+27 11 867 9260</span>
                         </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 font-medium">Your Email</label>
-                            <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-[var(--blue-600)]"></i>
+                            <span>reformationgrp@outlook.com</span>
                         </div>
-                        <div>
-                            <label for="message" class="block text-gray-700 font-medium">Your Message</label>
-                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]"></textarea>
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-[var(--blue-600)]"></i>
+                            <span>12 Logistics Way, Johannesburg, 2000</span>
                         </div>
-                        <button type="submit" class="w-full bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
-                            Send Message
-                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/3 w-full bg-white rounded-2xl p-6 text-gray-800">
+                    <h3 class="font-bold text-xl mb-4 text-[var(--blue-900)]">Send a Message</h3>
+                    <form id="contact-form-general">
+                        <input class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 mb-3" placeholder="Your Name" name="name" required>
+                        <input class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 mb-3" type="email" placeholder="Your Email" name="email" required>
+                        <textarea class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 mb-3" placeholder="Message" name="message" rows="3" required></textarea>
+                        <button type="submit" class="w-full bg-[var(--blue-600)] text-white font-bold py-2 rounded-lg hover:bg-[var(--blue-700)] transition">Send</button>
                     </form>
-                </div>
-                <!-- Contact Info & Map -->
-                <div class="space-y-6">
-                    <div class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
-                        <h3 class="font-semibold text-xl mb-2 text-gray-800">Contact Information</h3>
-                        <!-- The iframe source is already set to the provided address. -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.5768310065256!2d30.9859586!3d-25.4746688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9bb15598910405%3A0xc6c710d0f418d184!2sMbombela%2C%20Nelspruit%2C%201200%2C%20South+Africa!5e0!3m2!1sen!2sus!4v1628174567890!5m2!1sen!2sus" class="w-full h-64 rounded-md shadow-inner" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
                 </div>
             </div>
         </section>
     </main>
-    <!-- Footer -->
-    <footer class="bg-[#1E7D34] text-white text-center p-4">
-        <p class="text-sm mb-2">&copy; 2024 The City Consultant. All Rights Reserved.</p>
-        <div class="flex justify-center space-x-4 mb-2">
-            <a href="https://www.youtube.com/@thecityconsultant" target="_blank" class="text-white hover:text-gray-300 transition-colors">
-                <i class="fab fa-youtube text-2xl"></i>
-            </a>
-            <a href="https://www.instagram.com/thecityconsultant" target="_blank" class="text-white hover:text-gray-300 transition-colors">
-                <i class="fab fa-instagram text-2xl"></i>
-            </a>
-            <a href="https://www.tiktok.com/@thecityconsultant" target="_blank" class="text-white hover:text-gray-300 transition-colors">
-                <i class="fab fa-tiktok text-2xl"></i>
-            </a>
-            <a href="https://www.facebook.com/thecityconsultant" target="_blank" class="text-white hover:text-gray-300 transition-colors">
-                <i class="fab fa-facebook-f text-2xl"></i>
-            </a>
+
+    <footer class="bg-white border-t border-gray-200 pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center gap-2 mb-4 md:mb-0">
+                    <div class="w-8 h-8 rounded-lg bg-[var(--blue-900)] text-white grid place-items-center font-bold">R</div>
+                    <span class="font-bold text-[var(--blue-900)]">Reformation Group</span>
+                </div>
+                <div class="text-sm text-gray-500">
+                    &copy; 2024 Reformation Group. All rights reserved.
+                </div>
+            </div>
         </div>
     </footer>
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/27826905832" class="whatsapp-float fixed bottom-6 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-lg hover:bg-[#128c7e] transition-colors">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    <!-- The Payment Details Modal -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2 id="modal-title" class="text-2xl font-bold text-[#1E7D34] mb-4 text-center"></h2>
-            
-            <p id="modal-note" class="text-sm text-gray-600 text-center mb-6"></p>
 
-            <!-- Thank you message container, hidden by default -->
-            <div id="thankYouMessage" class="hidden text-center">
-                <h3 class="text-2xl font-bold text-[#1E7D34] mb-4">Thank You!</h3>
-                <p class="text-lg text-gray-700">Thank you for building with The City Consultant, Quality is the lap.</p>
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/27118679260" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <!-- SVG for WhatsApp Icon -->
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.658.748 5.138 2.052 7.26L2.668 29.33l6.236-1.34C11.026 29.356 13.444 30 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5c-2.222 0-4.32-.638-6.136-1.74l-.44-.266-3.642.782.788-3.56-.276-.462C5.356 20.358 4.5 18.262 4.5 16c0-6.35 5.15-11.5 11.5-11.5s11.5 5.15 11.5 11.5-5.15 11.5-11.5 11.5zm6.304-8.594c-.346-.174-2.042-1.008-2.358-1.124-.316-.116-.546-.174-.776.174-.23.348-.89 1.124-1.092 1.356-.202.232-.404.26-.75.086-1.796-.898-2.99-1.59-4.192-3.654-.128-.22.366-.456.882-1.486.086-.174.044-.326-.022-.458-.066-.132-.586-1.46-1.066-2.586-.226-.528-.476-.46-.684-.46h-.584c-.202 0-.528.076-.804.38-.276.304-1.052 1.028-1.052 2.508s1.076 2.91 1.226 3.112c.15.202 2.118 3.234 5.13 4.536 2.05 1.028 2.846.824 3.864.726 1.118-.108 2.042-.836 2.33-1.644.288-.808.288-1.5.202-1.644-.086-.144-.316-.23-.662-.404z"/>
+        </svg>
+    </a>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal('success-modal')">&times;</button>
+            <div class="text-[var(--blue-600)] mb-4">
+                <i data-lucide="check-circle" class="w-16 h-16 mx-auto"></i>
             </div>
-            
-            <form id="detailsForm" class="space-y-4">
-                <input type="hidden" id="serviceName" name="item_name">
-                <input type="hidden" id="serviceAmount" name="amount">
-                <input type="hidden" id="serviceId" name="serviceId">
-                <div id="formFieldsContainer" class="space-y-4">
-                    <!-- Dynamic form fields will be added here by JavaScript -->
-                </div>
-                <button type="submit" id="submitButton" class="w-full bg-[#1E7D34] text-white font-bold py-3 px-4 rounded-md hover:bg-[#37B44E] transition-colors">
-                    Proceed to Payment
-                </button>
-            </form>
-            
-            <form id="payfastForm" action="https://www.payfast.co.za/eng/process" method="POST" style="display: none;">
-                <input type="hidden" name="merchant_id" value="20755326">
-                <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
-                <input type="hidden" id="payfastItemName" name="item_name">
-                <input type="hidden" id="payfastAmount" name="amount">
-            </form>
+            <h3 class="modal-title">Check Your Email</h3>
+            <p class="modal-body mb-4">We've opened your default email client. Please attach your parcel picture manually and click send!</p>
+            <button class="bg-[var(--blue-600)] text-white font-semibold py-2 px-6 rounded-full hover:bg-[var(--blue-700)] transition duration-200" onclick="closeModal('success-modal')">Close</button>
         </div>
     </div>
-    
+
     <script>
-        // JavaScript for mobile menu toggle
-        const menuButton = document.getElementById('menu-button');
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
         });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+
+        // Date Picker Min Date (Today)
+        const dateInputs = document.querySelectorAll('input[type="date"]');
+        const today = new Date().toISOString().split('T')[0];
+        dateInputs.forEach(input => {
+            input.min = today;
+        });
+
+        // Helper to format email body
+        function formatEmailBody(formData, title) {
+            let body = `${title}\n--------------------------\n\n`;
+            
+            // Specifically handling the picture note first if it's the pickup form
+            if (title.includes("Pickup")) {
+                 body += ">>> IMPORTANT: Please attach your parcel picture to this email manually here <<<\n\n";
+            }
+
+            for (let [key, value] of formData.entries()) {
+                // Skip the file input in the text body
+                if (key === 'parcelPicture') continue;
+                
+                // Format key for better readability
+                let label = key.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); });
+                body += `${label}: ${value}\n`;
+            }
+            return body;
+        }
+
+        // Handle Pickup Form
+        const pickupForm = document.getElementById('pickup-form');
+        if (pickupForm) {
+            pickupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(pickupForm);
+                const body = formatEmailBody(formData, "New Pickup Request");
+                const subject = encodeURIComponent("New Pickup Request - Reformation Group");
+                const bodyEncoded = encodeURIComponent(body);
+                
+                // Redirect to mailto
+                window.location.href = `mailto:reformationgrp@outlook.com?subject=${subject}&body=${bodyEncoded}`;
+                
+                // Show instruction modal
+                const modal = document.getElementById('success-modal');
+                if(modal) modal.classList.add('visible');
+            });
+        }
+
+        // Handle Quote Form
+        const quoteForm = document.getElementById('quote-form');
+        if (quoteForm) {
+            quoteForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(quoteForm);
+                const body = formatEmailBody(formData, "Quote Request");
+                const subject = encodeURIComponent("Quote Request - Reformation Group");
+                const bodyEncoded = encodeURIComponent(body);
+                
+                window.location.href = `mailto:reformationgrp@outlook.com?subject=${subject}&body=${bodyEncoded}`;
+            });
+        }
         
-        // Hide mobile menu on link click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        // Handle Contact Form (General)
+        const contactForm = document.getElementById('contact-form-general');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(contactForm);
+                const body = formatEmailBody(formData, "General Inquiry");
+                const subject = encodeURIComponent("General Inquiry - Reformation Group");
+                const bodyEncoded = encodeURIComponent(body);
+                
+                window.location.href = `mailto:reformationgrp@outlook.com?subject=${subject}&body=${bodyEncoded}`;
+            });
+        }
+
+        // Modal Functions
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('visible');
+        }
+
+        // Close modal when clicking on overlay
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('visible');
+                }
             });
         });
-        
-        const modal = document.getElementById('paymentModal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalNote = document.getElementById('modal-note');
-        const formFieldsContainer = document.getElementById('formFieldsContainer');
-        const detailsForm = document.getElementById('detailsForm');
-        const payfastForm = document.getElementById('payfastForm');
-        const serviceNameInput = document.getElementById('serviceName');
-        const serviceAmountInput = document.getElementById('serviceAmount');
-        const serviceIdInput = document.getElementById('serviceId');
-        const submitButton = document.getElementById('submitButton');
-        const thankYouMessage = document.getElementById('thankYouMessage');
-        const payfastItemName = document.getElementById('payfastItemName');
-        const payfastAmount = document.getElementById('payfastAmount');
-
-        const provinces = ["Eastern Cape", "Free State", "Gauteng", "KwaZulu-Natal", "Limpopo", "Mpumalanga", "North West", "Northern Cape", "Western Cape"];
-        
-        // Function to open the modal
-        function openModal(serviceTitle, servicePrice, serviceId) {
-            modalTitle.textContent = serviceTitle;
-            modalNote.textContent = '';
-            thankYouMessage.classList.add('hidden');
-            detailsForm.style.display = 'block';
-            submitButton.style.display = 'block';
-            
-            serviceNameInput.value = serviceTitle;
-            serviceAmountInput.value = servicePrice;
-            serviceIdInput.value = serviceId;
-            payfastItemName.value = serviceTitle;
-            payfastAmount.value = servicePrice;
-            
-            formFieldsContainer.innerHTML = '';
-            
-            if (serviceId === 'entryLevel' || serviceId === 'basic') {
-                modalNote.textContent = 'Please fill out the form below to provide the necessary details for your company registration. Note: After you submit this form, an email draft will be created for you. Please attach your ID copy and proof of residence to the email before sending.';
-                formFieldsContainer.innerHTML += `
-                    <div>
-                        <label for="p-name-1" class="block text-gray-700 font-medium">Proposed Company Name 1 (Priority)</label>
-                        <input type="text" id="p-name-1" name="proposed_name_1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="p-name-2" class="block text-gray-700 font-medium">Proposed Company Name 2</label>
-                        <input type="text" id="p-name-2" name="proposed_name_2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                    </div>
-                    <div>
-                        <label for="p-name-3" class="block text-gray-700 font-medium">Proposed Company Name 3</label>
-                        <input type="text" id="p-name-3" name="proposed_name_3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                    </div>
-                    <div>
-                        <label for="primary-email" class="block text-gray-700 font-medium">Primary Email</label>
-                        <input type="email" id="primary-email" name="primary_email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="primary-number" class="block text-gray-700 font-medium">Primary Number</label>
-                        <input type="tel" id="primary-number" name="primary_number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="director-count" class="block text-gray-700 font-medium">Number of Directors (1-5)</label>
-                        <input type="number" id="director-count" name="director_count" min="1" max="5" value="1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <p class="text-gray-700 font-medium">Physical Address</p>
-                        <input type="text" name="unit_no" placeholder="Unit/Street No" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                        <input type="text" name="suburb" placeholder="Suburb" class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                        <input type="text" name="town" placeholder="Town/City" class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                        <select name="province" class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                            <option value="">Select Province</option>
-                            ${provinces.map(p => `<option value="${p}">${p}</option>`).join('')}
-                        </select>
-                        <input type="text" name="postal_code" placeholder="Postal Code" class="mt-2 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="message" class="block text-gray-700 font-medium">Message (optional)</label>
-                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]"></textarea>
-                    </div>
-                `;
-            } else if (serviceId === 'beneficialOwnership') {
-                modalNote.textContent = 'Please provide the following details for your beneficial ownership filing.';
-                formFieldsContainer.innerHTML += `
-                    <div>
-                        <label for="company-reg-number" class="block text-gray-700 font-medium">Company Registration Number</label>
-                        <input type="text" id="company-reg-number" name="company_reg_number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="company-reg-name" class="block text-gray-700 font-medium">Company Registered Name</label>
-                        <input type="text" id="company-reg-name" name="company_reg_name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="contact-email" class="block text-gray-700 font-medium">Your Email</label>
-                        <input type="email" id="contact-email" name="contact_email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="contact-number" class="block text-gray-700 font-medium">Contact Number</label>
-                        <input type="tel" id="contact-number" name="contact_number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <p class="text-gray-700 font-medium">Director Details</p>
-                        <small class="text-gray-500">Enter each director's share percentage (out of 100)</small>
-                    </div>
-                    <div>
-                        <label for="num-directors" class="block text-gray-700 font-medium">Number of Directors (1-5)</label>
-                        <input type="number" id="num-directors" name="num_directors" min="1" max="5" value="1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required onchange="generateDirectorFields()">
-                    </div>
-                    <div id="director-fields-container" class="space-y-4 mt-2"></div>
-                     <div>
-                        <label for="message" class="block text-gray-700 font-medium">Message (optional)</label>
-                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]"></textarea>
-                    </div>
-                `;
-                 generateDirectorFields();
-            } else if (serviceId === 'taxClearance') {
-                modalNote.textContent = 'Please provide the following details for your tax clearance certificate. Make sure the email address provided matches the one registered with SARS and that you have access to it, or else the tax pin will be sent to the registered SARS email.';
-                formFieldsContainer.innerHTML += `
-                    <div>
-                        <label for="tax-contact-email" class="block text-gray-700 font-medium">Your Email</label>
-                        <input type="email" id="tax-contact-email" name="tax_contact_email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                     <div>
-                        <label for="tax-contact-number" class="block text-gray-700 font-medium">Cellphone Number</label>
-                        <input type="tel" id="tax-contact-number" name="tax_contact_number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="tax-company-reg-number" class="block text-gray-700 font-medium">Company Registration Number</label>
-                        <input type="text" id="tax-company-reg-number" name="tax_company_reg_number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="tax-company-name" class="block text-gray-700 font-medium">Company Registered Name</label>
-                        <input type="text" id="tax-company-name" name="tax_company_name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                    <div>
-                        <label for="tax-number-optional" class="block text-gray-700 font-medium">Tax Number (Optional)</label>
-                        <input type="text" id="tax-number-optional" name="tax_number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]">
-                    </div>
-                `;
-            } else if (serviceId === 'nhbrcDoc') {
-                modalNote.textContent = 'Please provide your email address. After a successful payment, the document will be emailed to you.';
-                formFieldsContainer.innerHTML += `
-                    <div>
-                        <label for="nhbrc-email" class="block text-gray-700 font-medium">Your Email</label>
-                        <input type="email" id="nhbrc-email" name="email_address" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-[#37B44E] focus:border-[#37B44E]" required>
-                    </div>
-                `;
-            }
-            modal.style.display = 'flex';
-        }
-        
-        function generateDirectorFields() {
-            const directorCount = document.getElementById('num-directors').value;
-            const container = document.getElementById('director-fields-container');
-            container.innerHTML = '';
-            for (let i = 1; i <= directorCount; i++) {
-                container.innerHTML += `
-                    <div class="space-y-2 border-t border-gray-200 pt-4">
-                        <h5 class="font-bold">Director ${i}</h5>
-                        <div>
-                            <label for="director-name-${i}" class="block text-gray-700 font-medium">Full Name</label>
-                            <input type="text" id="director-name-${i}" name="director_name_${i}" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                        </div>
-                        <div>
-                            <label for="director-share-${i}" class="block text-gray-700 font-medium">Share Percentage (%)</label>
-                            <input type="number" id="director-share-${i}" name="director_share_${i}" min="0" max="100" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        // Function to close the modal
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-        
-        detailsForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const serviceId = serviceIdInput.value;
-            const formData = new FormData(detailsForm);
-            
-            if (serviceId === 'nhbrcDoc' || serviceId === 'taxClearance') {
-                payfastForm.submit();
-                setTimeout(() => {
-                    detailsForm.style.display = 'none';
-                    thankYouMessage.classList.remove('hidden');
-                }, 3000);
-            } else {
-                let emailBody = `Service: ${serviceNameInput.value}\n\n`;
-                for (const [key, value] of formData.entries()) {
-                    emailBody += `${key.replace(/_/g, ' ')}: ${value}\n`;
-                }
-
-                // Construct the mailto link with pre-filled subject and body
-                const mailtoLink = `mailto:info@thecc.co.za?subject=${encodeURIComponent('Service Enquiry: ' + serviceNameInput.value)}&body=${encodeURIComponent(emailBody)}`;
-                window.location.href = mailtoLink;
-
-                // After sending the email, show the payment form
-                setTimeout(() => {
-                    detailsForm.style.display = 'none';
-                    thankYouMessage.classList.remove('hidden');
-                    payfastForm.submit();
-                }, 1000);
-            }
-        });
-        
-        // Close modal if user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
     </script>
 </body>
 </html>
