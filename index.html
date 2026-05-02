@@ -1,1352 +1,929 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The City Consultant</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The City Consultant | Business Registration & Compliance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ── TOKENS ── */
     :root {
-      --ink:       #0C1A0F;
-      --ink-mid:   #2C4030;
-      --ink-soft:  #5A7060;
-      --green:     #1E7D34;
-      --green-2:   #37B44E;
-      --green-3:   #5DD970;
-      --sage:      #E6F0E8;
-      --paper:     #F7FAF7;
-      --white:     #FDFEFE;
-      --line:      rgba(30,125,52,.12);
+      --bg:        #0C1A10;
+      --bg2:       #111F14;
+      --bg3:       #162219;
+      --surface:   #1C2E20;
+      --border:    #2A3F2E;
+      --green-d:   #1E7D34;
+      --green-m:   #2A9E45;
+      --green-l:   #37B44E;
+      --gold:      #C9A84C;
+      --gold-l:    #E2C16A;
+      --cream:     #F0EBE0;
+      --muted:     #8BA590;
+      --text:      #EBF0E8;
     }
- 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
- 
+
     body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--white);
-      color: var(--ink);
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.65;
       overflow-x: hidden;
     }
- 
-    /* ── NOISE ── */
-    body::after {
-      content:'';
-      position:fixed; inset:0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-    }
- 
-    /* ── HEADER ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 500;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 60px;
-      height: 68px;
-      transition: background .4s, border-color .4s, box-shadow .4s;
-    }
-    nav.stuck {
-      background: rgba(253,254,254,.94);
+
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+    /* ─── SCROLLBAR ─────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--green-d); border-radius: 3px; }
+
+    /* ─── NAV ────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(12,26,16,0.92);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--line);
-      box-shadow: 0 2px 32px rgba(30,125,52,.06);
+      border-bottom: 1px solid var(--border);
     }
- 
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 68px;
+    }
     .nav-logo {
-      display: flex;
-      flex-direction: column;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--cream);
+      display: flex; align-items: center; gap: .6rem;
       text-decoration: none;
     }
-    .nav-logo-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: .02em;
-      transition: color .4s;
-      line-height: 1;
-    }
-    nav.stuck .nav-logo-name { color: var(--green); }
-    .nav-logo-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: .55rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.5);
-      margin-top: 3px;
-      transition: color .4s;
-    }
-    nav.stuck .nav-logo-sub { color: var(--ink-soft); }
- 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      list-style: none;
-    }
+    .nav-logo span { color: var(--green-l); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      font-size: .78rem;
-      font-weight: 500;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.7);
-      text-decoration: none;
-      position: relative;
-      transition: color .3s;
-    }
-    nav.stuck .nav-links a { color: var(--ink-soft); }
-    .nav-links a::after {
-      content:'';
-      position:absolute; bottom:-3px; left:0;
-      width:0; height:1px;
-      background: var(--green-2);
-      transition: width .3s;
-    }
-    .nav-links a:hover::after { width:100%; }
-    .nav-links a:hover { color: var(--green); }
-    nav.stuck .nav-links a:hover { color: var(--green); }
- 
-    .nav-contact {
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .06em;
-      color: var(--white) !important;
-      background: var(--green);
-      border: none;
-      padding: 9px 22px;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background .3s !important;
-    }
-    .nav-contact:hover { background: var(--green-2) !important; }
-    .nav-contact::after { display:none !important; }
- 
-    /* hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      border: none;
-      background: none;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px; height: 1.5px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: all .3s;
-    }
-    nav.stuck .hamburger span { background: var(--ink); }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px,4.5px); }
-    .hamburger.open span:nth-child(2) { opacity:0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px,-4.5px); }
- 
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 68px; left:0; right:0;
-      background: rgba(253,254,254,.97);
-      backdrop-filter: blur(16px);
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--line);
-      z-index: 499;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a {
-      text-decoration: none;
-      font-size: .95rem;
-      font-weight: 400;
-      color: var(--ink-mid);
-      padding: 12px 14px;
-      border-radius: 6px;
-      transition: background .2s;
-    }
-    .mobile-nav a:hover { background: var(--sage); }
- 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      background: var(--ink);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
- 
-    /* large decorative letter */
-    .hero-deco {
-      position: absolute;
-      top: -4%;
-      right: -3%;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(280px, 36vw, 520px);
-      font-weight: 700;
-      font-style: italic;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(55,180,78,.12);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
- 
-    /* vertical green line accent */
-    .hero-line {
-      position: absolute;
-      left: 60px;
-      top: 18%;
-      width: 1px;
-      height: 0;
-      background: linear-gradient(to bottom, transparent, var(--green-2), transparent);
-      animation: growLine 1.4s ease .6s forwards;
-    }
-    @keyframes growLine {
-      to { height: 45%; }
-    }
- 
-    .hero-body {
-      position: relative;
-      z-index: 2;
-      padding: 0 60px 90px 100px;
-      max-width: 1300px;
-    }
- 
-    .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: .62rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--green-3);
-      margin-bottom: 28px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      opacity: 0;
-      animation: riseIn .8s ease .3s forwards;
-    }
-    .hero-eyebrow::before {
-      content:'';
-      display:block;
-      width: 28px; height: 1px;
-      background: var(--green-3);
-    }
- 
-    .hero-h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.6rem, 7.5vw, 7.2rem);
-      font-weight: 300;
-      color: var(--white);
-      line-height: .96;
-      letter-spacing: -.025em;
-      margin-bottom: 36px;
-      opacity: 0;
-      animation: riseIn .9s ease .5s forwards;
-    }
-    .hero-h1 strong {
-      font-weight: 700;
-      font-style: italic;
-      color: var(--green-3);
-    }
- 
-    .hero-desc {
-      font-size: 1rem;
-      color: rgba(255,255,255,.48);
-      line-height: 1.8;
-      max-width: 460px;
-      font-weight: 300;
-      margin-bottom: 52px;
-      opacity: 0;
-      animation: riseIn .9s ease .7s forwards;
-    }
- 
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      gap: 48px;
-      opacity: 0;
-      animation: riseIn .9s ease .9s forwards;
-      flex-wrap: wrap;
-    }
-    .hero-meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .hero-meta-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1;
-    }
-    .hero-meta-label {
-      font-size: .68rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.35);
-      font-family: 'DM Mono', monospace;
-    }
-    .hero-meta-sep {
-      width: 1px; height: 48px;
-      background: rgba(255,255,255,.1);
-    }
- 
-    .hero-scroll {
-      position: absolute;
-      bottom: 40px; right: 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      color: rgba(255,255,255,.25);
-      font-family: 'DM Mono', monospace;
-      font-size: .58rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      opacity: 0;
-      animation: fadeIn 1s ease 1.2s forwards;
-    }
-    .hero-scroll-line {
-      width: 1px; height: 52px;
-      background: linear-gradient(to bottom, rgba(255,255,255,.25), transparent);
-      animation: pulse 2.4s ease infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:.25} 50%{opacity:.7} }
- 
-    @keyframes riseIn {
-      from { opacity:0; transform: translateY(24px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity:0; } to { opacity:1; }
-    }
- 
-    /* ── SHARED ── */
-    .wrap {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 60px;
-    }
-    .sec { padding: 108px 0; }
-    .sec-sm { padding: 72px 0; }
- 
-    .tag {
-      font-family: 'DM Mono', monospace;
-      font-size: .6rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--green);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .tag::before {
-      content:'';
-      display:block;
-      width:20px; height:1px;
-      background: var(--green);
-    }
- 
-    .h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.05;
-      letter-spacing: -.02em;
-    }
-    .h2 em { font-style: italic; color: var(--green); }
- 
-    .h2-light {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.05;
-      letter-spacing: -.02em;
-    }
-    .h2-light em { font-style: italic; color: var(--green-3); font-weight: 600; }
- 
-    .body-text {
-      font-size: .95rem;
-      line-height: 1.85;
-      color: var(--ink-soft);
-      font-weight: 300;
-    }
- 
-    /* reveal */
-    .r {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .r.in { opacity:1; transform:translateY(0); }
-    .r1 { transition-delay: .08s; }
-    .r2 { transition-delay: .16s; }
-    .r3 { transition-delay: .24s; }
-    .r4 { transition-delay: .32s; }
-    .r5 { transition-delay: .40s; }
-    .r6 { transition-delay: .48s; }
- 
-    /* ── INTRO STRIP ── */
-    .intro { background: var(--paper); border-bottom: 1px solid var(--line); }
-    .intro-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .intro-left {}
-    .intro-right .body-text { max-width: 540px; }
-    .intro-right .body-text + .body-text { margin-top: 18px; }
- 
-    .intro-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 32px;
-    }
-    .chip {
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .04em;
-      color: var(--green);
-      border: 1px solid rgba(30,125,52,.25);
-      background: rgba(30,125,52,.04);
-      padding: 6px 16px;
-      border-radius: 2px;
-    }
- 
-    /* ── SERVICES ── */
-    .services-bg { background: var(--white); border-top: 1px solid var(--line); }
- 
-    .services-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: end;
-      margin-bottom: 72px;
-    }
-    .services-header .body-text { max-width: 420px; margin-top: 20px; }
- 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--line);
-    }
-    .svc-cell {
-      padding: 44px 36px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      position: relative;
-      overflow: hidden;
-      transition: background .3s;
-    }
-    .svc-cell:nth-child(3n) { border-right: none; }
-    .svc-cell:nth-last-child(-n+3) { border-bottom: none; }
-    .svc-cell:hover { background: var(--sage); }
- 
-    .svc-num {
-      font-family: 'DM Mono', monospace;
-      font-size: .6rem;
-      color: var(--green);
-      letter-spacing: .15em;
-      margin-bottom: 28px;
-      display: block;
-    }
-    .svc-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      background: rgba(30,125,52,.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--green);
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      transition: all .3s;
-    }
-    .svc-cell:hover .svc-icon {
-      background: var(--green);
-      color: var(--white);
-      transform: rotate(-4deg) scale(1.05);
-    }
-    .svc-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-    .svc-desc {
-      font-size: .82rem;
-      line-height: 1.75;
-      color: var(--ink-soft);
-      font-weight: 300;
-    }
- 
-    /* ── PILLARS ── */
-    .pillars-bg {
-      background: var(--ink);
-      position: relative;
-      overflow: hidden;
-    }
-    .pillars-bg::before {
-      content: 'CC';
-      position: absolute;
-      bottom: -8%;
-      left: -3%;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(200px, 28vw, 400px);
-      font-weight: 700;
-      font-style: italic;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(55,180,78,.08);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
- 
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: rgba(255,255,255,.06);
-      margin-top: 64px;
-    }
-    .pillar {
-      background: #111D14;
-      padding: 44px 32px;
-      transition: background .3s;
-    }
-    .pillar:hover { background: #172B1C; }
-    .pillar-icon {
-      font-size: 1.4rem;
-      color: var(--green-3);
-      margin-bottom: 24px;
-      display: block;
-    }
-    .pillar-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-    .pillar-desc {
-      font-size: .82rem;
-      line-height: 1.75;
-      color: rgba(255,255,255,.42);
-      font-weight: 300;
-    }
- 
-    /* ── NHBRC STRIP ── */
-    .nhbrc-bg { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .nhbrc-inner {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 100px;
-      align-items: center;
-    }
-    .nhbrc-left {}
-    .nhbrc-left .body-text { margin-top: 24px; max-width: 480px; }
-    .nhbrc-points {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 36px;
-    }
-    .nhbrc-points li {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      font-size: .88rem;
-      color: var(--ink-mid);
-      font-weight: 400;
-    }
-    .nhbrc-points li::before {
-      content: '';
-      display: block;
-      width: 6px; height: 6px;
-      min-width: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      margin-top: 7px;
-    }
-    .nhbrc-right {}
-    .nhbrc-card {
-      background: var(--green);
-      border-radius: 4px;
-      padding: 52px 44px;
-      color: var(--white);
-    }
-    .nhbrc-card-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: .58rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.55);
-      margin-bottom: 16px;
-      display: block;
-    }
-    .nhbrc-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    .nhbrc-card-body {
-      font-size: .85rem;
-      line-height: 1.8;
-      color: rgba(255,255,255,.65);
-      font-weight: 300;
-      margin-bottom: 32px;
-    }
-    .nhbrc-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: .78rem;
-      font-weight: 600;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--white);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,.35);
-      padding-bottom: 3px;
-      transition: border-color .3s, gap .3s;
-    }
-    .nhbrc-card-link:hover { border-color: var(--white); gap: 14px; }
- 
-    /* ── TESTIMONIALS ── */
-    .testi-bg { background: var(--white); border-top: 1px solid var(--line); }
-    .testi-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 64px;
-    }
-    .testi-card {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 36px;
-      display: flex;
-      flex-direction: column;
-      transition: border-color .3s, transform .3s;
-    }
-    .testi-card:hover {
-      border-color: rgba(30,125,52,.3);
-      transform: translateY(-3px);
-    }
-    .testi-stars {
-      display: flex; gap: 4px; margin-bottom: 22px;
-    }
-    .testi-stars i { color: var(--green-2); font-size: .8rem; }
-    .testi-quote {
-      font-size: .88rem;
-      line-height: 1.85;
-      color: var(--ink-soft);
-      flex: 1;
-      margin-bottom: 28px;
-      font-weight: 300;
-      font-style: italic;
-    }
-    .testi-author { display: flex; align-items: center; gap: 14px; }
-    .testi-avatar {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: var(--green);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: .9rem;
-      font-weight: 700;
-      color: var(--white);
-      flex-shrink: 0;
-    }
-    .testi-name { font-size: .85rem; font-weight: 600; color: var(--ink); }
-    .testi-role { font-size: .72rem; color: var(--ink-soft); margin-top: 2px; }
- 
-    /* ── CONTACT ── */
-    .contact-bg {
-      background: var(--ink);
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: start;
-    }
-    .contact-left {}
-    .contact-left .body-text { color: rgba(255,255,255,.42); margin-top: 24px; max-width: 400px; }
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      margin-top: 52px;
-    }
-    .contact-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-    }
-    .contact-row-icon {
-      width: 42px; height: 42px;
-      border-radius: 8px;
-      background: rgba(255,255,255,.05);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--green-3);
-      font-size: .9rem;
-      flex-shrink: 0;
-    }
-    .contact-row-label {
-      font-family: 'DM Mono', monospace;
-      font-size: .58rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.3);
-      margin-bottom: 5px;
-    }
-    .contact-row-val {
-      font-size: .9rem;
-      color: rgba(255,255,255,.7);
-      font-weight: 400;
-    }
- 
-    /* form */
-    .contact-form { display: flex; flex-direction: column; gap: 20px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .field {}
-    .field label {
-      display: block;
-      font-size: .65rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.35);
-      font-family: 'DM Mono', monospace;
-      margin-bottom: 8px;
-    }
-    .field input, .field textarea, .field select {
-      width: 100%;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 4px;
-      padding: 13px 16px;
-      font-size: .88rem;
-      color: var(--white);
-      font-family: 'Outfit', sans-serif;
-      outline: none;
-      transition: border-color .3s, background .3s;
-    }
-    .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.22); }
-    .field input:focus, .field textarea:focus, .field select:focus {
-      border-color: var(--green-2);
-      background: rgba(55,180,78,.06);
-    }
-    .field textarea { resize: vertical; min-height: 120px; }
-    .field select option { background: #1A2B1E; color: var(--white); }
- 
-    .btn-send {
-      align-self: flex-start;
-      background: var(--green);
-      color: var(--white);
-      border: none;
-      padding: 14px 36px;
-      border-radius: 4px;
-      font-size: .85rem;
-      font-weight: 600;
-      letter-spacing: .05em;
-      cursor: pointer;
-      font-family: 'Outfit', sans-serif;
-      transition: background .3s, transform .2s;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .btn-send:hover { background: var(--green-2); transform: translateY(-1px); }
- 
-    /* map */
-    .map-frame {
-      margin-top: 28px;
-      border-radius: 4px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.08);
-      height: 180px;
-    }
-    .map-frame iframe { width:100%; height:100%; border:0; display:block; filter: grayscale(1) invert(1) brightness(.7); }
- 
-    /* ── FOOTER ── */
-    footer {
-      background: #070D09;
-      padding: 48px 60px 32px;
-    }
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 32px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .footer-brand-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: rgba(255,255,255,.8);
-    }
-    .footer-brand-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: .55rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--green-2);
-      display: block;
-      margin-top: 4px;
-    }
-    .footer-nav { display: flex; gap: 32px; flex-wrap: wrap; }
-    .footer-nav a {
-      font-size: .78rem;
-      font-weight: 400;
-      color: rgba(255,255,255,.35);
-      text-decoration: none;
+      color: var(--muted); font-size: .875rem; font-weight: 500;
+      text-decoration: none; letter-spacing: .03em;
       transition: color .2s;
     }
-    .footer-nav a:hover { color: var(--green-3); }
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 24px;
-      flex-wrap: wrap;
-      gap: 12px;
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cta {
+      background: var(--green-d); color: #fff;
+      padding: .5rem 1.25rem; border-radius: 6px;
+      font-size: .85rem; font-weight: 600;
+      text-decoration: none; transition: background .2s;
     }
-    .footer-copy {
-      font-size: .72rem;
-      color: rgba(255,255,255,.2);
-      font-family: 'DM Mono', monospace;
+    .nav-cta:hover { background: var(--green-m); }
+    .hamburger {
+      display: none; background: none; border: none;
+      color: var(--cream); font-size: 1.4rem; cursor: pointer;
     }
-    .footer-icons { display: flex; gap: 12px; }
-    .footer-icon-btn {
-      width: 32px; height: 32px;
-      border-radius: 4px;
-      background: rgba(255,255,255,.05);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.35);
-      font-size: .8rem;
+    .mobile-nav {
+      display: none;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 1rem 2rem 1.5rem;
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a {
+      display: block; padding: .6rem 0;
+      color: var(--muted); text-decoration: none;
+      font-weight: 500; border-bottom: 1px solid var(--border);
+      transition: color .2s;
+    }
+    .mobile-nav a:hover { color: var(--cream); }
+
+    /* ─── HERO ───────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 88vh;
+      display: flex; align-items: center;
+      padding: 5rem 2rem;
+      background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(30,125,52,.28) 0%, transparent 70%),
+                  var(--bg);
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2337B44E' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 1;
+    }
+    .hero-content {
+      position: relative; max-width: 1200px; margin: 0 auto; width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(55,180,78,.12); border: 1px solid rgba(55,180,78,.3);
+      color: var(--green-l); font-size: .8rem; font-weight: 600;
+      padding: .35rem .9rem; border-radius: 50px;
+      letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .6s ease both;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      color: var(--cream);
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .6s .1s ease both;
+    }
+    .hero h1 em { font-style: normal; color: var(--green-l); }
+    .hero p {
+      font-size: 1.15rem; color: var(--muted);
+      max-width: 520px; margin-bottom: 2.5rem;
+      animation: fadeUp .6s .2s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp .6s .3s ease both;
+    }
+    .btn-primary {
+      background: var(--green-d); color: #fff;
+      padding: .85rem 2rem; border-radius: 8px;
+      font-weight: 600; font-size: .95rem;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background .2s, transform .2s;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-primary:hover { background: var(--green-m); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--cream);
+      padding: .85rem 2rem; border-radius: 8px;
+      font-weight: 600; font-size: .95rem;
       text-decoration: none;
-      transition: all .2s;
+      border: 1px solid var(--border);
+      transition: border-color .2s, color .2s, transform .2s;
+      display: inline-flex; align-items: center; gap: .5rem;
     }
-    .footer-icon-btn:hover { background: var(--green); color: var(--white); }
- 
-    /* ── WHATSAPP ── */
-    .wa {
-      position: fixed;
-      bottom: 28px; right: 28px;
-      z-index: 400;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
+    .btn-outline:hover { border-color: var(--green-l); color: var(--green-l); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 3rem; flex-wrap: wrap;
+      margin-top: 4rem; padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp .6s .4s ease both;
     }
-    .wa-tip {
-      background: var(--white);
-      color: var(--ink);
-      font-size: .76rem;
-      font-weight: 500;
-      padding: 7px 14px;
-      border-radius: 3px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.1);
-      opacity: 0;
-      transform: translateX(8px);
-      transition: all .3s;
-      white-space: nowrap;
-      pointer-events: none;
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--cream);
     }
-    .wa:hover .wa-tip { opacity: 1; transform: translateX(0); }
-    .wa-circle {
-      width: 52px; height: 52px;
+    .hero-stat-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION WRAPPER ─────────────── */
+    .section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: .75rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--green-l);
+      margin-bottom: .75rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--cream); margin-bottom: .75rem;
+    }
+    .section-sub {
+      color: var(--muted); font-size: 1.05rem;
+      max-width: 560px;
+    }
+    .section-header { margin-bottom: 3rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: 0 auto; }
+
+    /* ─── DIVIDER ─────────────────────── */
+    .divider {
+      height: 1px; background: var(--border);
+      max-width: 1200px; margin: 0 auto;
+    }
+
+    /* ─── PACKAGES ────────────────────── */
+    .packages-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .pkg-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      display: flex; flex-direction: column;
+      transition: border-color .2s, transform .2s;
+    }
+    .pkg-card:hover { border-color: var(--green-d); transform: translateY(-4px); }
+    .pkg-card.featured {
+      border-color: var(--green-m);
+      background: linear-gradient(135deg, #1a2e1e 0%, #1c3220 100%);
+      position: relative; overflow: hidden;
+    }
+    .pkg-card.featured::before {
+      content: 'Most Popular';
+      position: absolute; top: 1.2rem; right: -1.5rem;
+      background: var(--green-d); color: #fff;
+      font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .3rem 2.5rem;
+      transform: rotate(35deg);
+    }
+    .pkg-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; color: var(--cream); margin-bottom: .4rem;
+    }
+    .pkg-desc { font-size: .875rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .pkg-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700; color: var(--green-l);
+      margin-bottom: 1.5rem;
+    }
+    .pkg-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+    .pkg-features { list-style: none; flex: 1; margin-bottom: 2rem; }
+    .pkg-features li {
+      display: flex; align-items: flex-start; gap: .6rem;
+      padding: .5rem 0; border-bottom: 1px solid var(--border);
+      font-size: .9rem; color: var(--muted);
+    }
+    .pkg-features li:last-child { border-bottom: none; }
+    .pkg-features li i { color: var(--green-l); margin-top: .2rem; font-size: .8rem; flex-shrink: 0; }
+    .pkg-btn {
+      width: 100%; padding: .85rem;
+      background: var(--green-d); color: #fff;
+      border: none; border-radius: 8px;
+      font-weight: 600; font-size: .95rem; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .2s;
+    }
+    .pkg-btn:hover { background: var(--green-m); }
+
+    /* ─── SERVICE MARQUEE ─────────────── */
+    .marquee-section {
+      padding: 3rem 0; background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .marquee-label {
+      text-align: center;
+      font-size: .75rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .marquee-track {
+      display: flex; width: max-content;
+      animation: marquee 35s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: .75rem;
+      flex-shrink: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      padding: .85rem 1.6rem; border-radius: 50px;
+      margin-right: 1rem; white-space: nowrap;
+      color: var(--text); font-size: .9rem; font-weight: 500;
+    }
+    .marquee-item i { color: var(--green-l); }
+
+    /* ─── CIPC CARD ───────────────────── */
+    .cipc-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2.5rem;
+      max-width: 680px; margin: 0 auto;
+    }
+    .cipc-card h3 {
+      font-size: 1.6rem; color: var(--cream); margin-bottom: .5rem;
+    }
+    .cipc-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; color: var(--green-l);
+      margin: 1rem 0;
+    }
+    .requirements-list { list-style: none; margin: 1.25rem 0; }
+    .requirements-list li {
+      display: flex; align-items: center; gap: .7rem;
+      padding: .5rem 0; border-bottom: 1px solid var(--border);
+      font-size: .9rem; color: var(--muted);
+    }
+    .requirements-list li:last-child { border-bottom: none; }
+    .requirements-list li i { color: var(--gold); font-size: .8rem; }
+
+    /* ─── FORM ────────────────────────── */
+    .form-field { margin-bottom: 1.25rem; }
+    .form-field label {
+      display: block; font-size: .85rem; font-weight: 500;
+      color: var(--muted); margin-bottom: .4rem;
+    }
+    .form-field input,
+    .form-field textarea {
+      width: 100%; background: var(--bg3);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: .75rem 1rem; color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-size: .95rem;
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus { border-color: var(--green-m); }
+    .form-field textarea { resize: vertical; min-height: 120px; }
+    .form-field input[type="file"] {
+      padding: .6rem; cursor: pointer;
+    }
+    .form-field .hint {
+      font-size: .78rem; color: var(--muted); margin-top: .35rem;
+    }
+
+    /* ─── NHBRC ────────────────────────── */
+    .nhbrc-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin: 2rem 0;
+    }
+    .nhbrc-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.75rem;
+    }
+    .nhbrc-card h4 { font-size: 1.1rem; color: var(--cream); margin-bottom: 1rem; }
+    .nhbrc-card ul { list-style: none; }
+    .nhbrc-card ul li {
+      display: flex; gap: .6rem;
+      font-size: .9rem; color: var(--muted);
+      padding: .4rem 0; border-bottom: 1px solid var(--border);
+    }
+    .nhbrc-card ul li:last-child { border-bottom: none; }
+    .nhbrc-card ul li i { color: var(--green-l); margin-top: .25rem; font-size: .8rem; flex-shrink: 0; }
+
+    /* ─── ABOUT ───────────────────────── */
+    .about-section { background: var(--bg2); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg3) 100%);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 3rem; position: relative; overflow: hidden;
+    }
+    .about-visual::before {
+      content: '';
+      position: absolute; bottom: -40px; right: -40px;
+      width: 200px; height: 200px;
       border-radius: 50%;
-      background: #25D366;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--white);
-      font-size: 1.4rem;
-      box-shadow: 0 6px 24px rgba(37,211,102,.35);
-      transition: transform .3s;
+      background: radial-gradient(circle, rgba(55,180,78,.15) 0%, transparent 70%);
     }
-    .wa:hover .wa-circle { transform: scale(1.08) rotate(-6deg); }
- 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      nav, footer { padding-left: 32px; padding-right: 32px; }
-      .wrap { padding: 0 32px; }
-      .hero-body { padding: 0 32px 80px 60px; }
-      .intro-inner, .nhbrc-inner, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-      .services-header { grid-template-columns: 1fr; gap: 20px; }
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .svc-cell:nth-child(3n) { border-right: 1px solid var(--line); }
-      .svc-cell:nth-child(2n) { border-right: none; }
-      .svc-cell:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); }
-      .svc-cell:nth-last-child(-n+2) { border-bottom: none; }
-      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
-      .testi-grid { grid-template-columns: 1fr; }
+    .about-icon-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .about-icon-item {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem;
+      text-align: center;
+    }
+    .about-icon-item i { font-size: 1.8rem; color: var(--green-l); margin-bottom: .5rem; }
+    .about-icon-item p { font-size: .8rem; color: var(--muted); }
+    .about-text h2 { margin-bottom: 1.25rem; }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+
+    /* ─── REVIEWS ─────────────────────── */
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.75rem;
+      display: flex; flex-direction: column;
+      transition: border-color .2s;
+    }
+    .review-card:hover { border-color: var(--green-d); }
+    .review-stars { display: flex; gap: .2rem; margin-bottom: 1rem; }
+    .review-stars i { color: var(--gold); font-size: .85rem; }
+    .review-stars i.empty { color: var(--border); }
+    .review-text {
+      color: var(--muted); font-size: .9rem; line-height: 1.7;
+      flex: 1; margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .review-author { display: flex; align-items: center; gap: .75rem; }
+    .review-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--green-d);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: .9rem;
+      color: #fff; font-weight: 700; flex-shrink: 0;
+    }
+    .review-name { font-size: .9rem; font-weight: 600; color: var(--cream); }
+    .review-handle { font-size: .78rem; color: var(--muted); }
+
+    /* ─── CONTACT ─────────────────────── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .contact-info-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .contact-info-card h4 { font-size: 1rem; color: var(--cream); margin-bottom: 1rem; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: .75rem;
+    }
+    .contact-item:last-child { margin-bottom: 0; }
+    .contact-item i { color: var(--green-l); margin-top: .2rem; }
+    .contact-item span { font-size: .9rem; color: var(--muted); }
+    .map-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+    .map-wrap iframe { display: block; width: 100%; height: 240px; }
+
+    /* ─── FOOTER ──────────────────────── */
+    .footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--cream);
+      margin-bottom: .5rem;
+    }
+    .footer-logo span { color: var(--green-l); }
+    .footer p { font-size: .83rem; color: var(--muted); }
+
+    /* ─── WHATSAPP FLOAT ──────────────── */
+    .wa-float {
+      position: fixed; bottom: 1.75rem; right: 1.75rem;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25d366;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; color: #fff;
+      box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      transition: transform .2s, background .2s;
+      z-index: 999; text-decoration: none;
+    }
+    .wa-float:hover { background: #128c7e; transform: scale(1.1); }
+
+    /* ─── RESPONSIVE ──────────────────── */
+    @media (max-width: 900px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .nhbrc-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      footer { padding: 40px 20px 24px; }
-      .wrap { padding: 0 20px; }
-      .sec { padding: 72px 0; }
-      .hero-body { padding: 0 20px 72px 40px; }
-      .hero-line { left: 20px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .svc-cell { border-right: none !important; }
-      .svc-cell:last-child { border-bottom: none; }
-      .pillars-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .footer-top { flex-direction: column; align-items: flex-start; }
-      .btn-send { width: 100%; justify-content: center; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: block; }
+      .hero-stats { gap: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .hero-actions a, .hero-actions button { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
- 
-  <!-- ── NAV ── -->
-  <nav id="nav">
-    <a class="nav-logo" href="#">
-      <span class="nav-logo-name">The City Consultant</span>
-      <span class="nav-logo-sub">Nelspruit · Mpumalanga</span>
-    </a>
+
+<!-- ─── NAVIGATION ─────────────────────────────── -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">The <span>City</span> Consultant</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#nhbrc">NHBRC</a></li>
-      <li><a href="#clients">Clients</a></li>
-      <li><a href="#contact" class="nav-contact">Get in Touch</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-  </nav>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
   <div class="mobile-nav" id="mobileNav">
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#nhbrc">NHBRC</a>
-    <a href="#clients">Clients</a>
-    <a href="#contact">Get in Touch</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
   </div>
- 
-  <!-- ── HERO ── */
-  <section class="hero">
-    <div class="hero-deco">TCC</div>
-    <div class="hero-line"></div>
-    <div class="hero-body">
-      <div class="hero-eyebrow">Established in Mpumalanga, South Africa</div>
-      <h1 class="hero-h1">
-        Professional<br>
-        services for<br>
-        <strong>business growth.</strong>
-      </h1>
-      <p class="hero-desc">
-        The City Consultant is a multidisciplinary professional services firm helping businesses register, comply, and scale — with expertise built for the South African market.
-      </p>
-      <div class="hero-meta">
-        <div class="hero-meta-item">
-          <span class="hero-meta-num">500+</span>
-          <span class="hero-meta-label">Companies Registered</span>
-        </div>
-        <div class="hero-meta-sep"></div>
-        <div class="hero-meta-item">
-          <span class="hero-meta-num">8</span>
-          <span class="hero-meta-label">Service Disciplines</span>
-        </div>
-        <div class="hero-meta-sep"></div>
-        <div class="hero-meta-item">
-          <span class="hero-meta-num">100%</span>
-          <span class="hero-meta-label">Compliance Focus</span>
-        </div>
+</header>
+
+<!-- ─── HERO ───────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fas fa-shield-alt"></i>
+      South Africa's Trusted Business Partner
+    </div>
+    <h1>Your Business.<br><em>Registered. Compliant.</em><br>Ready to Grow.</h1>
+    <p>From company registration and CIPC filings to business plans and B-BBEE compliance — The City Consultant handles it all so you can focus on what matters.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary"><i class="fas fa-briefcase"></i> View Services</a>
+      <a href="https://wa.me/27826905832" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">500+</div>
+        <div class="hero-stat-label">Companies Registered</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Compliance Rate</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">5★</div>
+        <div class="hero-stat-label">Client Rating</div>
       </div>
     </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── SERVICE MARQUEE ────────────────────────── -->
+<div class="marquee-section">
+  <p class="marquee-label">What we do</p>
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-item"><i class="fas fa-building"></i> Company Registration</div>
+    <div class="marquee-item"><i class="fas fa-file-invoice"></i> Business Plans</div>
+    <div class="marquee-item"><i class="fas fa-barcode"></i> Barcodes</div>
+    <div class="marquee-item"><i class="fas fa-chart-line"></i> Financial Statements</div>
+    <div class="marquee-item"><i class="fas fa-landmark"></i> CIPC Filings</div>
+    <div class="marquee-item"><i class="fas fa-stamp"></i> Letter of Good Standing</div>
+    <div class="marquee-item"><i class="fas fa-certificate"></i> Tax Clearance</div>
+    <div class="marquee-item"><i class="fas fa-id-badge"></i> B-BBEE Certificate</div>
+    <div class="marquee-item"><i class="fas fa-database"></i> CSD Registration</div>
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item"><i class="fas fa-building"></i> Company Registration</div>
+    <div class="marquee-item"><i class="fas fa-file-invoice"></i> Business Plans</div>
+    <div class="marquee-item"><i class="fas fa-barcode"></i> Barcodes</div>
+    <div class="marquee-item"><i class="fas fa-chart-line"></i> Financial Statements</div>
+    <div class="marquee-item"><i class="fas fa-landmark"></i> CIPC Filings</div>
+    <div class="marquee-item"><i class="fas fa-stamp"></i> Letter of Good Standing</div>
+    <div class="marquee-item"><i class="fas fa-certificate"></i> Tax Clearance</div>
+    <div class="marquee-item"><i class="fas fa-id-badge"></i> B-BBEE Certificate</div>
+    <div class="marquee-item"><i class="fas fa-database"></i> CSD Registration</div>
+  </div>
+</div>
+
+<!-- ─── SERVICES: PACKAGES ─────────────────────── -->
+<section class="section" id="services">
+  <div class="section-inner">
+    <div class="section-header center">
+      <span class="section-label">Company Registration</span>
+      <h2 class="section-title">Registration Packages</h2>
+      <p class="section-sub">Everything you need to get your business legally registered and fully compliant — in one package.</p>
     </div>
-  </section>
- 
-  <!-- ── ABOUT ── -->
-  <section class="intro sec" id="about">
-    <div class="wrap">
-      <div class="intro-inner">
-        <div class="r">
-          <div class="tag">About The CC</div>
-          <h2 class="h2">A single partner<br>for every <em>business<br>need.</em></h2>
-        </div>
-        <div class="r r1">
-          <p class="body-text">
-            The City Consultant (The CC) is a comprehensive professional services firm headquartered in Nelspruit, Mpumalanga. We were founded on the belief that South African businesses — from startups to established enterprises — deserve access to high-quality regulatory, financial, and administrative support under one roof.
-          </p>
-          <p class="body-text" style="margin-top:18px;">
-            Our team brings specialist expertise across company registration, tax compliance, CIPC filings, B-BBEE certification, financial reporting, branding, and sector-specific programmes such as NHBRC. We take a client-first approach: understanding your business, removing complexity, and ensuring you operate with confidence.
-          </p>
-          <div class="intro-chips">
-            <span class="chip">Company Registration</span>
-            <span class="chip">Tax Compliance</span>
-            <span class="chip">B-BBEE</span>
-            <span class="chip">CIPC</span>
-            <span class="chip">NHBRC</span>
-            <span class="chip">Financial Statements</span>
-            <span class="chip">Branding</span>
-            <span class="chip">CSD</span>
-          </div>
-        </div>
+    <div class="packages-grid">
+
+      <!-- Entry Level -->
+      <div class="pkg-card">
+        <div class="pkg-name">Entry Level</div>
+        <div class="pkg-desc">Perfect for getting started</div>
+        <div class="pkg-price">R829 <span>once-off</span></div>
+        <ul class="pkg-features">
+          <li><i class="fas fa-check"></i> Company Registration &amp; Certificates</li>
+          <li><i class="fas fa-check"></i> Tax Clearance Certificate</li>
+          <li><i class="fas fa-check"></i> B-BBEE Certificate</li>
+          <li><i class="fas fa-check"></i> CSD Registration</li>
+          <li><i class="fas fa-check"></i> Beneficial Ownership Filing</li>
+        </ul>
+        <form action="https://www.payfast.co.za/eng/process" method="POST">
+          <input type="hidden" name="merchant_id" value="20755326">
+          <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
+          <input type="hidden" name="item_name" value="Entry Level Package">
+          <input type="hidden" name="amount" value="829.00">
+          <button type="submit" class="pkg-btn">Purchase Now</button>
+        </form>
       </div>
+
+      <!-- Basic (featured) -->
+      <div class="pkg-card featured">
+        <div class="pkg-name">Basic Package</div>
+        <div class="pkg-desc">Full compliance suite</div>
+        <div class="pkg-price">R1 500 <span>once-off</span></div>
+        <ul class="pkg-features">
+          <li><i class="fas fa-check"></i> Company Registration &amp; Certificates</li>
+          <li><i class="fas fa-check"></i> SARS (PR) Public Representative</li>
+          <li><i class="fas fa-check"></i> Tax Clearance Certificate</li>
+          <li><i class="fas fa-check"></i> B-BBEE Certificate</li>
+          <li><i class="fas fa-check"></i> CSD Registration</li>
+          <li><i class="fas fa-check"></i> Beneficial Ownership Filing</li>
+          <li><i class="fas fa-check"></i> Business Profile</li>
+        </ul>
+        <form action="https://www.payfast.co.za/eng/process" method="POST">
+          <input type="hidden" name="merchant_id" value="20755326">
+          <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
+          <input type="hidden" name="item_name" value="Basic Package">
+          <input type="hidden" name="amount" value="1500.00">
+          <button type="submit" class="pkg-btn">Purchase Now</button>
+        </form>
+      </div>
+
     </div>
-  </section>
- 
-  <!-- ── SERVICES ── -->
-  <section class="services-bg sec" id="services">
-    <div class="wrap">
-      <div class="services-header r">
-        <div>
-          <div class="tag">Our Services</div>
-          <h2 class="h2">What we <em>do</em></h2>
-        </div>
-        <p class="body-text">
-          From the moment you decide to start a business to long-term compliance and growth, The City Consultant provides the professional services to keep you on solid ground.
-        </p>
-      </div>
-      <div class="services-grid">
- 
-        <div class="svc-cell r r1">
-          <span class="svc-num">01</span>
-          <div class="svc-icon"><i class="fas fa-building"></i></div>
-          <div class="svc-name">Company Registration &amp; Compliance</div>
-          <div class="svc-desc">Full CIPC registration, statutory certificates, CSD registration, and ongoing compliance management — so your business stays legally sound from day one.</div>
-        </div>
- 
-        <div class="svc-cell r r2">
-          <span class="svc-num">02</span>
-          <div class="svc-icon"><i class="fas fa-receipt"></i></div>
-          <div class="svc-name">Tax &amp; SARS Services</div>
-          <div class="svc-desc">Tax clearance certificates, SARS public representative appointments, and tax affairs management to keep your relationship with SARS clean and current.</div>
-        </div>
- 
-        <div class="svc-cell r r3">
-          <span class="svc-num">03</span>
-          <div class="svc-icon"><i class="fas fa-shield-alt"></i></div>
-          <div class="svc-name">B-BBEE Certification</div>
-          <div class="svc-desc">We facilitate your B-BBEE compliance verification, ensuring you hold valid certification for tendering, contracting, and regulatory requirements.</div>
-        </div>
- 
-        <div class="svc-cell r r1">
-          <span class="svc-num">04</span>
-          <div class="svc-icon"><i class="fas fa-chart-line"></i></div>
-          <div class="svc-name">Financial Statements</div>
-          <div class="svc-desc">Professionally compiled annual financial statements that meet regulatory standards and give stakeholders a clear picture of your company's financial health.</div>
-        </div>
- 
-        <div class="svc-cell r r2">
-          <span class="svc-num">05</span>
-          <div class="svc-icon"><i class="fas fa-file-invoice"></i></div>
-          <div class="svc-name">Business Plans</div>
-          <div class="svc-desc">Investor-ready, funding-grade business plans crafted with strategic insight and financial rigour — built to open doors and secure capital.</div>
-        </div>
- 
-        <div class="svc-cell r r3">
-          <span class="svc-num">06</span>
-          <div class="svc-icon"><i class="fas fa-barcode"></i></div>
-          <div class="svc-name">Barcodes &amp; Product Compliance</div>
-          <div class="svc-desc">GS1-standard barcodes and product compliance support to get your goods retail-ready and accepted across major distribution channels.</div>
-        </div>
- 
-        <div class="svc-cell r r1">
-          <span class="svc-num">07</span>
-          <div class="svc-icon"><i class="fas fa-landmark"></i></div>
-          <div class="svc-name">CIPC Filings &amp; Annual Returns</div>
-          <div class="svc-desc">Beneficial ownership filings, directorship amendments, annual returns, and all CIPC-related submissions handled accurately and on time.</div>
-        </div>
- 
-        <div class="svc-cell r r2">
-          <span class="svc-num">08</span>
-          <div class="svc-icon"><i class="fas fa-paint-brush"></i></div>
-          <div class="svc-name">Branding &amp; Graphic Design</div>
-          <div class="svc-desc">Corporate identity, logo design, business profiles, and marketing materials that present your company with the professionalism it deserves.</div>
-        </div>
- 
-        <div class="svc-cell r r3">
-          <span class="svc-num">09</span>
-          <div class="svc-icon"><i class="fas fa-stamp"></i></div>
-          <div class="svc-name">Letter of Good Standing</div>
-          <div class="svc-desc">Timely procurement of compliance certificates and letters of good standing for tenders, contracts, and government engagements.</div>
-        </div>
- 
-      </div>
+    <p style="text-align:center; margin-top:2rem; color:var(--muted); font-size:.9rem;">
+      Need something custom?
+      <a href="mailto:info@thecc.co.za?subject=Quotation%20Request" style="color:var(--green-l); font-weight:600;">Contact us for a quotation →</a>
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── CIPC SERVICES ──────────────────────────── -->
+<section class="section" id="cipc">
+  <div class="section-inner">
+    <div class="section-header center">
+      <span class="section-label">CIPC Services</span>
+      <h2 class="section-title">Beneficial Ownership Filing</h2>
+      <p class="section-sub">Stay fully compliant with regulatory requirements. We handle the entire filing process for you.</p>
     </div>
-  </section>
- 
-  <!-- ── PILLARS ── -->
-  <section class="pillars-bg sec">
-    <div class="wrap">
-      <div class="r">
-        <div class="tag" style="color:var(--green-3);">
-          <span style="display:block;width:20px;height:1px;background:var(--green-3);"></span>
-          Why The CC
+    <div class="cipc-card">
+      <h3>Beneficial Ownership Filing Service</h3>
+      <p style="color:var(--muted); font-size:.9rem;">Ensure your company meets all CIPC compliance requirements with our specialist filing service.</p>
+      <div class="cipc-price">R350</div>
+
+      <h4 style="font-size:.9rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.75rem;">Required Documents</h4>
+      <ul class="requirements-list">
+        <li><i class="fas fa-circle"></i> Your Email Address</li>
+        <li><i class="fas fa-circle"></i> Your Cellphone Number</li>
+        <li><i class="fas fa-circle"></i> Company Registration Number</li>
+        <li><i class="fas fa-circle"></i> Certified ID copies of all Directors</li>
+      </ul>
+
+      <form action="https://www.payfast.co.za/eng/process" method="POST" style="margin: 1.5rem 0 2rem;">
+        <input type="hidden" name="merchant_id" value="20755326">
+        <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
+        <input type="hidden" name="item_name" value="Beneficial Ownership Filing Service">
+        <input type="hidden" name="amount" value="350.00">
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+          <i class="fas fa-lock"></i> Pay Securely — R350
+        </button>
+      </form>
+
+      <h4 style="font-size:1rem; color:var(--cream); margin-bottom:1rem;">Send Your Details</h4>
+      <form action="mailto:info@thecc.co.za?subject=Beneficial%20Ownership%20Filing%20Request" method="post" enctype="text/plain">
+        <div class="form-field">
+          <label>Email Address</label>
+          <input type="email" name="bo-email" required placeholder="your@email.com">
         </div>
-        <h2 class="h2-light" style="margin-top:12px;">The principles that<br>guide our <em>practice.</em></h2>
-      </div>
-      <div class="pillars-grid">
-        <div class="pillar r r1">
-          <span class="pillar-icon"><i class="fas fa-bullseye"></i></span>
-          <div class="pillar-title">Precision</div>
-          <div class="pillar-desc">Every filing, certificate, and document we produce is reviewed for accuracy before delivery. Errors cost businesses time and money — we eliminate them at the source.</div>
+        <div class="form-field">
+          <label>Cellphone Number</label>
+          <input type="tel" name="bo-phone" required placeholder="082 000 0000">
         </div>
-        <div class="pillar r r2">
-          <span class="pillar-icon"><i class="fas fa-clock"></i></span>
-          <div class="pillar-title">Timeliness</div>
-          <div class="pillar-desc">Compliance deadlines are non-negotiable. We build processes around your timelines and proactively ensure nothing is missed, ever.</div>
+        <div class="form-field">
+          <label>Company Registration Number</label>
+          <input type="text" name="bo-reg-number" required placeholder="2024/000000/07">
         </div>
-        <div class="pillar r r3">
-          <span class="pillar-icon"><i class="fas fa-handshake"></i></span>
-          <div class="pillar-title">Integrity</div>
-          <div class="pillar-desc">We act as an extension of your business. Our advice is always honest, transparent, and aligned with your long-term interests — not just the immediate transaction.</div>
+        <div class="form-field">
+          <label>Certified ID Copies</label>
+          <input type="file" name="bo-files" multiple>
+          <p class="hint">For size/security reasons, you can also email documents directly to info@thecc.co.za</p>
         </div>
-        <div class="pillar r r4">
-          <span class="pillar-icon"><i class="fas fa-layer-group"></i></span>
-          <div class="pillar-title">Breadth</div>
-          <div class="pillar-desc">By consolidating eight disciplines under one firm, clients avoid the complexity and cost of managing multiple service providers. One relationship. Full coverage.</div>
-        </div>
-      </div>
+        <button type="submit" class="btn-outline" style="width:100%; justify-content:center; opacity:.6; cursor:not-allowed;" disabled>
+          Submit Details (pay first above)
+        </button>
+      </form>
     </div>
-  </section>
- 
-  <!-- ── NHBRC ── -->
-  <section class="nhbrc-bg sec" id="nhbrc">
-    <div class="wrap">
-      <div class="nhbrc-inner">
-        <div class="r">
-          <div class="tag">Sector Focus</div>
-          <h2 class="h2">NHBRC Education<br>&amp; <em>Compliance</em></h2>
-          <p class="body-text">
-            The National Home Builders Registration Council (NHBRC) requires home builders and contractors to be registered and compliant with national building standards. The City Consultant provides specialised support for NHBRC education, application guidance, and compliance assessment preparation.
-          </p>
-          <ul class="nhbrc-points">
-            <li>Education programme enrolment through accredited training providers</li>
-            <li>Guidance through the NHBRC application and registration process</li>
-            <li>Professionally compiled Q&amp;A preparation materials for compliance assessments</li>
-            <li>Ongoing support for certificate maintenance and renewals</li>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── NHBRC ──────────────────────────────────── -->
+<section class="section" id="nhbrc">
+  <div class="section-inner">
+    <div class="section-header center">
+      <span class="section-label">Construction Compliance</span>
+      <h2 class="section-title">NHBRC Q&amp;A Document</h2>
+      <p class="section-sub">Get fully prepared for your NHBRC compliance assessments with our professionally compiled Questions &amp; Answers document.</p>
+    </div>
+
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:2.5rem; max-width:720px; margin:0 auto; text-align:center;">
+      <div style="font-family:'Playfair Display',serif; font-size:3rem; color:var(--green-l); margin-bottom:.5rem;">R480</div>
+      <p style="color:var(--muted); margin-bottom:2rem;">Instant download after secure payment</p>
+      <form action="https://www.payfast.co.za/eng/process" method="POST">
+        <input type="hidden" name="merchant_id" value="20755326">
+        <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
+        <input type="hidden" name="item_name" value="NHBRC Q&A Document">
+        <input type="hidden" name="amount" value="480.00">
+        <button type="submit" class="btn-primary" style="margin: 0 auto 2rem;">
+          <i class="fas fa-download"></i> Buy &amp; Download Now
+        </button>
+      </form>
+
+      <div class="nhbrc-grid" style="text-align:left;">
+        <div class="nhbrc-card">
+          <h4><i class="fas fa-file-alt" style="color:var(--green-l); margin-right:.5rem;"></i> What's Included</h4>
+          <ul>
+            <li><i class="fas fa-check"></i> Latest NHBRC compliance requirements</li>
+            <li><i class="fas fa-check"></i> Real &amp; tested Q&amp;A pairs</li>
+            <li><i class="fas fa-check"></i> Easy-to-read format</li>
+            <li><i class="fas fa-check"></i> Instant download</li>
           </ul>
         </div>
-        <div class="r r2">
-          <div class="nhbrc-card">
-            <span class="nhbrc-card-tag">Available Resource</span>
-            <div class="nhbrc-card-title">NHBRC Assessment<br>Preparation Document</div>
-            <p class="nhbrc-card-body">A professionally compiled, up-to-date Questions &amp; Answers document to help home builders prepare for and pass their NHBRC compliance assessments. Developed from real assessment data and current regulatory standards.</p>
-            <a href="#contact" class="nhbrc-card-link">Enquire About This Resource <i class="fas fa-arrow-right" style="font-size:.7rem;"></i></a>
-          </div>
+        <div class="nhbrc-card">
+          <h4><i class="fas fa-award" style="color:var(--gold); margin-right:.5rem;"></i> Benefits</h4>
+          <ul>
+            <li><i class="fas fa-check"></i> Industry recognition</li>
+            <li><i class="fas fa-check"></i> Legal standards compliance</li>
+            <li><i class="fas fa-check"></i> More business opportunities</li>
+            <li><i class="fas fa-check"></i> Avoid fines &amp; penalties</li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
- 
-  <!-- ── TESTIMONIALS ── -->
-  <section class="testi-bg sec" id="clients">
-    <div class="wrap">
-      <div class="r" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-bottom:64px;">
-        <div>
-          <div class="tag">Client Feedback</div>
-          <h2 class="h2">Trusted by businesses<br>across <em>South Africa.</em></h2>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="#contact" class="btn-outline">Need NHBRC Education Assistance?</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── ABOUT ──────────────────────────────────── -->
+<section class="section about-section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-icon-grid">
+          <div class="about-icon-item">
+            <i class="fas fa-building"></i>
+            <p>Company Registration</p>
+          </div>
+          <div class="about-icon-item">
+            <i class="fas fa-shield-alt"></i>
+            <p>Compliance</p>
+          </div>
+          <div class="about-icon-item">
+            <i class="fas fa-chart-pie"></i>
+            <p>Financial Services</p>
+          </div>
+          <div class="about-icon-item">
+            <i class="fas fa-paint-brush"></i>
+            <p>Branding</p>
+          </div>
         </div>
-        <a href="https://www.google.com/search?q=The+City+Consultant" target="_blank" style="font-size:.78rem; font-weight:500; color:var(--green); text-decoration:none; border-bottom:1px solid rgba(30,125,52,.3); padding-bottom:3px; letter-spacing:.04em; transition:border-color .3s;" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='rgba(30,125,52,.3)'">
-          View all reviews on Google →
+      </div>
+      <div class="about-text">
+        <span class="section-label">Who We Are</span>
+        <h2 class="section-title">About The City Consultant</h2>
+        <p>The City Consultant (The CC) is a comprehensive professional services firm dedicated to helping South African businesses grow with confidence.</p>
+        <p>We specialize in business registration and compliance, financial services, branding and marketing, and corporate administration — all under one roof.</p>
+        <p>Whether you're starting a new company or ensuring your existing business stays compliant, we make the process seamless, efficient, and affordable.</p>
+        <a href="#contact" class="btn-primary" style="margin-top:1.5rem; display:inline-flex;">
+          <i class="fas fa-phone-alt"></i> Talk to Us
         </a>
       </div>
-      <div class="testi-grid">
-        <div class="testi-card r r1">
-          <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p class="testi-quote">"The City Consultants transformed our business with their exceptional graphic design services and compliance assistance. They created a professional brand identity while ensuring all our compliance needs were met effortlessly. Their dedication to quality is unmatched."</p>
-          <div class="testi-author">
-            <div class="testi-avatar">SD</div>
-            <div>
-              <div class="testi-name">Simbo Driving School</div>
-              <div class="testi-role">Brand Identity &amp; Compliance</div>
-            </div>
-          </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── REVIEWS ────────────────────────────────── -->
+<section class="section" id="reviews">
+  <div class="section-inner">
+    <div class="section-header center">
+      <span class="section-label">Testimonials</span>
+      <h2 class="section-title">What Our Clients Say</h2>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
         </div>
-        <div class="testi-card r r2">
-          <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p class="testi-quote">"They helped us develop a comprehensive business plan for our diamond trading company. Their strategic insights and personalised approach gave our business a solid foundation to secure funding and grow. Truly grateful for their expertise."</p>
-          <div class="testi-author">
-            <div class="testi-avatar">BS</div>
-            <div>
-              <div class="testi-name">Dr Bonginkosi Shoba Inc</div>
-              <div class="testi-role">Business Plan Development</div>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card r r3">
-          <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-          <p class="testi-quote">"Our beverage products now have professional, fully compliant barcodes — allowing us to enter the retail market seamlessly. Their team made the entire process easy and efficient, ensuring everything met industry standards."</p>
-          <div class="testi-author">
-            <div class="testi-avatar">LB</div>
-            <div>
-              <div class="testi-name">Lenaka Beverages</div>
-              <div class="testi-role">Barcode &amp; Retail Compliance</div>
-            </div>
+        <p class="review-text">"The City Consultants transformed our business with exceptional graphic design and compliance assistance. They created a modern brand identity while ensuring all compliance needs were met effortlessly. Their dedication to quality is unmatched."</p>
+        <div class="review-author">
+          <div class="review-avatar">SD</div>
+          <div>
+            <div class="review-name">Simbo Driving School</div>
+            <div class="review-handle">@Simbo Driving School</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
- 
-  <!-- ── CONTACT ── -->
-  <section class="contact-bg sec" id="contact">
-    <div class="wrap">
-      <div class="contact-grid">
-        <div class="r">
-          <div class="tag" style="color:var(--green-3);"><span style="display:block;width:20px;height:1px;background:var(--green-3)"></span>Contact</div>
-          <h2 class="h2-light" style="margin-top:12px;">Let's discuss<br>your <em>requirements.</em></h2>
-          <p class="body-text">Reach out to our team and we will respond within one business day. Whether you need a single service or a comprehensive business solution, we are ready to assist.</p>
-          <div class="contact-details">
-            <div class="contact-row">
-              <div class="contact-row-icon"><i class="fas fa-envelope"></i></div>
-              <div>
-                <div class="contact-row-label">Email</div>
-                <div class="contact-row-val">info@thecc.co.za</div>
-              </div>
-            </div>
-            <div class="contact-row">
-              <div class="contact-row-icon"><i class="fas fa-phone"></i></div>
-              <div>
-                <div class="contact-row-label">Phone &amp; WhatsApp</div>
-                <div class="contact-row-val">082 690 5832</div>
-              </div>
-            </div>
-            <div class="contact-row">
-              <div class="contact-row-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div>
-                <div class="contact-row-label">Location</div>
-                <div class="contact-row-val">Mbombela, Nelspruit<br>Mpumalanga 1200, South Africa</div>
-              </div>
-            </div>
-          </div>
-          <div class="map-frame">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.5768310065256!2d30.9859586!3d-25.4746688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9bb15598910405%3A0xc6c710d0f418d184!2sMbombela%2C%20Nelspruit%2C%201200%2C%20South+Africa!5e0!3m2!1sen!2sus!4v1628174567890!5m2!1sen&hl=en&z=14&output=embed" allowfullscreen="" loading="lazy"></iframe>
-          </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
         </div>
-        <div class="r r2">
-          <form class="contact-form" action="mailto:info@thecc.co.za" method="post" enctype="text/plain">
-            <div class="form-row">
-              <div class="field">
-                <label for="fn">First Name</label>
-                <input type="text" id="fn" name="first_name" placeholder="Thabo">
-              </div>
-              <div class="field">
-                <label for="ln">Last Name</label>
-                <input type="text" id="ln" name="last_name" placeholder="Nkosi">
-              </div>
-            </div>
-            <div class="field">
-              <label for="em">Email Address</label>
-              <input type="email" id="em" name="email" placeholder="you@company.co.za">
-            </div>
-            <div class="field">
-              <label for="co">Company Name</label>
-              <input type="text" id="co" name="company" placeholder="Your Company (Pty) Ltd">
-            </div>
-            <div class="field">
-              <label for="sv">Service of Interest</label>
-              <select id="sv" name="service">
-                <option value="" disabled selected>Select a service…</option>
-                <option>Company Registration</option>
-                <option>Tax &amp; SARS Services</option>
-                <option>B-BBEE Certification</option>
-                <option>Financial Statements</option>
-                <option>Business Plan</option>
-                <option>Barcodes</option>
-                <option>CIPC Filings</option>
-                <option>NHBRC Compliance</option>
-                <option>Branding &amp; Design</option>
-                <option>Other / General Enquiry</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="msg">Message</label>
-              <textarea id="msg" name="message" placeholder="Briefly describe your requirements…"></textarea>
-            </div>
-            <button type="submit" class="btn-send">
-              Send Enquiry <i class="fas fa-arrow-right" style="font-size:.75rem;"></i>
-            </button>
-          </form>
+        <p class="review-text">"Exceptional service in helping us develop a comprehensive business plan for our diamond trading company. Their strategic insights and personalized approach gave our business a solid foundation to secure funding."</p>
+        <div class="review-author">
+          <div class="review-avatar">BS</div>
+          <div>
+            <div class="review-name">Dr Bonginkosi Shoba Inc</div>
+            <div class="review-handle">@Dr Bonginkosi Shoba, Director</div>
+          </div>
         </div>
       </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star empty"></i>
+        </div>
+        <p class="review-text">"Our beverage products now have professional, fully compliant barcodes, allowing us to seamlessly enter the retail market. The team made the process easy and efficient, ensuring everything met industry standards."</p>
+        <div class="review-author">
+          <div class="review-avatar">LB</div>
+          <div>
+            <div class="review-name">Lenaka Beverages</div>
+            <div class="review-handle">@Lenaka Beverages</div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </section>
- 
-  <!-- ── FOOTER ── -->
-  <footer>
-    <div class="footer-top">
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="https://www.google.com/search?q=The+City+Consultant" target="_blank" class="btn-outline">
+        <i class="fab fa-google"></i> Leave a Review on Google
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── CONTACT ────────────────────────────────── -->
+<section class="section" id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Reach Out</span>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-sub">Have a question or ready to get started? We'd love to hear from you.</p>
+    </div>
+    <div class="contact-grid">
+
       <div>
-        <div class="footer-brand-name">The City Consultant</div>
-        <span class="footer-brand-tag">Professional Services · Nelspruit, Mpumalanga</span>
+        <form action="mailto:info@thecc.co.za" method="post" enctype="text/plain">
+          <div class="form-field">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="John Dlamini">
+          </div>
+          <div class="form-field">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="john@example.co.za">
+          </div>
+          <div class="form-field">
+            <label>Message</label>
+            <textarea name="message" placeholder="Tell us about your business needs…"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
       </div>
-      <nav class="footer-nav">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#nhbrc">NHBRC</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2025 The City Consultant (Pty) Ltd · All rights reserved</span>
-      <div class="footer-icons">
-        <a href="https://wa.me/27826905832" class="footer-icon-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:info@thecc.co.za" class="footer-icon-btn"><i class="fas fa-envelope"></i></a>
+
+      <div>
+        <div class="contact-info-card">
+          <h4>Contact Information</h4>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>info@thecc.co.za</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>082 690 5832</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Mbombela, Nelspruit, Mpumalanga 1200, South Africa</span>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <a href="https://wa.me/27826905832" target="_blank" style="color:var(--green-l); text-decoration:none;">Chat on WhatsApp</a>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.5768310065256!2d30.9859586!3d-25.4746688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9bb15598910405%3A0xc6c710d0f418d184!2sMbombela%2C%20Nelspruit%2C%201200%2C%20South+Africa!5e0!3m2!1sen!2sus!4v1628174567890!5m2!1sen&hl=en&z=14&output=embed" allowfullscreen loading="lazy" title="Location Map"></iframe>
+        </div>
       </div>
+
     </div>
-  </footer>
- 
-  <!-- WhatsApp -->
-  <a href="https://wa.me/27826905832" class="wa" target="_blank" rel="noopener">
-    <span class="wa-tip">Chat on WhatsApp</span>
-    <div class="wa-circle"><i class="fab fa-whatsapp"></i></div>
-  </a>
- 
-  <script>
-    // Nav stuck
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('stuck', scrollY > 50));
- 
-    // Hamburger
-    const hb = document.getElementById('hamburger');
-    const mn = document.getElementById('mobileNav');
-    hb.addEventListener('click', () => { hb.classList.toggle('open'); mn.classList.toggle('open'); });
-    mn.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hb.classList.remove('open'); mn.classList.remove('open'); }));
- 
-    // Scroll reveal
-    const els = document.querySelectorAll('.r');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-    }, { threshold: 0.1 });
-    els.forEach(el => io.observe(el));
-  </script>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-logo">The <span>City</span> Consultant</div>
+  <p>&copy; 2025 The City Consultant. All Rights Reserved. · Nelspruit, Mpumalanga, South Africa</p>
+</footer>
+
+<!-- ─── WHATSAPP FLOAT ─────────────────────────── -->
+<a href="https://wa.me/27826905832" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+</script>
 </body>
 </html>
