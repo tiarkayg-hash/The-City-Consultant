@@ -6,788 +6,623 @@
   <title>The City Consultant | Business Registration & Compliance</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg:        #0C1A10;
-      --bg2:       #111F14;
-      --bg3:       #162219;
-      --surface:   #1C2E20;
-      --border:    #2A3F2E;
-      --green-d:   #1E7D34;
-      --green-m:   #2A9E45;
-      --green-l:   #37B44E;
-      --gold:      #C9A84C;
-      --gold-l:    #E2C16A;
-      --cream:     #F0EBE0;
-      --muted:     #8BA590;
-      --text:      #EBF0E8;
+      --green:      #2FAD48;
+      --green-d:    #1E7D34;
+      --green-dk:   #155A25;
+      --green-lt:   #E8F7EC;
+      --brown:      #8B4A12;
+      --brown-d:    #6B3009;
+      --brown-lt:   #FDF3EB;
+      --white:      #FFFFFF;
+      --off-white:  #F7FAF8;
+      --border:     #D4E8D8;
+      --muted:      #6B7C6E;
+      --text:       #1C2B1F;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
+      background: var(--white);
       color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      line-height: 1.65;
+      font-family: 'Nunito', sans-serif;
       overflow-x: hidden;
     }
 
-    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    h1,h2,h3,h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: .04em; }
 
-    /* ─── SCROLLBAR ─────────────────── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--green-d); border-radius: 3px; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--off-white); }
+    ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
 
-    /* ─── NAV ────────────────────────── */
+    /* ─── NAV ─── */
     .nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(12,26,16,0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      background: var(--white);
+      border-bottom: 3px solid var(--green);
+      box-shadow: 0 2px 16px rgba(30,125,52,.10);
     }
     .nav-inner {
       max-width: 1200px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 68px;
+      padding: 0 2rem; height: 70px;
     }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem; font-weight: 700;
-      color: var(--cream);
-      display: flex; align-items: center; gap: .6rem;
-      text-decoration: none;
+    .nav-logo { display: flex; align-items: center; gap: .65rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 42px; height: 42px; border-radius: 8px;
+      background: var(--green-d);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Oswald', sans-serif; font-size: 1.1rem;
+      font-weight: 700; color: #fff;
     }
-    .nav-logo span { color: var(--green-l); }
+    .nav-logo-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--green-d); letter-spacing: .06em; text-transform: uppercase;
+    }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      color: var(--muted); font-size: .875rem; font-weight: 500;
-      text-decoration: none; letter-spacing: .03em;
-      transition: color .2s;
+      font-family: 'Oswald', sans-serif; font-size: .82rem; font-weight: 500;
+      letter-spacing: .09em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color .2s;
     }
-    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover { color: var(--green-d); }
     .nav-cta {
-      background: var(--green-d); color: #fff;
-      padding: .5rem 1.25rem; border-radius: 6px;
-      font-size: .85rem; font-weight: 600;
+      background: var(--green); color: #fff;
+      font-family: 'Oswald', sans-serif; font-size: .8rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .55rem 1.4rem; border-radius: 4px;
       text-decoration: none; transition: background .2s;
     }
-    .nav-cta:hover { background: var(--green-m); }
-    .hamburger {
-      display: none; background: none; border: none;
-      color: var(--cream); font-size: 1.4rem; cursor: pointer;
-    }
-    .mobile-nav {
-      display: none;
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      padding: 1rem 2rem 1.5rem;
-    }
+    .nav-cta:hover { background: var(--green-d); }
+    .hamburger { display: none; background: none; border: none; color: var(--green-d); font-size: 1.4rem; cursor: pointer; }
+    .mobile-nav { display: none; background: var(--white); border-top: 1px solid var(--border); padding: 1rem 2rem 1.5rem; }
     .mobile-nav.open { display: block; }
     .mobile-nav a {
-      display: block; padding: .6rem 0;
-      color: var(--muted); text-decoration: none;
-      font-weight: 500; border-bottom: 1px solid var(--border);
-      transition: color .2s;
+      display: block; padding: .65rem 0;
+      font-family: 'Oswald', sans-serif; font-size: .9rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border);
     }
-    .mobile-nav a:hover { color: var(--cream); }
+    .mobile-nav a:hover { color: var(--green-d); }
 
-    /* ─── HERO ───────────────────────── */
+    /* ─── HERO ─── */
     .hero {
-      position: relative; overflow: hidden;
-      min-height: 88vh;
-      display: flex; align-items: center;
-      padding: 5rem 2rem;
-      background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(30,125,52,.28) 0%, transparent 70%),
-                  var(--bg);
+      background: var(--green-d); position: relative; overflow: hidden;
+      padding: 5rem 2rem 5.5rem;
     }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2337B44E' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      opacity: 1;
+      background: repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,.025) 40px,rgba(255,255,255,.025) 41px);
     }
-    .hero-content {
-      position: relative; max-width: 1200px; margin: 0 auto; width: 100%;
+    .hero::after {
+      content: '';
+      position: absolute; right: -120px; top: -120px;
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 60px solid rgba(255,255,255,.05);
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: rgba(55,180,78,.12); border: 1px solid rgba(55,180,78,.3);
-      color: var(--green-l); font-size: .8rem; font-weight: 600;
-      padding: .35rem .9rem; border-radius: 50px;
-      letter-spacing: .06em; text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      animation: fadeUp .6s ease both;
+    .hero-inner {
+      position: relative; max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,.15); color: rgba(255,255,255,.9);
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      padding: .3rem .9rem; border-radius: 2px; margin-bottom: 1.25rem;
+      animation: fadeUp .5s ease both;
     }
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.8rem);
-      color: var(--cream);
-      max-width: 700px;
-      margin-bottom: 1.5rem;
-      animation: fadeUp .6s .1s ease both;
+      font-size: clamp(2.2rem, 5vw, 3.8rem); color: #fff; line-height: 1.1;
+      margin-bottom: 1.25rem; animation: fadeUp .5s .1s ease both;
     }
-    .hero h1 em { font-style: normal; color: var(--green-l); }
-    .hero p {
-      font-size: 1.15rem; color: var(--muted);
-      max-width: 520px; margin-bottom: 2.5rem;
-      animation: fadeUp .6s .2s ease both;
+    .hero h1 span { color: var(--green); }
+    .hero-tagline {
+      font-size: 1rem; color: rgba(255,255,255,.75);
+      line-height: 1.75; max-width: 460px; margin-bottom: 2.25rem;
+      animation: fadeUp .5s .2s ease both;
+      font-family: 'Nunito', sans-serif; font-weight: 400;
     }
-    .hero-actions {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      animation: fadeUp .6s .3s ease both;
-    }
-    .btn-primary {
-      background: var(--green-d); color: #fff;
-      padding: .85rem 2rem; border-radius: 8px;
-      font-weight: 600; font-size: .95rem;
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp .5s .3s ease both; }
+    .btn-green {
+      background: var(--green); color: #fff;
+      padding: .8rem 1.75rem; border-radius: 4px;
+      font-family: 'Oswald', sans-serif; font-size: .85rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
       text-decoration: none; border: none; cursor: pointer;
-      transition: background .2s, transform .2s;
+      transition: background .2s, transform .15s;
       display: inline-flex; align-items: center; gap: .5rem;
     }
-    .btn-primary:hover { background: var(--green-m); transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent; color: var(--cream);
-      padding: .85rem 2rem; border-radius: 8px;
-      font-weight: 600; font-size: .95rem;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      transition: border-color .2s, color .2s, transform .2s;
+    .btn-green:hover { background: #27963E; transform: translateY(-2px); }
+    .btn-white {
+      background: transparent; color: #fff;
+      padding: .8rem 1.75rem; border-radius: 4px;
+      font-family: 'Oswald', sans-serif; font-size: .85rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      text-decoration: none; border: 2px solid rgba(255,255,255,.45);
+      transition: border-color .2s, transform .15s;
       display: inline-flex; align-items: center; gap: .5rem;
     }
-    .btn-outline:hover { border-color: var(--green-l); color: var(--green-l); transform: translateY(-2px); }
-
-    .hero-stats {
-      display: flex; gap: 3rem; flex-wrap: wrap;
-      margin-top: 4rem; padding-top: 2.5rem;
-      border-top: 1px solid var(--border);
-      animation: fadeUp .6s .4s ease both;
+    .btn-white:hover { border-color: #fff; transform: translateY(-2px); }
+    .hero-panel {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px; padding: 2rem; animation: fadeUp .5s .35s ease both;
     }
-    .hero-stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem; font-weight: 700; color: var(--cream);
+    .hero-panel h3 { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 1.5rem; letter-spacing: .12em; }
+    .stat-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: .85rem 0; border-bottom: 1px solid rgba(255,255,255,.1);
     }
-    .hero-stat-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: rgba(47,173,72,.25);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green); font-size: 1rem; flex-shrink: 0;
+    }
+    .stat-label { font-size: .88rem; color: rgba(255,255,255,.8); font-weight: 500; }
+    .stat-sub { font-size: .75rem; color: rgba(255,255,255,.4); }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── SECTION WRAPPER ─────────────── */
+    /* ─── MARQUEE ─── */
+    .marquee-bar { background: var(--green); padding: .9rem 0; overflow: hidden; }
+    .marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: flex; align-items: center; gap: .6rem; flex-shrink: 0; margin-right: 2.5rem;
+      color: rgba(255,255,255,.9);
+      font-family: 'Oswald', sans-serif; font-size: .8rem; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+    .marquee-item i { font-size: .55rem; color: rgba(255,255,255,.5); }
+
+    /* ─── SECTIONS ─── */
     .section { padding: 5rem 2rem; }
     .section-inner { max-width: 1200px; margin: 0 auto; }
+    .bg-light { background: var(--off-white); }
     .section-label {
       display: inline-block;
-      font-size: .75rem; font-weight: 600; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--green-l);
-      margin-bottom: .75rem;
+      font-family: 'Nunito', sans-serif; font-size: .7rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--brown); background: var(--brown-lt);
+      padding: .25rem .75rem; border-radius: 2px; margin-bottom: .9rem;
     }
-    .section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      color: var(--cream); margin-bottom: .75rem;
-    }
-    .section-sub {
-      color: var(--muted); font-size: 1.05rem;
-      max-width: 560px;
-    }
+    .section-title { font-size: clamp(1.7rem, 3vw, 2.6rem); color: var(--green-d); margin-bottom: .75rem; }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 540px; }
     .section-header { margin-bottom: 3rem; }
     .section-header.center { text-align: center; }
     .section-header.center .section-sub { margin: 0 auto; }
+    .divider { height: 1px; background: var(--border); max-width: 1200px; margin: 0 auto; }
 
-    /* ─── DIVIDER ─────────────────────── */
-    .divider {
-      height: 1px; background: var(--border);
+    /* ─── SERVICES ─── */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    .svc-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-top: 4px solid var(--green);
+      border-radius: 8px; padding: 1.75rem 1.5rem;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .svc-card:hover { box-shadow: 0 8px 30px rgba(30,125,52,.12); transform: translateY(-4px); }
+    .svc-icon {
+      width: 48px; height: 48px; border-radius: 10px; background: var(--green-lt);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green-d); font-size: 1.3rem; margin-bottom: 1.1rem;
+    }
+    .svc-name { font-size: 1rem; color: var(--brown-d); margin-bottom: .4rem; }
+    .svc-desc { font-size: .85rem; color: var(--muted); }
+
+    /* ─── COMPLIANCE ─── */
+    .compliance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .comp-card {
+      background: var(--green-d); border-radius: 8px; padding: 1.5rem; text-align: center;
+      transition: background .2s, transform .2s;
+    }
+    .comp-card:hover { background: var(--green-dk); transform: translateY(-3px); }
+    .comp-card i { font-size: 1.8rem; color: rgba(255,255,255,.55); margin-bottom: .75rem; display: block; }
+    .comp-card h4 { font-size: .95rem; color: #fff; letter-spacing: .06em; line-height: 1.3; }
+
+    /* ─── PARTNERS ─── */
+    .partners-section { background: var(--green-d); padding: 3.5rem 2rem; }
+    .partners-title {
+      text-align: center; font-family: 'Nunito', sans-serif;
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.5); margin-bottom: 2rem;
+    }
+    .partners-row {
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+      gap: 1.5rem; max-width: 900px; margin: 0 auto;
+    }
+    .partner-badge {
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 8px; padding: .85rem 1.5rem;
+      font-family: 'Oswald', sans-serif; font-size: .82rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.85);
+      display: flex; align-items: center; gap: .6rem; transition: background .2s;
+    }
+    .partner-badge:hover { background: rgba(255,255,255,.2); }
+    .partner-badge i { font-size: 1rem; color: rgba(255,255,255,.45); }
+
+    /* ─── ABOUT ─── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-visual {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .about-visual-top { background: var(--green-d); padding: 2rem; }
+    .about-visual-top h3 { font-size: 1.8rem; color: #fff; line-height: 1.2; }
+    .about-visual-top p { color: rgba(255,255,255,.5); font-size: .8rem; margin-top: .4rem; }
+    .about-feature-list { list-style: none; padding: 1.25rem 1.75rem; }
+    .about-feature-list li {
+      display: flex; align-items: flex-start; gap: .75rem;
+      padding: .7rem 0; border-bottom: 1px solid var(--border);
+      font-size: .93rem; color: var(--text);
+    }
+    .about-feature-list li:last-child { border-bottom: none; }
+    .about-feature-list li i { color: var(--green); font-size: .9rem; margin-top: .2rem; flex-shrink: 0; }
+    .about-text p { color: var(--muted); font-size: .97rem; margin-bottom: 1rem; }
+    .accent-quote {
+      border-left: 4px solid var(--green); padding-left: 1.25rem; margin: 2rem 0;
+      font-style: italic; color: var(--brown); font-size: .95rem;
+    }
+
+    /* ─── HOURS ─── */
+    .hours-band { background: var(--brown); padding: 1.75rem 2rem; }
+    .hours-inner {
       max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 3rem; flex-wrap: wrap;
     }
+    .hours-item { display: flex; align-items: center; gap: .75rem; color: rgba(255,255,255,.9); }
+    .hours-item i { font-size: 1.1rem; color: rgba(255,255,255,.5); }
+    .hours-item strong { font-family: 'Oswald', sans-serif; font-size: 1rem; letter-spacing: .06em; }
+    .hours-item span { font-size: .85rem; color: rgba(255,255,255,.7); }
 
-    /* ─── PACKAGES ────────────────────── */
-    .packages-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+    /* ─── REVIEWS ─── */
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .review-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.75rem;
+      display: flex; flex-direction: column; transition: box-shadow .2s;
     }
-    .pkg-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem;
-      display: flex; flex-direction: column;
-      transition: border-color .2s, transform .2s;
+    .review-card:hover { box-shadow: 0 6px 24px rgba(30,125,52,.1); }
+    .stars { display: flex; gap: .2rem; margin-bottom: 1rem; }
+    .stars i { color: #F4A922; font-size: .85rem; }
+    .stars i.empty { color: #DDD; }
+    .review-text { color: var(--muted); font-size: .9rem; line-height: 1.75; flex: 1; margin-bottom: 1.5rem; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: .75rem; }
+    .review-av {
+      width: 42px; height: 42px; border-radius: 50%; background: var(--green-d);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Oswald', sans-serif; font-size: .9rem; color: #fff; font-weight: 600; flex-shrink: 0;
     }
-    .pkg-card:hover { border-color: var(--green-d); transform: translateY(-4px); }
-    .pkg-card.featured {
-      border-color: var(--green-m);
-      background: linear-gradient(135deg, #1a2e1e 0%, #1c3220 100%);
-      position: relative; overflow: hidden;
-    }
-    .pkg-card.featured::before {
-      content: 'Most Popular';
-      position: absolute; top: 1.2rem; right: -1.5rem;
-      background: var(--green-d); color: #fff;
-      font-size: .7rem; font-weight: 700; letter-spacing: .06em;
-      text-transform: uppercase;
-      padding: .3rem 2.5rem;
-      transform: rotate(35deg);
-    }
-    .pkg-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; color: var(--cream); margin-bottom: .4rem;
-    }
-    .pkg-desc { font-size: .875rem; color: var(--muted); margin-bottom: 1.5rem; }
-    .pkg-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem; font-weight: 700; color: var(--green-l);
-      margin-bottom: 1.5rem;
-    }
-    .pkg-price span { font-size: 1rem; font-weight: 400; color: var(--muted); }
-    .pkg-features { list-style: none; flex: 1; margin-bottom: 2rem; }
-    .pkg-features li {
-      display: flex; align-items: flex-start; gap: .6rem;
-      padding: .5rem 0; border-bottom: 1px solid var(--border);
-      font-size: .9rem; color: var(--muted);
-    }
-    .pkg-features li:last-child { border-bottom: none; }
-    .pkg-features li i { color: var(--green-l); margin-top: .2rem; font-size: .8rem; flex-shrink: 0; }
-    .pkg-btn {
-      width: 100%; padding: .85rem;
-      background: var(--green-d); color: #fff;
-      border: none; border-radius: 8px;
-      font-weight: 600; font-size: .95rem; cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: background .2s;
-    }
-    .pkg-btn:hover { background: var(--green-m); }
+    .review-name { font-size: .9rem; font-weight: 700; color: var(--text); }
+    .review-handle { font-size: .77rem; color: var(--muted); }
 
-    /* ─── SERVICE MARQUEE ─────────────── */
-    .marquee-section {
-      padding: 3rem 0; background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .marquee-label {
-      text-align: center;
-      font-size: .75rem; font-weight: 600; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 2rem;
-    }
-    .marquee-track {
-      display: flex; width: max-content;
-      animation: marquee 35s linear infinite;
-    }
-    .marquee-track:hover { animation-play-state: paused; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .marquee-item {
-      display: flex; align-items: center; gap: .75rem;
-      flex-shrink: 0;
-      background: var(--surface); border: 1px solid var(--border);
-      padding: .85rem 1.6rem; border-radius: 50px;
-      margin-right: 1rem; white-space: nowrap;
-      color: var(--text); font-size: .9rem; font-weight: 500;
-    }
-    .marquee-item i { color: var(--green-l); }
-
-    /* ─── CIPC CARD ───────────────────── */
-    .cipc-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 2.5rem;
-      max-width: 680px; margin: 0 auto;
-    }
-    .cipc-card h3 {
-      font-size: 1.6rem; color: var(--cream); margin-bottom: .5rem;
-    }
-    .cipc-price {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem; color: var(--green-l);
-      margin: 1rem 0;
-    }
-    .requirements-list { list-style: none; margin: 1.25rem 0; }
-    .requirements-list li {
-      display: flex; align-items: center; gap: .7rem;
-      padding: .5rem 0; border-bottom: 1px solid var(--border);
-      font-size: .9rem; color: var(--muted);
-    }
-    .requirements-list li:last-child { border-bottom: none; }
-    .requirements-list li i { color: var(--gold); font-size: .8rem; }
-
-    /* ─── FORM ────────────────────────── */
+    /* ─── CONTACT ─── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; }
     .form-field { margin-bottom: 1.25rem; }
     .form-field label {
-      display: block; font-size: .85rem; font-weight: 500;
-      color: var(--muted); margin-bottom: .4rem;
+      display: block; font-size: .78rem; font-weight: 700;
+      letter-spacing: .09em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .45rem;
     }
     .form-field input,
-    .form-field textarea {
-      width: 100%; background: var(--bg3);
-      border: 1px solid var(--border); border-radius: 8px;
-      padding: .75rem 1rem; color: var(--text);
-      font-family: 'DM Sans', sans-serif; font-size: .95rem;
-      transition: border-color .2s;
-      outline: none;
+    .form-field textarea,
+    .form-field select {
+      width: 100%; background: var(--off-white);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: .8rem 1rem; color: var(--text);
+      font-family: 'Nunito', sans-serif; font-size: .95rem;
+      outline: none; transition: border-color .2s;
     }
     .form-field input:focus,
-    .form-field textarea:focus { border-color: var(--green-m); }
-    .form-field textarea { resize: vertical; min-height: 120px; }
-    .form-field input[type="file"] {
-      padding: .6rem; cursor: pointer;
+    .form-field textarea:focus,
+    .form-field select:focus { border-color: var(--green); }
+    .form-field textarea { resize: vertical; min-height: 130px; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.1rem; }
+    .info-card {
+      background: var(--off-white); border: 1px solid var(--border);
+      border-left: 4px solid var(--green);
+      border-radius: 8px; padding: 1.1rem 1.4rem;
+      display: flex; align-items: flex-start; gap: 1rem;
     }
-    .form-field .hint {
-      font-size: .78rem; color: var(--muted); margin-top: .35rem;
-    }
-
-    /* ─── NHBRC ────────────────────────── */
-    .nhbrc-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1.5rem; margin: 2rem 0;
-    }
-    .nhbrc-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.75rem;
-    }
-    .nhbrc-card h4 { font-size: 1.1rem; color: var(--cream); margin-bottom: 1rem; }
-    .nhbrc-card ul { list-style: none; }
-    .nhbrc-card ul li {
-      display: flex; gap: .6rem;
-      font-size: .9rem; color: var(--muted);
-      padding: .4rem 0; border-bottom: 1px solid var(--border);
-    }
-    .nhbrc-card ul li:last-child { border-bottom: none; }
-    .nhbrc-card ul li i { color: var(--green-l); margin-top: .25rem; font-size: .8rem; flex-shrink: 0; }
-
-    /* ─── ABOUT ───────────────────────── */
-    .about-section { background: var(--bg2); }
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 4rem; align-items: center;
-    }
-    .about-visual {
-      background: linear-gradient(135deg, var(--surface) 0%, var(--bg3) 100%);
-      border: 1px solid var(--border); border-radius: 20px;
-      padding: 3rem; position: relative; overflow: hidden;
-    }
-    .about-visual::before {
-      content: '';
-      position: absolute; bottom: -40px; right: -40px;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(55,180,78,.15) 0%, transparent 70%);
-    }
-    .about-icon-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .about-icon-item {
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.25rem;
-      text-align: center;
-    }
-    .about-icon-item i { font-size: 1.8rem; color: var(--green-l); margin-bottom: .5rem; }
-    .about-icon-item p { font-size: .8rem; color: var(--muted); }
-    .about-text h2 { margin-bottom: 1.25rem; }
-    .about-text p { color: var(--muted); margin-bottom: 1rem; }
-
-    /* ─── REVIEWS ─────────────────────── */
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .review-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 1.75rem;
-      display: flex; flex-direction: column;
-      transition: border-color .2s;
-    }
-    .review-card:hover { border-color: var(--green-d); }
-    .review-stars { display: flex; gap: .2rem; margin-bottom: 1rem; }
-    .review-stars i { color: var(--gold); font-size: .85rem; }
-    .review-stars i.empty { color: var(--border); }
-    .review-text {
-      color: var(--muted); font-size: .9rem; line-height: 1.7;
-      flex: 1; margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-    .review-author { display: flex; align-items: center; gap: .75rem; }
-    .review-avatar {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: var(--green-d);
+    .info-icon {
+      width: 40px; height: 40px; border-radius: 8px; background: var(--green-lt);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif; font-size: .9rem;
-      color: #fff; font-weight: 700; flex-shrink: 0;
+      color: var(--green-d); font-size: 1rem; flex-shrink: 0;
     }
-    .review-name { font-size: .9rem; font-weight: 600; color: var(--cream); }
-    .review-handle { font-size: .78rem; color: var(--muted); }
+    .info-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .info-value { font-size: .9rem; color: var(--text); font-weight: 600; }
+    .map-wrap { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin-top: 1.1rem; }
+    .map-wrap iframe { display: block; width: 100%; height: 210px; }
 
-    /* ─── CONTACT ─────────────────────── */
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+    /* ─── FOOTER ─── */
+    .footer { background: var(--green-d); padding: 2.5rem 2rem; text-align: center; }
+    .footer-logo { font-family: 'Oswald', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #fff; margin-bottom: .5rem; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin: .75rem 0; flex-wrap: wrap; }
+    .footer-links a {
+      font-family: 'Oswald', sans-serif; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase;
+      color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s;
     }
-    .contact-info-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem;
-    }
-    .contact-info-card h4 { font-size: 1rem; color: var(--cream); margin-bottom: 1rem; }
-    .contact-item {
-      display: flex; align-items: flex-start; gap: .75rem;
-      margin-bottom: .75rem;
-    }
-    .contact-item:last-child { margin-bottom: 0; }
-    .contact-item i { color: var(--green-l); margin-top: .2rem; }
-    .contact-item span { font-size: .9rem; color: var(--muted); }
-    .map-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
-    .map-wrap iframe { display: block; width: 100%; height: 240px; }
+    .footer-links a:hover { color: #fff; }
+    .footer p { font-size: .8rem; color: rgba(255,255,255,.45); }
 
-    /* ─── FOOTER ──────────────────────── */
-    .footer {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 2rem;
-      text-align: center;
-    }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; color: var(--cream);
-      margin-bottom: .5rem;
-    }
-    .footer-logo span { color: var(--green-l); }
-    .footer p { font-size: .83rem; color: var(--muted); }
-
-    /* ─── WHATSAPP FLOAT ──────────────── */
+    /* ─── WHATSAPP ─── */
     .wa-float {
       position: fixed; bottom: 1.75rem; right: 1.75rem;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: #25d366;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; color: #fff;
+      width: 58px; height: 58px; border-radius: 50%; background: #25d366; color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 1.65rem;
       box-shadow: 0 4px 20px rgba(37,211,102,.4);
-      transition: transform .2s, background .2s;
-      z-index: 999; text-decoration: none;
+      transition: transform .2s, background .2s; z-index: 999; text-decoration: none;
     }
-    .wa-float:hover { background: #128c7e; transform: scale(1.1); }
+    .wa-float:hover { background: #1db954; transform: scale(1.1); }
 
-    /* ─── RESPONSIVE ──────────────────── */
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-panel { display: none; }
       .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .nhbrc-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: block; }
-      .hero-stats { gap: 1.5rem; }
+      .hours-inner { flex-direction: column; gap: 1rem; text-align: center; }
     }
     @media (max-width: 480px) {
       .hero-actions { flex-direction: column; }
-      .hero-actions a, .hero-actions button { width: 100%; justify-content: center; }
+      .hero-actions a { justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── NAVIGATION ─────────────────────────────── -->
+<!-- NAV -->
 <header class="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">The <span>City</span> Consultant</a>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">TC</div>
+      <span class="nav-logo-text">The City Consultant</span>
+    </a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#nhbrc">NHBRC</a></li>
+      <li><a href="#compliance">Compliance</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Get in Touch</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <i class="fas fa-bars"></i>
-    </button>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
   </div>
   <div class="mobile-nav" id="mobileNav">
-    <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="#nhbrc">NHBRC</a>
+    <a href="#compliance">Compliance</a>
+    <a href="#about">About</a>
     <a href="#reviews">Reviews</a>
     <a href="#contact">Contact</a>
   </div>
 </header>
 
-<!-- ─── HERO ───────────────────────────────────── -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">
-      <i class="fas fa-shield-alt"></i>
-      South Africa's Trusted Business Partner
-    </div>
-    <h1>Your Business.<br><em>Registered. Compliant.</em><br>Ready to Grow.</h1>
-    <p>From company registration and CIPC filings to business plans and B-BBEE compliance — The City Consultant handles it all so you can focus on what matters.</p>
-    <div class="hero-actions">
-      <a href="#services" class="btn-primary"><i class="fas fa-briefcase"></i> View Services</a>
-      <a href="https://wa.me/27826905832" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
-    </div>
-    <div class="hero-stats">
-      <div>
-        <div class="hero-stat-num">500+</div>
-        <div class="hero-stat-label">Companies Registered</div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Nelspruit, Mpumalanga · Trusted Business Partner</div>
+      <h1>Business<br><span>Consultation</span><br>&amp; Corporate<br>Services</h1>
+      <p class="hero-tagline">Providing seamless support across all stages of business development — precision, reliability, and a clear understanding of what it takes to build businesses that are compliant and positioned to grow.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-green"><i class="fas fa-briefcase"></i> Our Services</a>
+        <a href="https://wa.me/27826905832" target="_blank" class="btn-white"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
       </div>
-      <div>
-        <div class="hero-stat-num">100%</div>
-        <div class="hero-stat-label">Compliance Rate</div>
+    </div>
+    <div class="hero-panel">
+      <h3>What We Cover</h3>
+      <div class="stat-row">
+        <div class="stat-icon"><i class="fas fa-building"></i></div>
+        <div><div class="stat-label">Company Registration</div><div class="stat-sub">CIPC certified filings</div></div>
       </div>
-      <div>
-        <div class="hero-stat-num">5★</div>
-        <div class="hero-stat-label">Client Rating</div>
+      <div class="stat-row">
+        <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+        <div><div class="stat-label">Business Compliance</div><div class="stat-sub">CSD, NHBRC, COIDA &amp; more</div></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+        <div><div class="stat-label">Financial Services</div><div class="stat-sub">Accounting, tax &amp; statements</div></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon"><i class="fas fa-paint-brush"></i></div>
+        <div><div class="stat-label">Branding &amp; Design</div><div class="stat-sub">Graphic design &amp; printing</div></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon"><i class="fas fa-globe"></i></div>
+        <div><div class="stat-label">Web Development</div><div class="stat-sub">Professional web presence</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── SERVICE MARQUEE ────────────────────────── -->
-<div class="marquee-section">
-  <p class="marquee-label">What we do</p>
-  <div class="marquee-track" id="marquee">
-    <div class="marquee-item"><i class="fas fa-building"></i> Company Registration</div>
-    <div class="marquee-item"><i class="fas fa-file-invoice"></i> Business Plans</div>
-    <div class="marquee-item"><i class="fas fa-barcode"></i> Barcodes</div>
-    <div class="marquee-item"><i class="fas fa-chart-line"></i> Financial Statements</div>
-    <div class="marquee-item"><i class="fas fa-landmark"></i> CIPC Filings</div>
-    <div class="marquee-item"><i class="fas fa-stamp"></i> Letter of Good Standing</div>
-    <div class="marquee-item"><i class="fas fa-certificate"></i> Tax Clearance</div>
-    <div class="marquee-item"><i class="fas fa-id-badge"></i> B-BBEE Certificate</div>
-    <div class="marquee-item"><i class="fas fa-database"></i> CSD Registration</div>
-    <!-- duplicate for seamless loop -->
-    <div class="marquee-item"><i class="fas fa-building"></i> Company Registration</div>
-    <div class="marquee-item"><i class="fas fa-file-invoice"></i> Business Plans</div>
-    <div class="marquee-item"><i class="fas fa-barcode"></i> Barcodes</div>
-    <div class="marquee-item"><i class="fas fa-chart-line"></i> Financial Statements</div>
-    <div class="marquee-item"><i class="fas fa-landmark"></i> CIPC Filings</div>
-    <div class="marquee-item"><i class="fas fa-stamp"></i> Letter of Good Standing</div>
-    <div class="marquee-item"><i class="fas fa-certificate"></i> Tax Clearance</div>
-    <div class="marquee-item"><i class="fas fa-id-badge"></i> B-BBEE Certificate</div>
-    <div class="marquee-item"><i class="fas fa-database"></i> CSD Registration</div>
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <div class="marquee-item"><i class="fas fa-circle"></i>Company Registration</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Business Plans</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Tax Clearance</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>B-BBEE Certificates</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>CSD Registration</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>NHBRC Services</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Graphic Design</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Financial Statements</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>COIDA Good Standing</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Shelf Companies</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Barcodes</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Web Development</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Company Registration</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Business Plans</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Tax Clearance</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>B-BBEE Certificates</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>CSD Registration</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>NHBRC Services</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Graphic Design</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Financial Statements</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>COIDA Good Standing</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Shelf Companies</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Barcodes</div>
+    <div class="marquee-item"><i class="fas fa-circle"></i>Web Development</div>
   </div>
 </div>
 
-<!-- ─── SERVICES: PACKAGES ─────────────────────── -->
-<section class="section" id="services">
+<!-- CORPORATE SERVICES -->
+<section class="section bg-light" id="services">
   <div class="section-inner">
     <div class="section-header center">
-      <span class="section-label">Company Registration</span>
-      <h2 class="section-title">Registration Packages</h2>
-      <p class="section-sub">Everything you need to get your business legally registered and fully compliant — in one package.</p>
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Corporate Services</h2>
+      <p class="section-sub">End-to-end business support from registration to growth — all under one roof.</p>
     </div>
-    <div class="packages-grid">
-
-      <!-- Entry Level -->
-      <div class="pkg-card">
-        <div class="pkg-name">Entry Level</div>
-        <div class="pkg-desc">Perfect for getting started</div>
-        <div class="pkg-price">R829 <span>once-off</span></div>
-        <ul class="pkg-features">
-          <li><i class="fas fa-check"></i> Company Registration &amp; Certificates</li>
-          <li><i class="fas fa-check"></i> Tax Clearance Certificate</li>
-          <li><i class="fas fa-check"></i> B-BBEE Certificate</li>
-          <li><i class="fas fa-check"></i> CSD Registration</li>
-          <li><i class="fas fa-check"></i> Beneficial Ownership Filing</li>
-        </ul>
-        <form action="https://www.payfast.co.za/eng/process" method="POST">
-          <input type="hidden" name="merchant_id" value="20755326">
-          <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
-          <input type="hidden" name="item_name" value="Entry Level Package">
-          <input type="hidden" name="amount" value="829.00">
-          <button type="submit" class="pkg-btn">Purchase Now</button>
-        </form>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fas fa-building"></i></div>
+        <h4 class="svc-name">Company Registration</h4>
+        <p class="svc-desc">Full CIPC registration including all certificates and compliance documents.</p>
       </div>
-
-      <!-- Basic (featured) -->
-      <div class="pkg-card featured">
-        <div class="pkg-name">Basic Package</div>
-        <div class="pkg-desc">Full compliance suite</div>
-        <div class="pkg-price">R1 500 <span>once-off</span></div>
-        <ul class="pkg-features">
-          <li><i class="fas fa-check"></i> Company Registration &amp; Certificates</li>
-          <li><i class="fas fa-check"></i> SARS (PR) Public Representative</li>
-          <li><i class="fas fa-check"></i> Tax Clearance Certificate</li>
-          <li><i class="fas fa-check"></i> B-BBEE Certificate</li>
-          <li><i class="fas fa-check"></i> CSD Registration</li>
-          <li><i class="fas fa-check"></i> Beneficial Ownership Filing</li>
-          <li><i class="fas fa-check"></i> Business Profile</li>
-        </ul>
-        <form action="https://www.payfast.co.za/eng/process" method="POST">
-          <input type="hidden" name="merchant_id" value="20755326">
-          <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
-          <input type="hidden" name="item_name" value="Basic Package">
-          <input type="hidden" name="amount" value="1500.00">
-          <button type="submit" class="pkg-btn">Purchase Now</button>
-        </form>
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fas fa-lightbulb"></i></div>
+        <h4 class="svc-name">Business Advisory</h4>
+        <p class="svc-desc">Strategic guidance to help your business operate and expand with confidence.</p>
       </div>
-
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fas fa-calculator"></i></div>
+        <h4 class="svc-name">Accounting &amp; Tax</h4>
+        <p class="svc-desc">Financial statements, tax clearance certificates, and full SARS compliance.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fas fa-chart-line"></i></div>
+        <h4 class="svc-name">Expansion &amp; Growth</h4>
+        <p class="svc-desc">Business plans and advisory services designed to unlock new opportunities.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fas fa-shield-alt"></i></div>
+        <h4 class="svc-name">Business Compliance</h4>
+        <p class="svc-desc">B-BBEE certificates, beneficial ownership filing, and CSD registration.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fas fa-paint-brush"></i></div>
+        <h4 class="svc-name">Graphic Design</h4>
+        <p class="svc-desc">Professional brand identity, logos, stationery, and marketing materials.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fas fa-globe"></i></div>
+        <h4 class="svc-name">Web Development</h4>
+        <p class="svc-desc">Modern, responsive websites that give your business a professional presence.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"><i class="fas fa-print"></i></div>
+        <h4 class="svc-name">Printing Solutions</h4>
+        <p class="svc-desc">Business cards, flyers, banners, and branded print materials.</p>
+      </div>
     </div>
-    <p style="text-align:center; margin-top:2rem; color:var(--muted); font-size:.9rem;">
-      Need something custom?
-      <a href="mailto:info@thecc.co.za?subject=Quotation%20Request" style="color:var(--green-l); font-weight:600;">Contact us for a quotation →</a>
+  </div>
+</section>
+
+<!-- COMPLIANCE SERVICES -->
+<section class="section" id="compliance">
+  <div class="section-inner">
+    <div class="section-header center">
+      <span class="section-label">Other Services</span>
+      <h2 class="section-title">Compliance &amp; Regulatory</h2>
+      <p class="section-sub">Registrations and compliance services across all major South African regulatory bodies.</p>
+    </div>
+    <div class="compliance-grid">
+      <div class="comp-card"><i class="fas fa-store"></i><h4>Shelf Companies</h4></div>
+      <div class="comp-card"><i class="fas fa-database"></i><h4>CSD Services</h4></div>
+      <div class="comp-card"><i class="fas fa-university"></i><h4>NCR Services</h4></div>
+      <div class="comp-card"><i class="fas fa-hard-hat"></i><h4>CIDB Services</h4></div>
+      <div class="comp-card"><i class="fas fa-gavel"></i><h4>NCCA Services</h4></div>
+      <div class="comp-card"><i class="fas fa-user-shield"></i><h4>PSIRA Services</h4></div>
+      <div class="comp-card"><i class="fas fa-medkit"></i><h4>COIDA Services</h4></div>
+      <div class="comp-card"><i class="fas fa-home"></i><h4>NHBRC Services</h4></div>
+    </div>
+    <p style="text-align:center; margin-top:2.5rem; color:var(--muted); font-size:.92rem; font-style:italic;">
+      "Looking for a service that's not on the list?
+      <a href="#contact" style="color:var(--brown); font-weight:700; text-decoration:none;">Contact our administration to find out more.</a>"
     </p>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ─── CIPC SERVICES ──────────────────────────── -->
-<section class="section" id="cipc">
-  <div class="section-inner">
-    <div class="section-header center">
-      <span class="section-label">CIPC Services</span>
-      <h2 class="section-title">Beneficial Ownership Filing</h2>
-      <p class="section-sub">Stay fully compliant with regulatory requirements. We handle the entire filing process for you.</p>
-    </div>
-    <div class="cipc-card">
-      <h3>Beneficial Ownership Filing Service</h3>
-      <p style="color:var(--muted); font-size:.9rem;">Ensure your company meets all CIPC compliance requirements with our specialist filing service.</p>
-      <div class="cipc-price">R350</div>
-
-      <h4 style="font-size:.9rem; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:.75rem;">Required Documents</h4>
-      <ul class="requirements-list">
-        <li><i class="fas fa-circle"></i> Your Email Address</li>
-        <li><i class="fas fa-circle"></i> Your Cellphone Number</li>
-        <li><i class="fas fa-circle"></i> Company Registration Number</li>
-        <li><i class="fas fa-circle"></i> Certified ID copies of all Directors</li>
-      </ul>
-
-      <form action="https://www.payfast.co.za/eng/process" method="POST" style="margin: 1.5rem 0 2rem;">
-        <input type="hidden" name="merchant_id" value="20755326">
-        <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
-        <input type="hidden" name="item_name" value="Beneficial Ownership Filing Service">
-        <input type="hidden" name="amount" value="350.00">
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
-          <i class="fas fa-lock"></i> Pay Securely — R350
-        </button>
-      </form>
-
-      <h4 style="font-size:1rem; color:var(--cream); margin-bottom:1rem;">Send Your Details</h4>
-      <form action="mailto:info@thecc.co.za?subject=Beneficial%20Ownership%20Filing%20Request" method="post" enctype="text/plain">
-        <div class="form-field">
-          <label>Email Address</label>
-          <input type="email" name="bo-email" required placeholder="your@email.com">
-        </div>
-        <div class="form-field">
-          <label>Cellphone Number</label>
-          <input type="tel" name="bo-phone" required placeholder="082 000 0000">
-        </div>
-        <div class="form-field">
-          <label>Company Registration Number</label>
-          <input type="text" name="bo-reg-number" required placeholder="2024/000000/07">
-        </div>
-        <div class="form-field">
-          <label>Certified ID Copies</label>
-          <input type="file" name="bo-files" multiple>
-          <p class="hint">For size/security reasons, you can also email documents directly to info@thecc.co.za</p>
-        </div>
-        <button type="submit" class="btn-outline" style="width:100%; justify-content:center; opacity:.6; cursor:not-allowed;" disabled>
-          Submit Details (pay first above)
-        </button>
-      </form>
-    </div>
+<!-- PARTNERS -->
+<div class="partners-section">
+  <p class="partners-title">Accredited &amp; Registered With</p>
+  <div class="partners-row">
+    <div class="partner-badge"><i class="fas fa-certificate"></i>CIPC</div>
+    <div class="partner-badge"><i class="fas fa-database"></i>Central Supplier Database</div>
+    <div class="partner-badge"><i class="fas fa-home"></i>NHBRC</div>
+    <div class="partner-badge"><i class="fas fa-hard-hat"></i>CIDB</div>
+    <div class="partner-badge"><i class="fas fa-stamp"></i>COIDA</div>
   </div>
-</section>
+</div>
 
-<div class="divider"></div>
-
-<!-- ─── NHBRC ──────────────────────────────────── -->
-<section class="section" id="nhbrc">
-  <div class="section-inner">
-    <div class="section-header center">
-      <span class="section-label">Construction Compliance</span>
-      <h2 class="section-title">NHBRC Q&amp;A Document</h2>
-      <p class="section-sub">Get fully prepared for your NHBRC compliance assessments with our professionally compiled Questions &amp; Answers document.</p>
-    </div>
-
-    <div style="background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:2.5rem; max-width:720px; margin:0 auto; text-align:center;">
-      <div style="font-family:'Playfair Display',serif; font-size:3rem; color:var(--green-l); margin-bottom:.5rem;">R480</div>
-      <p style="color:var(--muted); margin-bottom:2rem;">Instant download after secure payment</p>
-      <form action="https://www.payfast.co.za/eng/process" method="POST">
-        <input type="hidden" name="merchant_id" value="20755326">
-        <input type="hidden" name="merchant_key" value="4x0g3wc6d35gu">
-        <input type="hidden" name="item_name" value="NHBRC Q&A Document">
-        <input type="hidden" name="amount" value="480.00">
-        <button type="submit" class="btn-primary" style="margin: 0 auto 2rem;">
-          <i class="fas fa-download"></i> Buy &amp; Download Now
-        </button>
-      </form>
-
-      <div class="nhbrc-grid" style="text-align:left;">
-        <div class="nhbrc-card">
-          <h4><i class="fas fa-file-alt" style="color:var(--green-l); margin-right:.5rem;"></i> What's Included</h4>
-          <ul>
-            <li><i class="fas fa-check"></i> Latest NHBRC compliance requirements</li>
-            <li><i class="fas fa-check"></i> Real &amp; tested Q&amp;A pairs</li>
-            <li><i class="fas fa-check"></i> Easy-to-read format</li>
-            <li><i class="fas fa-check"></i> Instant download</li>
-          </ul>
-        </div>
-        <div class="nhbrc-card">
-          <h4><i class="fas fa-award" style="color:var(--gold); margin-right:.5rem;"></i> Benefits</h4>
-          <ul>
-            <li><i class="fas fa-check"></i> Industry recognition</li>
-            <li><i class="fas fa-check"></i> Legal standards compliance</li>
-            <li><i class="fas fa-check"></i> More business opportunities</li>
-            <li><i class="fas fa-check"></i> Avoid fines &amp; penalties</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align:center; margin-top:2.5rem;">
-      <a href="#contact" class="btn-outline">Need NHBRC Education Assistance?</a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ─── ABOUT ──────────────────────────────────── -->
-<section class="section about-section" id="about">
+<!-- ABOUT -->
+<section class="section bg-light" id="about">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-visual">
-        <div class="about-icon-grid">
-          <div class="about-icon-item">
-            <i class="fas fa-building"></i>
-            <p>Company Registration</p>
-          </div>
-          <div class="about-icon-item">
-            <i class="fas fa-shield-alt"></i>
-            <p>Compliance</p>
-          </div>
-          <div class="about-icon-item">
-            <i class="fas fa-chart-pie"></i>
-            <p>Financial Services</p>
-          </div>
-          <div class="about-icon-item">
-            <i class="fas fa-paint-brush"></i>
-            <p>Branding</p>
-          </div>
+        <div class="about-visual-top">
+          <h3>The City<br>Consultant</h3>
+          <p>Nelspruit · Mpumalanga · South Africa</p>
         </div>
+        <ul class="about-feature-list">
+          <li><i class="fas fa-check-circle"></i>Full business registration service</li>
+          <li><i class="fas fa-check-circle"></i>CIPC certified professionals</li>
+          <li><i class="fas fa-check-circle"></i>Compliance across all regulatory bodies</li>
+          <li><i class="fas fa-check-circle"></i>Graphic design &amp; branding team</li>
+          <li><i class="fas fa-check-circle"></i>Web development capabilities</li>
+          <li><i class="fas fa-check-circle"></i>One-stop business support</li>
+        </ul>
       </div>
       <div class="about-text">
         <span class="section-label">Who We Are</span>
         <h2 class="section-title">About The City Consultant</h2>
         <p>The City Consultant (The CC) is a comprehensive professional services firm dedicated to helping South African businesses grow with confidence.</p>
-        <p>We specialize in business registration and compliance, financial services, branding and marketing, and corporate administration — all under one roof.</p>
-        <p>Whether you're starting a new company or ensuring your existing business stays compliant, we make the process seamless, efficient, and affordable.</p>
-        <a href="#contact" class="btn-primary" style="margin-top:1.5rem; display:inline-flex;">
-          <i class="fas fa-phone-alt"></i> Talk to Us
+        <p>We specialize in business registration and compliance, financial services, branding and marketing, and corporate administration — all under one roof in Nelspruit, Mpumalanga.</p>
+        <div class="accent-quote">
+          "Our approach is defined by precision, reliability, and a clear understanding of what it takes to build businesses that are not only compliant, but positioned to operate and expand with confidence."
+        </div>
+        <p>Whether you're starting a new company or ensuring your existing business stays compliant across CIPC, CSD, NHBRC, COIDA, CIDB and more — we make the process seamless and efficient.</p>
+        <a href="#contact" class="btn-green" style="margin-top:1.5rem; display:inline-flex;">
+          <i class="fas fa-phone-alt"></i>Talk to Us Today
         </a>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- TRADING HOURS -->
+<div class="hours-band">
+  <div class="hours-inner">
+    <div class="hours-item">
+      <i class="fas fa-clock"></i>
+      <div><strong>Mon – Fri</strong><span>&nbsp;8:00 am – 5:00 pm</span></div>
+    </div>
+    <div class="hours-item">
+      <i class="fas fa-clock"></i>
+      <div><strong>Saturday</strong><span>&nbsp;8:00 am – 1:00 pm</span></div>
+    </div>
+    <div class="hours-item">
+      <i class="fas fa-map-marker-alt"></i>
+      <div><strong>1st Floor Regus Building</strong><span>&nbsp;Samora Machel Drive, Promenade Mall, Nelspruit</span></div>
+    </div>
+  </div>
+</div>
 
-<!-- ─── REVIEWS ────────────────────────────────── -->
+<!-- REVIEWS -->
 <section class="section" id="reviews">
   <div class="section-inner">
     <div class="section-header center">
@@ -795,74 +630,52 @@
       <h2 class="section-title">What Our Clients Say</h2>
     </div>
     <div class="reviews-grid">
-
       <div class="review-card">
-        <div class="review-stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         <p class="review-text">"The City Consultants transformed our business with exceptional graphic design and compliance assistance. They created a modern brand identity while ensuring all compliance needs were met effortlessly. Their dedication to quality is unmatched."</p>
         <div class="review-author">
-          <div class="review-avatar">SD</div>
-          <div>
-            <div class="review-name">Simbo Driving School</div>
-            <div class="review-handle">@Simbo Driving School</div>
-          </div>
+          <div class="review-av">SD</div>
+          <div><div class="review-name">Simbo Driving School</div><div class="review-handle">@Simbo Driving School</div></div>
         </div>
       </div>
-
       <div class="review-card">
-        <div class="review-stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
         <p class="review-text">"Exceptional service in helping us develop a comprehensive business plan for our diamond trading company. Their strategic insights and personalized approach gave our business a solid foundation to secure funding."</p>
         <div class="review-author">
-          <div class="review-avatar">BS</div>
-          <div>
-            <div class="review-name">Dr Bonginkosi Shoba Inc</div>
-            <div class="review-handle">@Dr Bonginkosi Shoba, Director</div>
-          </div>
+          <div class="review-av">BS</div>
+          <div><div class="review-name">Dr Bonginkosi Shoba Inc</div><div class="review-handle">@Dr Bonginkosi Shoba, Director</div></div>
         </div>
       </div>
-
       <div class="review-card">
-        <div class="review-stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star empty"></i>
-        </div>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star empty"></i></div>
         <p class="review-text">"Our beverage products now have professional, fully compliant barcodes, allowing us to seamlessly enter the retail market. The team made the process easy and efficient, ensuring everything met industry standards."</p>
         <div class="review-author">
-          <div class="review-avatar">LB</div>
-          <div>
-            <div class="review-name">Lenaka Beverages</div>
-            <div class="review-handle">@Lenaka Beverages</div>
-          </div>
+          <div class="review-av">LB</div>
+          <div><div class="review-name">Lenaka Beverages</div><div class="review-handle">@Lenaka Beverages</div></div>
         </div>
       </div>
-
     </div>
     <div style="text-align:center; margin-top:2.5rem;">
-      <a href="https://www.google.com/search?q=The+City+Consultant" target="_blank" class="btn-outline">
-        <i class="fab fa-google"></i> Leave a Review on Google
+      <a href="https://www.google.com/search?q=The+City+Consultant" target="_blank" class="btn-green">
+        <i class="fab fa-google"></i>Leave a Review on Google
       </a>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ─── CONTACT ────────────────────────────────── -->
-<section class="section" id="contact">
+<!-- CONTACT -->
+<section class="section bg-light" id="contact">
   <div class="section-inner">
     <div class="section-header">
       <span class="section-label">Reach Out</span>
       <h2 class="section-title">Get in Touch</h2>
-      <p class="section-sub">Have a question or ready to get started? We'd love to hear from you.</p>
+      <p class="section-sub">Ready to register your business or need compliance assistance? We'd love to hear from you.</p>
     </div>
     <div class="contact-grid">
-
       <div>
         <form action="mailto:info@thecc.co.za" method="post" enctype="text/plain">
           <div class="form-field">
-            <label>Your Name</label>
+            <label>Full Name</label>
             <input type="text" name="name" placeholder="John Dlamini">
           </div>
           <div class="form-field">
@@ -870,51 +683,70 @@
             <input type="email" name="email" placeholder="john@example.co.za">
           </div>
           <div class="form-field">
+            <label>Service Interested In</label>
+            <select name="service">
+              <option value="">— Select a service —</option>
+              <option>Company Registration</option>
+              <option>Business Advisory</option>
+              <option>Accounting &amp; Tax</option>
+              <option>Business Compliance</option>
+              <option>Graphic Design</option>
+              <option>Web Development</option>
+              <option>NHBRC Services</option>
+              <option>COIDA / CIDB Services</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-field">
             <label>Message</label>
             <textarea name="message" placeholder="Tell us about your business needs…"></textarea>
           </div>
-          <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
-            <i class="fas fa-paper-plane"></i> Send Message
+          <button type="submit" class="btn-green" style="width:100%; justify-content:center;">
+            <i class="fas fa-paper-plane"></i>Send Message
           </button>
         </form>
       </div>
-
       <div>
-        <div class="contact-info-card">
-          <h4>Contact Information</h4>
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <span>info@thecc.co.za</span>
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div><div class="info-label">General Enquiries</div><div class="info-value">Info@thecc.co.za</div></div>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-phone-alt"></i>
-            <span>082 690 5832</span>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-store"></i></div>
+            <div><div class="info-label">Shelf Companies</div><div class="info-value">shelf@thecc.c.za</div></div>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Mbombela, Nelspruit, Mpumalanga 1200, South Africa</span>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+            <div><div class="info-label">Phone / WhatsApp</div><div class="info-value">082 690 5832</div></div>
           </div>
-          <div class="contact-item">
-            <i class="fab fa-whatsapp"></i>
-            <a href="https://wa.me/27826905832" target="_blank" style="color:var(--green-l); text-decoration:none;">Chat on WhatsApp</a>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><div class="info-label">Physical Address</div><div class="info-value">1st Floor Regus Building, Samora Machel Drive, Promenade Mall, Nelspruit</div></div>
           </div>
         </div>
         <div class="map-wrap">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.5768310065256!2d30.9859586!3d-25.4746688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9bb15598910405%3A0xc6c710d0f418d184!2sMbombela%2C%20Nelspruit%2C%201200%2C%20South+Africa!5e0!3m2!1sen!2sus!4v1628174567890!5m2!1sen&hl=en&z=14&output=embed" allowfullscreen loading="lazy" title="Location Map"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.5768310065256!2d30.9859586!3d-25.4746688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9bb15598910405%3A0xc6c710d0f418d184!2sMbombela%2C%20Nelspruit%2C%201200%2C%20South+Africa!5e0!3m2!1sen!2sus!4v1628174567890!5m2!1sen&hl=en&z=14&output=embed" allowfullscreen loading="lazy" title="Our Location"></iframe>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ─── FOOTER ─────────────────────────────────── -->
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-logo">The <span>City</span> Consultant</div>
-  <p>&copy; 2025 The City Consultant. All Rights Reserved. · Nelspruit, Mpumalanga, South Africa</p>
+  <div class="footer-logo">The City Consultant</div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#compliance">Compliance</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p>&copy; 2025 The City Consultant · Nelspruit, Mpumalanga, South Africa · info@thecc.co.za · 082 690 5832</p>
 </footer>
 
-<!-- ─── WHATSAPP FLOAT ─────────────────────────── -->
+<!-- WHATSAPP FLOAT -->
 <a href="https://wa.me/27826905832" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
